@@ -1,0 +1,8 @@
+.Header_BlogName{
+    font-size: 40px;
+    color: rgb(194, 194, 194);
+    margin-top: 50px;
+    letter-spacing: 0.2rem;
+    word-spacing: 0.5rem;
+    cursor: pointer;
+}
