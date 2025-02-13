@@ -1,5 +1,6 @@
 import React from 'react'
 import './Navbar.css'
+import ScrollNavbar from './Section/ScrollNavbar.js'
 
 function Navbar() {
     return (
@@ -7,6 +8,9 @@ function Navbar() {
             {/* 블로그 이름 */}
             <div className='Header_BlogName'>
                 Who I Am?
+            </div>
+            <div>
+                <ScrollNavbar />
             </div>
         </div>
     )

@@ -1,0 +1,38 @@
+
+.nav_container {
+    display: flex;
+    height: 200vh;
+  }
+  
+  .Scroll_nav-bar {
+    position: fixed;
+    left: 100px;
+    top: 30%;
+    width: 20px; /* 가로 50% 줄이기 */
+    height: 20vh; /* 세로 70% 줄이기 */
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+  }
+  
+  .scroll-indicator {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: top 0.2s ease-out;
+    font-size: 24px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #000; /* 내부 검정색 */
+    border: 3px solid #fff; /* 외곽 흰색 */
+  }
+  
+  .scroll_content {
+    flex: 1;
+    padding: 50px;
+  }
