@@ -9,7 +9,7 @@
     left: 100px;
     top: 30%;
     width: 20px; /* 가로 50% 줄이기 */
-    height: 20vh; /* 세로 70% 줄이기 */
+    height: 35vh; /* 세로 70% 줄이기 */
     background: #ddd;
     display: flex;
     align-items: center;

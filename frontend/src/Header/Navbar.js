@@ -10,7 +10,6 @@ function Navbar() {
                 Who I Am?
             </div>
             <div>
-                <ScrollNavbar />
             </div>
         </div>
     )

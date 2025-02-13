@@ -1,0 +1,23 @@
+.Introduce{
+    position: absolute;
+    left: 80px;
+    text-align: left;
+    margin-top: 30px;
+}
+.Introduce_Title{
+    display: flex;
+    flex-direction: column;
+    font-size: 45px;
+    font-weight: bold;
+    color: rgb(228, 228, 228);
+    margin-bottom: 20px;
+}
+.Title_Job{
+    font-size: 35px;
+    color: rgb(220,220,220);
+}
+.Introduce_Description{
+    font-size: 20px;
+    color: rgb(193, 193, 193);
+    line-height: 28px;
+}

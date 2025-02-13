@@ -23,9 +23,8 @@ function ScrollNavbar() {
     <div className='nav_container'>
       <div className='Scroll_nav-bar'>
         {/* 현재 스크롤 진행도를 백분율로 가져와 top에 n% 를 하여 o모양을 n퍼센트 내려주기 */}
-        <div className='scroll-indicator' style={{top : `${(scrollPosition / 100) * 17.5}vh`}}></div>
+        <div className='scroll-indicator' style={{top : `${(scrollPosition / 100) * 32}vh`}}></div>
       </div>
-      <div className='scroll_content'>{/* 컨텐츠 */}</div>
     </div>
   )
 }
