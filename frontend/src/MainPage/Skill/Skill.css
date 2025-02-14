@@ -1,0 +1,37 @@
+.Skill{
+    width: 700px;
+    padding-left: 32px;
+    margin-top: 30px;
+}
+.Skill_List{
+    display: flex;
+    flex-direction: row;
+}
+.Skill > div{
+    display: inline-block;
+    width: 300px;
+}
+.Skill_title{
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+.Front_Category , .Back_Category , .DevOps_Category{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: left;
+}
+.Front_Skill , .Back_Skill , .DevOps_Skill{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+.Front_Skill span , .Back_Skill span , .DevOps_Skill span{
+    margin-bottom: 5px;
+}
+.DevOps_Skill > div {
+    position: relative;
+    left: -40px;
+}
