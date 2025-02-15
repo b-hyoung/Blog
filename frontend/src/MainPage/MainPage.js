@@ -2,6 +2,7 @@ import React from 'react'
 import Introduce from './Introduce/Introduce'
 import Skill from './Skill/Skill'
 import './MainPage.css'
+import Social from './Social/Social'
 
 function MainPage() {
     return (
@@ -9,6 +10,7 @@ function MainPage() {
             <div>
                 <Introduce />
                 <Skill />
+                <Social />
             </div>
             <div>
             </div>

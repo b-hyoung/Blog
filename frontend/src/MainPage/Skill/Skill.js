@@ -14,20 +14,9 @@ function Skill() {
     ])
 
 
-    const Checkbox = () => {
-        return (
-            <div
-                style={{
-                    width: "9px",
-                    height: "14px",
-                    border: "2px solid gray",
-                    marginRight:"10px",
-                    position:"relative"
-                    
-                }}
-            ></div>
-        );
-    };
+    const Checkbox = ({ category }) => {
+        return <div className={`checkbox ${category}`}></div>;
+      };
 
     return (
         <div className='Skill'>
@@ -37,7 +26,7 @@ function Skill() {
                     {frontSkill.map((item, index) => {
                         return (
                             <div className='Skill_List'>
-                                <Checkbox />
+                                <Checkbox category={"front"} />
                                 <span>{item}</span>
                             </div>
                         )
@@ -50,7 +39,7 @@ function Skill() {
                     {backSkill.map((item, index) => {
                         return (
                             <div className='Skill_List'>
-                                <Checkbox />
+                                <Checkbox category={"back"} />
                                 <span>{item}</span>
                             </div>
                         )
@@ -63,7 +52,7 @@ function Skill() {
                     {devOpsSkill.map((item, index) => {
                         return (
                             <div className='Skill_List'>
-                                <Checkbox />
+                                <Checkbox category={"DevOps"}/>
                                 <span>{item}</span>
                             </div>
                         )

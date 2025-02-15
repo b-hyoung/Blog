@@ -1,6 +1,6 @@
 .Skill{
     width: 700px;
-    padding-left: 32px;
+    padding-left: 61px;
     margin-top: 30px;
 }
 .Skill_List{
@@ -9,19 +9,43 @@
 }
 .Skill > div{
     display: inline-block;
-    width: 300px;
+    width: 330px;
 }
 .Skill_title{
     font-size: 30px;
     font-weight: bold;
     letter-spacing: 1px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
+.checkbox {
+    width: 10px;
+    height: 13px;
+    border: 2px solid;
+    margin-right: 10px;
+    position: relative;
+    margin-top: 2px;
+  }
+  
+  /* 🔵 Front End 체크박스 */
+  .checkbox.front {
+    border-color: rgb(255, 99, 71);
+  }
+  
+  /* 🔴 Back End 체크박스 */
+  .checkbox.back {
+    border-color: rgb(142, 197, 223);
+  }
+  
+  /* 🟣 DevOps 체크박스 */
+  .checkbox.DevOps {
+    border-color: rgb(147, 112, 219);
+  }
 .Front_Category , .Back_Category , .DevOps_Category{
     display: flex;
     flex-direction: column;
     color: white;
     text-align: left;
+    margin-bottom: 20px;
 }
 .Front_Skill , .Back_Skill , .DevOps_Skill{
     display: flex;
@@ -29,7 +53,9 @@
     color: white;
 }
 .Front_Skill span , .Back_Skill span , .DevOps_Skill span{
-    margin-bottom: 5px;
+    margin-bottom: 7px;
+    font-size: 18px;
+    font-weight: 400;
 }
 .DevOps_Skill > div {
     position: relative;
