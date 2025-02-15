@@ -1,0 +1,13 @@
+.Social{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    position: relative;
+    left: 100px;
+}
+.Social > a{
+    outline: none;
+    margin-bottom: 4px;
+
+}
