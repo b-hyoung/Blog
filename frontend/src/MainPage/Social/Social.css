@@ -5,9 +5,29 @@
     text-align: left;
     position: relative;
     left: 100px;
+    width: max-content;
+}
+.Social > div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: rgb(175, 176, 176);
+    color: black;
+    border-radius: 4px;
+    padding-left: 3px;
+    width: max-content;
+    padding-right: 5px;
+
 }
 .Social > a{
     outline: none;
     margin-bottom: 4px;
+    font-size: 30px;
 
+}
+.Social > div > img{
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
 }
