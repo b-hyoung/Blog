@@ -48,7 +48,7 @@ const {Email , Github , notion , velog} = socialLink
                 <a>Git : {Github}</a>
             </div>
             <div className='Social_notion'  onClick={() => goPage(velog)}>
-                <img src={`${process.env.PUBLIC_URL}/img/icon/velog.png`} />
+                <img src={`${process.env.PUBLIC_URL}/img/icon/velog.png`} style={{width:"22px" , height:"22px" , padding:"2px 0 2px 0"}} />
                 <a>Velog : {velog}</a>
             </div>
             <div className='Social_velog'  onClick={() => goPage(notion)}>
