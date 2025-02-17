@@ -1,5 +1,5 @@
 .MainPage_introduce{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     position: absolute;
 }

@@ -1,0 +1,27 @@
+.Project_Blog{
+    text-align: left;
+}
+.Project_title{
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.Project_description{
+    color: rgb(176, 176, 176);
+    font-size: 18px;
+    margin-top: 15px;
+    line-height: 23px;
+    margin-bottom: 30px;
+}
+.Project_SkillList > span{
+    color: rgb(127, 223, 155);
+    background-color: rgb(70, 70, 70);
+    padding: 10px 10px;
+    border-radius: 10px;
+    margin-right: 30px;
+    font-size: 15px;
+    width: max-content;
+    height: 20px;
+}
