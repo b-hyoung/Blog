@@ -8,7 +8,7 @@ import Project from './MyProject/Project'
 function MainPage() {
     return (
         <div className='MainPage_introduce'>
-            <div>
+            <div style={{scale:0.9}}>
                 <Introduce />
                 <Skill />
                 <Social />

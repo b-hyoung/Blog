@@ -4,8 +4,14 @@
     flex-direction: column;
     text-align: left;
     position: relative;
-    left: 100px;
     width: max-content;
+}
+.Social_title{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: none !important;
+    color: white;
 }
 .Social > div{
     display: flex;

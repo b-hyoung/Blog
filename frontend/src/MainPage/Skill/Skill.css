@@ -1,6 +1,5 @@
 .Skill{
     width: 700px;
-    padding-left: 61px;
     margin-top: 30px;
 }
 .Skill_List{
@@ -9,7 +8,7 @@
 }
 .Skill > div{
     display: inline-block;
-    width: 330px;
+    width: 350px;
 }
 .Skill_title{
     font-size: 30px;
@@ -45,7 +44,7 @@
     flex-direction: column;
     color: white;
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 .Front_Skill , .Back_Skill , .DevOps_Skill{
     display: flex;
@@ -54,8 +53,8 @@
 }
 .Front_Skill span , .Back_Skill span , .DevOps_Skill span{
     margin-bottom: 7px;
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 17px;
+    font-weight: 550;
 }
 .DevOps_Skill > div {
     position: relative;

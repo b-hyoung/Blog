@@ -38,7 +38,7 @@ const {Email , Github , notion , velog} = socialLink
 
     return (
         <div className='Social'>
-            <h1>Social</h1>
+            <span className='Social_title'>Social</span>
             <div className='Social_Email'  onClick={() => getClipboardText(Email)} style={{padding:"1px 0 0 3px"}} >
                 <EmailIcon className="Social_EmailImg"  />
                 <a>E-mail : {Email}&nbsp;</a>
