@@ -19,6 +19,8 @@ function Project() {
                     <span>Css</span>
                     <span>Python3</span>
                     <span>My SQL</span>
+                    <span>AWS</span>
+                    <span>IAM</span>
                 </div>
             </div>
         </div>
