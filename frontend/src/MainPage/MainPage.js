@@ -3,6 +3,7 @@ import Introduce from './Introduce/Introduce'
 import Skill from './Skill/Skill'
 import './MainPage.css'
 import Social from './Social/Social'
+import Project from './MyProject/Project'
 
 function MainPage() {
     return (
@@ -13,6 +14,7 @@ function MainPage() {
                 <Social />
             </div>
             <div>
+                <Project />
             </div>
         </div>
     )

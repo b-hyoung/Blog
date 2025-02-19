@@ -12,18 +12,20 @@
     align-items: center;
     margin-bottom: 10px;
     cursor: pointer;
-    background-color: rgb(175, 176, 176);
-    color: black;
+    background-color: #DCE2F0;
+    color: #50586C;
     border-radius: 4px;
     padding-left: 3px;
     width: max-content;
-    padding-right: 5px;
+    font-weight: bold;
+
 
 }
 .Social > a{
     outline: none;
     margin-bottom: 4px;
-    font-size: 30px;
+    font-size: 35px;
+    font-weight: bold;
 
 }
 .Social > div > img{
