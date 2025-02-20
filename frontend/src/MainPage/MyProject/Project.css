@@ -1,6 +1,7 @@
 .Project_Blog {
     text-align: left;
     padding: 20px 20px;
+    scale: 0.9;
 }
 
 .Project_Blog:hover {
@@ -9,7 +10,7 @@
 }
 
 .Project_Blog:hover .Project_title {
-    color: #CE4A7E;
+    color:rgb(136 212 237);
 }
 .Project_Blog:hover .arrowImg{
     margin-left: 20px;
@@ -56,7 +57,7 @@
 }
 
 .Project_SkillList>span {
-    color: rgb(245, 152, 98);
+    color:rgb(136 212 237);
     background-color: rgb(70, 70, 70);
     padding: 10px 10px;
     border-radius: 10px;

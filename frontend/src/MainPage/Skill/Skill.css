@@ -7,56 +7,78 @@
     flex-direction: row;
 }
 .Skill > div{
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     width: 350px;
 }
 .Skill_title{
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     letter-spacing: 1px;
-    margin-bottom: 10px;
+    margin-bottom: 13px;
 }
+
+/* 체크박스 */
 .checkbox {
-    width: 10px;
-    height: 13px;
-    border: 2px solid;
+    width: 11px;
+    height: 11px;
+    border: 1px solid;
+    border-radius: 100%;
     margin-right: 10px;
     position: relative;
     margin-top: 2px;
   }
   
-  /* 🔵 Front End 체크박스 */
-  .checkbox.front {
-    border-color: rgb(255, 99, 71);
+/* 🔵 Front End 체크박스 */
+  .checkbox.front , .Skill_title.Front.End {
+    border-color: rgb(255, 66, 66);
+    color: rgb(255, 99, 71);
   }
-  
-  /* 🔴 Back End 체크박스 */
-  .checkbox.back {
-    border-color: rgb(142, 197, 223);
+/* 🔴 Back End 체크박스 */
+  .checkbox.back  , .Skill_title.Back.End{
+    border-color: rgb(27 182 255);
+    color: rgb(27 182 255);
   }
-  
   /* 🟣 DevOps 체크박스 */
-  .checkbox.DevOps {
+  .checkbox.devOps , .Skill_title.DevOps{
     border-color: rgb(147, 112, 219);
+    color: rgb(147, 112, 219);
   }
+
 .Front_Category , .Back_Category , .DevOps_Category{
     display: flex;
     flex-direction: column;
     color: white;
     text-align: left;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
-.Front_Skill , .Back_Skill , .DevOps_Skill{
+.front_Skill , .back_Skill , .devOps_Skill{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
     color: white;
+    width: 700px;
 }
-.Front_Skill span , .Back_Skill span , .DevOps_Skill span{
+.front_Skill span , .back_Skill span , .devOps_Skill span{
+    display :flex;
+    flex-direction: row;
+    width:max-content;
+    height: 30px;
+    padding: 10px 10px 10px 20px;
+    letter-spacing: 1px;
     margin-bottom: 7px;
-    font-size: 17px;
+    margin-right: 10px;
+    font-size: 16px;
     font-weight: 550;
+    text-align: center;
+    border:0px solid gray;
+    border-radius: 20px;
+    align-items: center;
+    background-color: rgb(45, 45, 45);
+    color: rgb(201, 221, 238);
 }
-.DevOps_Skill > div {
-    position: relative;
-    left: -40px;
+/* 왜 안돼 시발 !!!*/
+.SkillName{ 
+    margin-right: 10px !important
 }

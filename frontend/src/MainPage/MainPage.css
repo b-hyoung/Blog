@@ -2,4 +2,5 @@
     display: flex;
     flex-direction: row;
     position: absolute;
+    margin-top: -68px;
 }

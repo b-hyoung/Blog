@@ -16,48 +16,54 @@ function Skill() {
 
     const Checkbox = ({ category }) => {
         return <div className={`checkbox ${category}`}></div>;
-      };
+    };
+    
+    const Skill = ({Skill}) => {
+        let skillList = ([])
+        let classSkill = Skill+'_Skill'
+
+        //기술 이름에 따른 리스트 불러오기
+        if(Skill == "front"){
+            skillList = frontSkill
+        }else if(Skill == "back"){
+            skillList = backSkill
+        }else{
+            skillList = devOpsSkill
+        }
+
+        return  <div className={classSkill}>
+            {skillList.map((item, index) => {
+                return (
+                    <div className='Skill_List'>
+                        <span>
+                            <div className='SkillName'>
+                                {item}
+                            </div>
+                            <Checkbox category={Skill}/>
+                        </span>
+                    </div>
+                )
+            })}
+    </div>
+    }
+
+    const SKillTitle = ({ skillName }) => {
+        return <div className={`Skill_title ${skillName}`}>{skillName}</div>;
+    }
 
     return (
         <div className='Skill'>
             <div className='Front_Category'>
-                <div className='Skill_title'>Front End</div>
-                <div className='Front_Skill'>
-                    {frontSkill.map((item, index) => {
-                        return (
-                            <div className='Skill_List'>
-                                <Checkbox category={"front"} />
-                                <span>{item}</span>
-                            </div>
-                        )
-                    })}
-                </div>
+            <SKillTitle skillName={"Front End"} />
+            <Skill Skill={"front"} />
             </div>
             <div className='Back_Category'>
-                <div className='Skill_title'>Back End</div>
-                <div className='Back_Skill'>
-                    {backSkill.map((item, index) => {
-                        return (
-                            <div className='Skill_List'>
-                                <Checkbox category={"back"} />
-                                <span>{item}</span>
-                            </div>
-                        )
-                    })}
-                </div>
+            <SKillTitle skillName={"Back End"} />
+            <Skill Skill={"back"} />
             </div>
             <div className='DevOps_Category'>
-                <div className='Skill_title'>DevOps</div>
-                <div className='DevOps_Skill'>
-                    {devOpsSkill.map((item, index) => {
-                        return (
-                            <div className='Skill_List'>
-                                <Checkbox category={"DevOps"}/>
-                                <span>{item}</span>
-                            </div>
-                        )
-                    })}
-                </div>
+            <SKillTitle skillName={"DevOps"} />
+            <Skill Skill={"devOps"} />
             </div>
         </div>
     )
