@@ -8,12 +8,14 @@ import Project from './MyProject/Project'
 function MainPage() {
     return (
         <div className='MainPage_introduce'>
-            <div style={{scale:0.8}}>
+            <div style={{scale:0.75}}>
                 <Introduce />
                 <Skill />
                 <Social />
             </div>
-            <div>
+            <div style={{position:"relative" , top:"70px"}}>
+                <h1 style={{color:"white"}}>Project</h1>
+                <Project />
                 <Project />
             </div>
         </div>

@@ -13,7 +13,6 @@ function Project() {
   return (
     <div>
         <div>
-            <h1 style={{color:"white"}}>Project</h1>
             <div className='Project_Blog' onMouseEnter={() => setArrowd(true)} onMouseLeave={() => setArrowd(false)}>
                 <span className='Project_title'>
                     Blog
