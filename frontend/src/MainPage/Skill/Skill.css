@@ -5,10 +5,10 @@
 .Skill_List{
     display: flex;
     flex-direction: row;
-    transition: transform 0.3s ease !important;
+    transition:  1s ease !important;
 }
 .animation{
-  display: flex;
+    display: flex;
       flex-direction: row;
       flex-wrap: wrap;
   }

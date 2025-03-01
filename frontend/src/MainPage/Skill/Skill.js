@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import {flushSync} from 'react-router-dom'
 import './Skill.css'
 import { Flipper, Flipped } from 'react-flip-toolkit';
+import useSelectSkillStore from '../../Header/Section/useSelectSkillStore';
 
 function Skill() {
 
@@ -11,14 +13,29 @@ function Skill() {
     const devOpsSkill = [
         'IAM - 사용자 권한 관리', 'EC2 - Django/FastAPI 서비스 배포', 'CloudWatch - 서버 로그 & 성능 모니터링']
 
+    const { skill, setSkill, setSkills } = useSelectSkillStore()
+    const [selectSkill , setSelectSkill] = useState(null)
+    const [selectArray , setSelectArray] = useState({
+        front:[],
+        back:[],
+        devOps:[]
+    })
+    
+    useEffect(() => {
+        if(selectSkill){
+            setSkills(selectSkill)
+        }
+    },[selectSkill,setSkills])
+
     //Array를 사용하여 frontSkill의 배열만큼 만들고 배열에 false를 전부 넣어준다
     //checkedSkill.front[0] = false frontSkill[0] = 'HTML & SCSS' 이런 방식으로 연결되어있움
-    const [checkedSkill, setCheckedSkill] = useState({
-        front: Array(frontSkill.length).fill(false),
-        back: Array(backSkill.length).fill(false),
-        devOps: Array(devOpsSkill.length).fill(false)
+    const [skillChecked, setSkillChecked] = useState({
+        front: frontSkill.map(item => ({ name: item, checked: false })),
+        back: backSkill.map(item => ({ name: item, checked: false })),
+        devOps: devOpsSkill.map(item => ({ name: item, checked: false })),
     })
 
+    // 기술 선택시 정렬
     const [orderSkills, setOrderSkills] = useState({
         front: frontSkill,
         back: backSkill,
@@ -31,7 +48,7 @@ function Skill() {
         return <div className={category + '_Skill'}>
             <Flipper className='animation' flipKey={skillList.join('')}>
                 {skillList.map((item, idx) => {
-                    const isChecked = checkedSkill[category][idx]
+                    const isChecked = skillChecked[category][idx].checked
                     return (
                         <Flipped key={item} flipId={item}>
                             <div className='Skill_List' key={idx}>
@@ -50,49 +67,45 @@ function Skill() {
             </Flipper>
         </div>
     }
+    const getUncheckedItems = (category, skillChecked) => {
+        return skillChecked[category].filter(item => item.checked); // ✅ checked가 true 항목만 반환
+    };
 
     //스킬 클릭 이벤트
     const handleClickSkill = (category, index) => {
-        //선택한 상태를 제외한 나머지값은 그대로 두기 위해 prev값을 사용하기
-        setCheckedSkill(prev => ({
-            ...prev,
-            [category]: prev[category].map((item, idx) =>
-                idx === index ? !item : item //
-            ),
-        }))
-        setCheckedSkill(prev => {
-            const currentCheckList = prev[category]
-            const ClickCheckList = currentCheckList[index]
-            const newList = [ClickCheckList,...currentCheckList.filter((item , i) => i !== index)]
-            return {...prev,[category]:newList}
-        })
-        setOrderSkills(prev => {
-            const currentList = prev[category];
-            //클릭 항목 추출
-            const clickedItem = currentList[index]
-            //클릭 항목을 첫번째로 나머지 그대로 이어붙임
-            const newList = [clickedItem, ...currentList.filter((item, i) => i !== index)]
-            return { ...prev, [category]: newList }
-        })
-    }
+        setSkillChecked(prev => {
+            const currentList = prev[category]; 
+            const clickedItem = { ...currentList[index], checked: !currentList[index].checked }; // 클릭한 항목 true/false 변경
 
-    /*
-    1. isChecked가 바뀌며 모든 className이 바뀐다 (아땋게 해야 해당 )
-    2. 내가 클릭한 index값이 기존에 있는 index값과 같다면 체크드
-    3. 그럼 ischecked를 3개를 만들어야하 하는가?(front , backend , devOps)
+            //클릭 항목을 제외한 true값 가져오기
+            const checkedItems = currentList.filter(item => item.checked && item.name !== clickedItem.name) //true 반환
+            const unCheckedItem = currentList.filter(item => !item.checked && item.name !== clickedItem.name ) //false 반환
 
-    여긴 클릭 했을 때 이벤트가아닌 처음 시작과 동시에 열리는 곳이라는것도 감안
-     */
-    // const Checkbox = ({Skill,index,idx}) => {
-    //     let temp = idx
-    //     /* return으로 div를 만드는것을 handleClickcategory에서 사용해 볼 것*/
-    //     return (
-    //         isChecked === true &&  index === temp && Skill === Skill?
-    //             <div className={`checkbox ${Skill}-checked`} onClick={() => handleClickSkill(Skill,index)}> {console.log("Checked : " +Skill)}</div>
-    //              :
-    //             <div className={`checkbox ${Skill}`} onClick={() => handleClickSkill(Skill,index)}> {console.log("Do Not Check : "+Skill)}</div>
-    //     )
-    // };
+                //체크값이 트루인항목 , 클릭한 항목 , 기존리스트에서 현재 가져온 항목과 checked가 false인 값을 삭제
+            let newCheckedList;
+            
+            if (clickedItem.checked) {
+                newCheckedList = [...checkedItems, clickedItem, ...unCheckedItem];
+            } else {
+                newCheckedList = [...checkedItems, clickedItem, ...unCheckedItem];
+            }
+    
+            //
+            //중복 제거
+            const uniquedCheckList = newCheckedList.filter((item , index,self) => 
+                index === self.findIndex(t => t.name === item.name)
+            )
+           
+            // ✅ 상태 변경을 한 번의 `setState`에서 처리
+                setOrderSkills(orderPrev => ({
+                    ...orderPrev,
+                    [category]: uniquedCheckList.map(item => item.name) // 순서 업데이트
+                }));
+            //[가장먼저 체크한것 , 그다음 체크한것] , [체크 했다가 풀은거] , [체크 안한거]
+            return { ...prev, [category]: uniquedCheckList };
+        });
+    };
+
 
     const SKillTitle = ({ skillName }) => {
         return <div className={`Skill_title ${skillName}`}>{skillName}</div>;

@@ -16,7 +16,6 @@ function MainPage() {
             <div style={{position:"relative" , top:"70px"}}>
                 <h1 style={{color:"white"}}>Project</h1>
                 <Project />
-                <Project />
             </div>
         </div>
     )
