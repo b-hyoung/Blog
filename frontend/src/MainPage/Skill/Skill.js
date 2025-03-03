@@ -13,20 +13,12 @@ function Skill() {
     const devOpsSkill = [
         'IAM - 사용자 권한 관리', 'EC2 - Django/FastAPI 서비스 배포', 'CloudWatch - 서버 로그 & 성능 모니터링']
 
-    const { skill, setSkill, setSkills } = useSelectSkillStore()
-    const [selectSkill , setSelectSkill] = useState(null)
-    const [selectArray , setSelectArray] = useState({
-        front:[],
-        back:[],
-        devOps:[]
-    })
+    const [checkedOnly, setCheckedOnly] = useState([]);
     
-    useEffect(() => {
-        if(selectSkill){
-            setSkills(selectSkill)
-        }
-    },[selectSkill,setSkills])
-
+    const { skill, setSkill, setSkills } = useSelectSkillStore()
+    
+    
+    
     //Array를 사용하여 frontSkill의 배열만큼 만들고 배열에 false를 전부 넣어준다
     //checkedSkill.front[0] = false frontSkill[0] = 'HTML & SCSS' 이런 방식으로 연결되어있움
     const [skillChecked, setSkillChecked] = useState({
@@ -34,6 +26,15 @@ function Skill() {
         back: backSkill.map(item => ({ name: item, checked: false })),
         devOps: devOpsSkill.map(item => ({ name: item, checked: false })),
     })
+    useEffect(() => {
+        if(checkedOnly){
+            setSkills(checkedOnly.map(item => ({
+                name : item.name,
+                checked : item.checked
+            })))
+            console.log(checkedOnly.map(item => item.checked))
+        }
+    },[checkedOnly])
 
     // 기술 선택시 정렬
     const [orderSkills, setOrderSkills] = useState({
@@ -67,50 +68,63 @@ function Skill() {
             </Flipper>
         </div>
     }
-    const getUncheckedItems = (category, skillChecked) => {
-        return skillChecked[category].filter(item => item.checked); // ✅ checked가 true 항목만 반환
-    };
-
+  
     //스킬 클릭 이벤트
     const handleClickSkill = (category, index) => {
         setSkillChecked(prev => {
             const currentList = prev[category]; 
             const clickedItem = { ...currentList[index], checked: !currentList[index].checked }; // 클릭한 항목 true/false 변경
-
-            //클릭 항목을 제외한 true값 가져오기
-            const checkedItems = currentList.filter(item => item.checked && item.name !== clickedItem.name) //true 반환
-            const unCheckedItem = currentList.filter(item => !item.checked && item.name !== clickedItem.name ) //false 반환
-
-                //체크값이 트루인항목 , 클릭한 항목 , 기존리스트에서 현재 가져온 항목과 checked가 false인 값을 삭제
-            let newCheckedList;
-            
-            if (clickedItem.checked) {
-                newCheckedList = [...checkedItems, clickedItem, ...unCheckedItem];
-            } else {
-                newCheckedList = [...checkedItems, clickedItem, ...unCheckedItem];
-            }
     
-            //
-            //중복 제거
-            const uniquedCheckList = newCheckedList.filter((item , index,self) => 
+            // 클릭한 항목을 제외한 true값 가져오기
+            const checkedItems = currentList.filter(item => item.checked && item.name !== clickedItem.name); // true 반환
+            const unCheckedItem = currentList.filter(item => !item.checked && item.name !== clickedItem.name ); // false 반환
+    
+            // 클릭한 항목을 추가하여 새로운 리스트 생성
+            let newCheckedList = [...checkedItems, clickedItem, ...unCheckedItem];
+    
+            // 중복 제거
+            const uniquedCheckedList = newCheckedList.filter((item, index, self) => 
                 index === self.findIndex(t => t.name === item.name)
-            )
-           
-            // ✅ 상태 변경을 한 번의 `setState`에서 처리
-                setOrderSkills(orderPrev => ({
-                    ...orderPrev,
-                    [category]: uniquedCheckList.map(item => item.name) // 순서 업데이트
-                }));
-            //[가장먼저 체크한것 , 그다음 체크한것] , [체크 했다가 풀은거] , [체크 안한거]
-            return { ...prev, [category]: uniquedCheckList };
+            );
+    
+            // 기존 checkedOnly를 유지하면서 새로운 checked: true 값 추가
+            setCheckedOnly(prevCheckedOnly => {
+                const updatedCheckedOnly = [...prevCheckedOnly];
+    
+                if (clickedItem.checked) {
+                    // 클릭한 아이템이 체크되었으면 checkedItems 배열을 개별 항목으로 추가
+                    updatedCheckedOnly.push(...checkedItems);  // checkedItems 배열을 펼쳐서 추가
+                    updatedCheckedOnly.push(clickedItem); // 클릭한 항목도 추가
+                } else {
+                    // checkedItems에서 clickedItem을 제외하고 업데이트
+                    const updatedList = updatedCheckedOnly.filter(item => item.name !== clickedItem.name);
+                    return updatedList; // checkedOnly에서 해당 항목 제거
+                }
+    
+                // 중복 제거 (name이 같은 항목은 하나만 남기기)
+                return updatedCheckedOnly.filter((item, index, self) => 
+                    index === self.findIndex(t => t.name === item.name)
+                );
+            });
+    
+            console.log(checkedOnly);
+    
+            // 상태 업데이트 (orderSkills의 순서 업데이트)
+            setOrderSkills(orderPrev => ({
+                ...orderPrev,
+                [category]: uniquedCheckedList.map(item => item.name) // 순서대로 name만 추출하여 업데이트
+            }));
+    
+            return { ...prev, [category]: uniquedCheckedList }; // 상태 반환
         });
     };
+    
+    
 
 
     const SKillTitle = ({ skillName }) => {
         return <div className={`Skill_title ${skillName}`}>{skillName}</div>;
     }
-
 
 
     return (

@@ -10,9 +10,8 @@ import useSelectSkillStore from '../../Header/Section/useSelectSkillStore'
 function Project() {
 
     const {skills} = useSelectSkillStore()
-    useEffect(() => {
-    // {console.log("Skills  : "+skills)}
-    },[skills])
+    const [selectSkill , setSelectSkill] = useState([])
+    const [skillAll , setSkillALl] =useState([])
     let title = 'Blog'
     let description = (
         <>
@@ -22,7 +21,7 @@ function Project() {
         개발자(관리자)에게만 보여주는 기능으로 개발자에게 덜 상처주며 피드백 할 수 있는 장점이 있다.
         </>
     )
-        
+
     const urls = {
         blog : process.env.PUBLIC_URL+"img/ProjectImg/Project_Blog.png",
         go : process.env.PUBLIC_URL+"img/All/Go.png",
@@ -30,10 +29,19 @@ function Project() {
     }
     const [arrowed , setArrowd] = useState(false)
     const skillList = ['React','Css','Python3','My SQL' , 'IAM' , 'Zustand']
-
-    // useEffect(()=> {
-    //     setSkillList(skills)
-    // },[skills])
+    useEffect(() => {
+        // skills 배열에서 checked가 true인 항목만 필터링하여 newSelectSkill 업데이트
+        const newSelectSkill = skills.filter(item => item.checked === true).map(item => item.name);
+        setSelectSkill(newSelectSkill);
+    
+        // skillAll을 업데이트 (checked가 true인 항목은 newSelectSkill에 포함)
+        const diselected = skillList.filter(item => !skills.some(skill => skill.name === item && skill.checked === true));
+        setSkillALl([...newSelectSkill , ...diselected]);
+    
+        console.log(skills);  // 콘솔을 찍는 부분
+    }, [skills]);
+    
+    
     
   return (
     <div>
@@ -52,8 +60,9 @@ function Project() {
                 </div>
                 </div>
                 <div className='Project_SkillList'>
-                    {skillList.map((item,index) => (
-                        <span>{item}</span>
+                    {skillAll && skillAll.map((item,index) => (
+                        <span className={`${selectSkill.some(name => name === item) ? 'haveSkill' : 'DNhaveSkill'}`}>{item}
+                        </span>
                     ))}
                 </div>
             </div>

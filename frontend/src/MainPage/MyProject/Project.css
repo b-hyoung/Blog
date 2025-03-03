@@ -56,13 +56,22 @@
     line-height: 50px;
 }
 
-.Project_SkillList>span {
-    color:rgb(136 212 237);
-    background-color: rgb(70, 70, 70);
-    padding: 10px 10px;
+.Project_SkillList span{
+    padding: 10px 10px 15px 10px;
     border-radius: 10px;
     margin-right: 15px;
     font-size: 15px;
     width: max-content;
     height: 20px;
+    align-items: center;
+}
+
+.Project_SkillList span.haveSkill {
+    color:rgb(255, 255, 255);
+    background-color: rgb(255, 23, 23);
+    
+}
+.Project_SkillList span.DNhaveSkill {
+    color:rgb(136 212 237);
+    background-color: rgb(70, 70, 70);
 }
