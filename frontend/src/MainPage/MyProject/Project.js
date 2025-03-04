@@ -64,13 +64,11 @@ function Project() {
                             skillAll.map((item, index) => (
                                 <span key={index} className={`${selectSkill.some(name => name === item) ? 'haveSkill' : 'DNhaveSkill'}`}>
                                     {item}
-                                    {console.log("너냐?")}
                                 </span>
                             ))
                         ) : (
                             skillList.map((item, index) => (
                                 <span key={index} className={`${selectSkill.some(name => name === item) ? 'haveSkill' : 'DNhaveSkill'}`}>
-                                    {item}{console.log("?너는 아니잖아")}
                                 </span>
                             ))
                         )}
