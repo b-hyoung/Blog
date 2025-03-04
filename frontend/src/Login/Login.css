@@ -1,0 +1,83 @@
+.LoginPage{
+    width: 250px;
+    height: max-content;
+    margin: 0 auto;
+    border : 1px solid white(255, 140, 140);
+    padding: 70px 70px 0px 70px;
+    background-color: #50586C;
+    border-radius: 20px 20px 0px 0px;
+}
+.LoginPage > img{
+    width: 200px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+.LoginPage .Login_idBox div , .LoginPage .Login_passwordBox div{
+    color: #dafff9;
+    text-align: left;
+    width: 230px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+.LoginPage input{
+    width: 230px;
+    height: 10px;
+    font-size: 13px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #DCE2F0;
+    padding: 10px 10px;
+    border : 1px 1px 0px 0px solid red;
+    color: #2e2e2e;
+
+}
+input:focus{
+    outline: none;
+    border: none;
+    box-shadow: 3px 3px 4px rgb(255, 122, 122);
+}
+.LoginPage .Login_forgetID{
+    font-size: 13px;
+    color: #FCF6F5;
+    text-align: left;
+    cursor: pointer;
+    margin-bottom: 15px;
+    margin-left: 5px;
+}
+.Login_forgetID:hover{
+    color: rgb(255, 102, 102);
+}
+.submitLogin{
+    border: none;
+    padding: 8px 10px;
+    font-size: 13px;
+    border-radius: 20px;
+    background-color: #DCE2F0;
+    cursor: pointer;
+    width: 150px;
+    color: rgb(255, 102, 102);
+    letter-spacing: 3px;
+}
+.Login_SignUpBtn {
+    position: relative;
+    width: 390px;
+    height: 51px;
+    top: 30px;
+    right: 70px;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-align: center;
+    align-items: center;
+    border-radius: 0px 0px 20px 20px;
+    padding: 10px 10px 10px 10px;
+    cursor: pointer;
+    background-color: #50586C;
+    border: none;
+    color: rgb(88, 167, 236);
+}
+.Login_SignUpBtn:hover{
+    color: rgb(255, 102, 102);
+}

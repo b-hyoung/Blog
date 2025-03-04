@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css';
 import Navbar from './Header/Navbar.js';
 import MainPage from './MainPage/MainPage.js';
+import Login from './Login/Login.js';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<MainPage />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </div>
   );
