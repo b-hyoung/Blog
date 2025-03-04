@@ -27,7 +27,7 @@ const {Email , Github , notion , velog} = socialLink
         return (
             <svg width="24px" height="24px" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight:"10px"}}>
                 <path d="M2 4H22C23.1 4 24 4.9 24 6V18C24 19.1 23.1 20 22 20H2C0.9 20 0 19.1 0 18V6C0 4.9 0.9 4 2 4Z" fill="rgb(235, 235, 235)" stroke='black' strokeWidth='1px' />
-                <path d="M22 6L12 13L2 6" stroke="black" stroke-width="2" />
+                <path d="M22 6L12 13L2 6" stroke="black" strokeWidth="2" />
             </svg>
         );
     };

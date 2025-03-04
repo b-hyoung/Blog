@@ -7,6 +7,7 @@
 .Project_Blog:hover {
     background-color: #313640;
     border-radius: 10px;
+    
 }
 
 .Project_Blog:hover .Project_title {
@@ -14,10 +15,13 @@
 }
 .Project_Blog:hover .arrowImg{
     margin-left: 20px;
+    
 }
 .arrowImg{
     width: 30px;
     margin-left: 10px;
+    stroke-width: 1px;
+
 }
 
 .Project_title {

@@ -32,7 +32,6 @@ function Skill() {
                 name : item.name,
                 checked : item.checked
             })))
-            console.log(checkedOnly.map(item => item.checked))
         }
     },[checkedOnly])
 
@@ -106,8 +105,6 @@ function Skill() {
                     index === self.findIndex(t => t.name === item.name)
                 );
             });
-    
-            console.log(checkedOnly);
     
             // 상태 업데이트 (orderSkills의 순서 업데이트)
             setOrderSkills(orderPrev => ({

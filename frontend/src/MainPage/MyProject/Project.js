@@ -37,8 +37,6 @@ function Project() {
         // skillAll을 업데이트 (checked가 true인 항목은 newSelectSkill에 포함)
         const diselected = skillList.filter(item => !skills.some(skill => skill.name === item && skill.checked === true));
         setSkillALl([...newSelectSkill , ...diselected]);
-    
-        console.log(skills);  // 콘솔을 찍는 부분
     }, [skills]);
     
     
@@ -61,7 +59,7 @@ function Project() {
                 </div>
                 <div className='Project_SkillList'>
                     {skillAll && skillAll.map((item,index) => (
-                        <span className={`${selectSkill.some(name => name === item) ? 'haveSkill' : 'DNhaveSkill'}`}>{item}
+                        <span key={index} className={`${selectSkill.some(name => name === item) ? 'haveSkill' : 'DNhaveSkill'}`}>{item}
                         </span>
                     ))}
                 </div>
