@@ -28,6 +28,10 @@ function Login() {
         console.log("login"+userId.password)
 }
 
+    const handleClickSignUpPage = () => {
+        navigate("/signUp")
+    }
+
 //필요할 때만 바꾸고 그외에 안바꿔지게 수정
 const handleMouseEnter = () => {
     if (!toggleImage) setToggleImage(true);
@@ -56,7 +60,7 @@ return (
         </div>
         <div className='Login_forgetID'>아이디 or 비밀번호를 잊으셨나요 ?</div>
         <button className='submitLogin' onClick={() => handleClickSubmit()}>Knock</button>
-        <button className='Login_SignUpBtn'>가입하기</button>
+        <button className='Login_SignUpBtn' onClick={() => handleClickSignUpPage()} >가입하기</button>
     </div>
 )
 }

@@ -3,4 +3,5 @@
     flex-direction: row;
     position: absolute;
     margin-top: -100px;
+    z-index: 1;
 }

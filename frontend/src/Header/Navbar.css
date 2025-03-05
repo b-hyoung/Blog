@@ -1,3 +1,7 @@
+.Header_NavBar{
+    position: relative;
+    z-index: 3;
+}
 .Header_BlogName{
     color: rgb(194, 194, 194);
     margin-top: 20px;
