@@ -69,6 +69,7 @@ function Project() {
                         ) : (
                             skillList.map((item, index) => (
                                 <span key={index} className={`${selectSkill.some(name => name === item) ? 'haveSkill' : 'DNhaveSkill'}`}>
+                                    {item}
                                 </span>
                             ))
                         )}
