@@ -1,0 +1,177 @@
+.SignUpPage {
+    width: 250px;
+    height: max-content;
+    margin: 0 auto;
+    border: 1px solid white(255, 140, 140);
+    padding: 70px 70px 20px 70px;
+    background-color: #ffffff;
+    border-radius: 20px 20px 10px 10px;
+}
+.SignUpPage > div{
+    width: 200px;
+
+}
+.Sign_Title{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+.SignUpPage .userType_dropdown {
+    margin: 0 auto;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    width: 100%;
+    height: 20px;
+    padding-left: 10px;
+    letter-spacing: 0.5px;
+
+}
+.userType_dropdownList{
+    margin-top: 10px;
+    width: 100%;
+    background-color: rgb(246, 246, 246);
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+}
+.SignUpPage .userType_dropdownValue{
+    margin: 0 auto;
+    width: 100%;
+    padding: 5px 5px;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(246, 246, 246);
+    text-align: left;
+    margin-bottom: 3px;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    border: none;
+}
+.userType_dropdownValue:hover{
+    background-color: #e0e0e0;
+    outline: pink;
+}
+.Sign_CheckDjgnfj{
+    margin-bottom: 20px;
+}
+.Sign_CheckDjgnfj input{
+    width: 100%;
+    font-size: 12px;
+    padding: 5px 5px;
+    padding-left: 5px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+    padding-left: 10px;
+    letter-spacing: 1px;
+}
+.Sign_Menu{
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+.userId_input-field{
+    width: 100%;
+    padding: 5px 5px;
+    font-size: 12px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    letter-spacing: 1px;
+}
+
+.input-field {
+    width: 80%;
+    padding: 5px 5px;
+    padding-left: 10px;
+    letter-spacing: 1px;
+    font-size: 12px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+    margin-bottom: 10px;
+    color: rgb(106, 106, 106);
+}
+.input-field:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+    outline: none;
+  }
+  .placeholder-text {
+    width: max-content;
+    position: absolute;
+    left: 12px;
+    top: 45%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #80868b;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background-color: white;
+  }
+  
+  /* input 필드에 입력 시 label을 위로 이동 */
+  .input-field:focus + .placeholder-text,
+  .input-field:not(:placeholder-shown) + .placeholder-text {
+    top: -1px;
+    font-size: 12px;
+    color: #1a73e8;
+  }
+
+.Sign_img_Arrow{
+    margin: 0 auto;
+    position: relative;
+    font-size: 12px;
+    right: 17px;
+    width: 90px !important;
+    height: 25px ;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #FCF6F5;
+    background-color: #7b9acc;
+}
+
+.Sign_Complate{
+    position: relative;
+    right: 17px;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 10px;
+    margin: 0 auto;
+    
+}
+.Sign_Complate span{
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: rgb(38, 143, 201);
+}
+.Sign_Complate button{
+    width: 200px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    margin: 0 auto;
+    background-color: #18c465;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.Sign_Complate button:disabled{
+    background-color: gray;
+}
+
+.SignUp_ErrorMsg{
+    font-size: 10px;
+    color: rgb(255, 78, 78);
+}

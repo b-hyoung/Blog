@@ -34,7 +34,7 @@
     color: #2e2e2e;
 
 }
-input:focus{
+.LoginPage input:focus{
     outline: none;
     border: none;
     box-shadow: 3px 3px 4px rgb(255, 122, 122);
