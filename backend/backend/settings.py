@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
+    'rest_framework',
     "corsheaders",  # CORS 설정 추가
     "users",  # 유저 관리 앱 추가
 ]
@@ -56,6 +56,13 @@ MIDDLEWARE = [
 
 # CORS 설정 (React와 연결)
 CORS_ALLOW_ALL_ORIGINS = True  # 모든 요청 허용 (테스트용)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES' : [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
+
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -83,10 +90,16 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blog_db',
+        'USER': 'kimbob',
+        'PASSWORD': 'rlaqkqsla1125',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 
 # Password validation
