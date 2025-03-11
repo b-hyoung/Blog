@@ -45,10 +45,10 @@
     margin-bottom: 3px;
     letter-spacing: 0.2px;
     cursor: pointer;
-    border: none;
+    border: none;;
 }
 .userType_dropdownValue:hover{
-    background-color: #e0e0e0;
+    background-color: #afafaf;
     outline: pink;
 }
 .Sign_CheckDjgnfj{

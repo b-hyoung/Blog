@@ -25,10 +25,10 @@ class UserSerializer(serializers.ModelSerializer):
             validated_data['username'] = str(random.randint(1000, 9999))  # 🔥 4자리 랜덤 숫자
 
         validated_data.pop('password2')  # 🔥 항상 제거하도록 이동
-        password = validated_data.pop('password')  # 🔥 비밀번호 분리
+        password = validated_data.pop('password')  #비밀번호 분리
 
         user = CustomUser.objects.create(**validated_data)
-        user.set_password(password)  # 🔥 비밀번호 해싱
+        user.set_password(password)  # 비밀번호 해싱
         user.save()
 
         return user

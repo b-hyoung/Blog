@@ -12,7 +12,9 @@ class CustomUser(AbstractBaseUser):
         ('djgnfj' , 'Djgnfj'),
         ('guest' , 'Guest')
     ]
-    # 규칙 : 10글자 미만 choice 는 내가 준 세개중하나로 디폴트값은 user
+
+    # 규칙 :
+    # max_length 10글자 미만 choice 는 내가 준 세개중하나로 디폴트값은 user
     username = models.CharField(max_length=10, unique=True, default='guest_0000')  # 기본값 추가
     role = models.CharField(max_length=10 , choices=ROLE_CHOICES ,default="user" )
     
@@ -20,7 +22,7 @@ class CustomUser(AbstractBaseUser):
     REQUIRED_FIELDS = []
 
     ##Guest 자동 랜덤 Id생성
-    def save(self,*args,**kwargs) :
-        if self.role == 'guest' and not self.username:
-           self.username = f'guest_{random.randint(1000, 9999)}'# 4자리 랜덤 문자열    
-        super().save(*args , **kwargs) # 부모값 불러와 실행
+    def save(self, *args, **kwargs):
+        if self.role == 'guest' and (not self.username or self.username == 'guest_0000'):
+            self.username = f'guest_{random.randint(1000, 9999)}'  # 4자리 랜덤 문자열
+        super().save(*args, **kwargs)
