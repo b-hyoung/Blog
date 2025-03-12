@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './SignUpPage.css'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function SignUpPage() {
 
-  const navigate = useNavigate("")
-
+  const navigate = useNavigate("");
+  let signUpurl = "http://127.0.0.1:8000/api/users/register/"
   const userTypeList = ['User', 'Djgnfj', 'Guest']
 
   const [userType, setUserType] = useState()
@@ -53,6 +54,7 @@ function SignUpPage() {
         [name]: value || ""
       }));
     }
+    console.log(userInfo.nickName)
   }
 
   // 유저타입 선택 후 리로드
@@ -93,6 +95,9 @@ function SignUpPage() {
   }
   //비밀번호 확인이 비밀번호와 같은 값이면 가입완료 버튼 생성
   const handleChangeIdRePassword = (e) => {
+
+
+
     setUserInfo({
       ...userInfo,
       rePassword: e.target.value
@@ -105,8 +110,18 @@ function SignUpPage() {
   }
   //가입 완료
   const handleClickComplateSignUp = () =>{
+    axios.post(signUpurl ,{
+      username : userId.userId,
+      password : userInfo.password,
+      password2 : userInfo.rePassword
+  })
+  .then(res => {
     alert("you are Welcome !")
     navigate("/")
+  })
+  .catch(res => {
+    console.log(res);
+  })
   }
 
   return (
