@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import './Login.css'
+import axios from 'axios'
 
 function Login() {
 
@@ -9,7 +10,7 @@ function Login() {
     const [toggleImage, setToggleImage] = useState(true)
     const [userId, setUserId] = useState({
         id: "",
-        password: ""
+        password: "",
     })
 
     const handleChangeInput = (e) => {
@@ -26,6 +27,8 @@ function Login() {
             navigate("/")
         }
         console.log("login"+userId.password)
+       
+        
 }
 
     const handleClickSignUpPage = () => {
