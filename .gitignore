@@ -1,0 +1,26 @@
+# 환경 변수 및 비밀 키
+.env
+
+# Python 관련 파일
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+
+# IDE 설정 파일
+.vscode/
+.idea/
+
+# 운영체제별 불필요한 파일
+.DS_Store
+Thumbs.db
+
+# Django 마이그레이션 캐시
+db.sqlite3
+*.pot
+*.pyc
+*.pyo
+*.pyd
+
+# Node.js 관련 파일 (React 프로젝트 포함 시)
+node_modules/
