@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from .views import (home , UserCreateView)
+from .views import (LoginView , UserCreateView)
 
 urlpatterns = [
-    path("",home ,name="home"),
-    path("register/" , UserCreateView.as_view() , name = 'user-register')
+    path("register/" , UserCreateView.as_view() , name = 'register'),
+    path("login/",LoginView.as_view(),name='login')
 ]

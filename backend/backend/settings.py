@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "corsheaders",  # CORS 설정 추가
     "users",  # 유저 관리 앱 추가
+    "rest_framework.authtoken" # JWT 토큰
 ]
 
 MIDDLEWARE = [
@@ -48,8 +49,8 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",  # 👈 이 줄이 꼭 있어야 함!
-    "django.contrib.messages.middleware.MessageMiddleware",  # 👈 이 줄도 필요!
+    "django.contrib.auth.middleware.AuthenticationMiddleware", 
+    "django.contrib.messages.middleware.MessageMiddleware", 
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",  # CORS 설정 (필요하면 유지)
 ]

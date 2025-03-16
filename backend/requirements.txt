@@ -1,0 +1,9 @@
+asgiref==3.8.1
+distlib==0.3.9
+Django==5.1.7
+django-rest-framework==0.1.0
+djangorestframework==3.15.2
+filelock==3.18.0
+platformdirs==4.3.6
+sqlparse==0.5.3
+virtualenv==20.29.3

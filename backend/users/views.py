@@ -1,15 +1,23 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from rest_framework import generics
+from rest_framework import generics , views , status
+from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 from .models import CustomUser
-from .serializers import UserSerializer
+from .serializers import UserSerializer , LoginSerializer
 
-
-# Create your views here.
-
+# 회원가입 View
 class UserCreateView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
-def home(request):
-    return JsonResponse({"Message" : "Django Api is working"})
+# 로그인 View
+class LoginView(views.APIView):
+    def post(self,request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.validated_data['user']
+            
+            token , created = Token.objects.get_or_create(user=user)
+
+            return Response({"token" : token.key} , status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

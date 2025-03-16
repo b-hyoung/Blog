@@ -1,7 +1,9 @@
 from rest_framework import serializers
 from .models import CustomUser
 import random
+from django.contrib.auth import authenticate 
 
+# 회원가입 유저 및 게스트 생성 serializers
 class UserSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True)
 
@@ -32,3 +34,20 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+# 로그인 폼 Serializers
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=12)
+    password = serializers.CharField(write_only=True)
+    def validate(self,data):
+        user = authenticate(
+           username = data['username'],
+           password = data['password']
+        )
+        if not user:
+            raise serializers.ValidationError("아이디 또는 비밀번호가 올바르지 않습니다.")
+        data['user'] = user
+        return data
+        
+
+    
