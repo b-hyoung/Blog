@@ -54,7 +54,7 @@ const {Email , Github , notion , velog} = socialLink
             <div className='Social_velog'  onClick={() => goPage(notion)}>
                 <img src={`${process.env.PUBLIC_URL}/img/icon/SVG/icons8-개념.svg`} style={{position:"relative",left:"-2pz"}}/>
                 <a>Notion : </a>
-                <span onClick={() => handleClickNotion()}>https://notion.so/b-hyoung/WelcomePortfolio &nbsp;</span>
+                <span onClick={() => handleClickNotion()}>https://www.notion.so/1abc764264dd80178ec5fb78ab6efd7f &nbsp;</span>
             </div>
         </div>
     )
