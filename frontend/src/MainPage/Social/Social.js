@@ -4,13 +4,13 @@ import './Social.css'
 import { getClipboardText } from '../../Section/getClipboardText'
 
 
-
-
 function Social() {
     
     const goPage = (text) => {
         window.open(text)
     }
+    let aa = ['123','456','1234']
+    console.log(aa[0]);
 
     const [socialLink , setSocialLink] = useState(
         {
@@ -19,7 +19,7 @@ function Social() {
         notion : "https://notion.so/b-hyoung/WelcomePortfolio",
         velog :  "https://velog.io/@h-young/posts"
         }
-)
+    )
 
 const {Email , Github , notion , velog} = socialLink
 
@@ -31,10 +31,10 @@ const {Email , Github , notion , velog} = socialLink
             </svg>
         );
     };
+
     const handleClickNotion = () => {
         goPage('https://lapis-apparatus-de5.notion.site/195c764264dd805d9628d79baf2ca16c')
     }
-
 
     return (
         <div className='Social'>
