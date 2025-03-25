@@ -23,10 +23,7 @@ function Login() {
     }
 
     const handleClickSubmit = () => {
-        if(userId.id === "kimbob" && userId.password === "1234"){
-            navigate("/")
-        }
-        console.log("login"+userId.password)
+        axios.post()
        
         
 }
