@@ -1,9 +1,15 @@
 asgiref==3.8.1
 distlib==0.3.9
 Django==5.1.7
-django-rest-framework==0.1.0
+django-cors-headers==4.7.0
+django-decouple==2.1
 djangorestframework==3.15.2
+djangorestframework_simplejwt==5.5.0
 filelock==3.18.0
+mysql==0.0.3
+mysqlclient==2.2.7
 platformdirs==4.3.6
+PyJWT==2.9.0
+PyMySQL==1.1.1
 sqlparse==0.5.3
 virtualenv==20.29.3
