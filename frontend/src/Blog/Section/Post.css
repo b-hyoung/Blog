@@ -1,0 +1,173 @@
+/* 전체 컨테이너 */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1440px;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    position: relative;
+    box-sizing: border-box;
+    padding-top: 3%;
+  }
+
+/* 상단 타이틀 */
+.header {
+    width: 40%;
+    margin-bottom: 20px;
+}
+
+.title-input {
+    width: 50%;
+    padding: 15px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    font-size: 1.4rem;
+    background: transparent;
+    outline: none;
+    text-align: left;
+    position: absolute;
+    left: 40px;
+}
+
+.title-input::placeholder {
+    color: #aaa;
+}
+
+/* 드롭다운 스타일 */
+.dropdown {
+    width: 150px;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 10px;
+    left: 65.5%;
+}
+
+.dropdown-selected {
+    padding: 10px 20px;
+    border: 2px solid #c0c0c0;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    color: #333;
+    font-size: 1rem;
+    text-align:left;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-selected:hover {
+    background-color: #e0e0e0;
+}
+
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 2px solid #c0c0c0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    text-align: left;
+}
+
+.dropdown-options div {
+    padding: 10px 15px;
+    color: #333;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-options div:hover {
+    background-color: #b7ffe7;
+}
+.blog__dropdown__img{
+    width: 15px;
+    position: absolute;
+    right: 20px;
+}
+/* 본문 textarea */
+.content {
+    width: 80%;
+    margin-top: 20px;
+    position: relative;
+    margin-left: 20px;
+}
+
+.textarea-container {
+    position: relative;
+    width: 90%;
+    height: 470px; 
+}
+
+.textarea {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #c0c0c0;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    resize: none;
+    font-size: 1.2rem;
+    color: #333;
+    outline: none;
+    text-align: left;
+}
+
+/* placeholder 중앙 정렬 */
+.textarea-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #aaa;
+    pointer-events: none;
+    font-size: 1.2rem;
+}
+
+/* 하단 버튼 레이아웃 */
+.footer {
+    width: max-content;             
+    display: flex;
+    justify-content: flex-end;  
+    margin-top: 60px;  
+}
+
+/* 버튼 공통 스타일 */
+.back-btn, .submit-btn {
+    font-size: 20px;
+    padding: 8px 30px;
+    border: 2px solid;
+    border-radius: 6px;
+    cursor: pointer;
+    background: none;
+    transition: background-color 0.3s ease;
+    margin-left: 20px;
+
+}
+
+.back-btn {
+    border-color: #f4a3a8;
+    color: #e63946;
+    margin-right: 23vw;
+}
+
+.back-btn:hover {
+    background-color: #f4a3a8;
+    color: #fff;
+}
+
+.submit-btn {
+    border-color: #afcbff;
+    color: #6d9eeb;
+}
+
+.submit-btn:hover {
+    background-color: #afcbff;
+    color: #fff;
+}
