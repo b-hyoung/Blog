@@ -7,5 +7,6 @@ export const POST_API = {
 */
 
 export const POST_API = {
-    GET_POSTS : '/api/posts/'
+    GET_POSTS : '/api/posts/',
+    CREATE_POSTS:'/api/posts/'
 }
