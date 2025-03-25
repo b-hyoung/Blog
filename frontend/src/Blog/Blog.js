@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './Blog.css';
+import {useNavigate} from 'react-router-dom'
 
 function Blog() {
   const [activeTab, setActiveTab] = useState('feedback');
+  const navigate = useNavigate()
 
   const posts = [
     { text: 'Q&A 관련 질문입니다', badge: '지나가던 N년차 개발자', badgeColor: '#FFC0CB', category: 'qna' },
@@ -15,47 +17,37 @@ function Blog() {
   // 선택한 탭에 맞는 게시글 필터링
   const filteredPosts = posts.filter(post => post.category === activeTab);
 
+
+  const handleClickPost = () => {
+    navigate('/blog/post')
+  }
+
   return (
     <div className="blog__container" style={{ minHeight: '100vh' }}>
       <h1 className="blog__title">Blog</h1>
       
       {/* 탭 메뉴 */}
       <div className="blog__tabs">
-        <span 
-          className={`blog__tab ${activeTab === 'qna' && 'active'}`} 
-          onClick={() => setActiveTab('qna')}
-        >Q & A</span>
-        <span 
-          className={`blog__tab ${activeTab === 'feedback' && 'active'}`} 
-          onClick={() => setActiveTab('feedback')}
-        >피드백</span>
-        <span 
-          className={`blog__tab ${activeTab === 'praise' && 'active'}`} 
-          onClick={() => setActiveTab('praise')}
-        >칭찬 & 격려</span>
+        <span className={`blog__tab ${activeTab === 'qna' && 'active'}`} onClick={() => setActiveTab('qna')}>Q & A</span>
+        <span className={`blog__tab ${activeTab === 'feedback' && 'active'}`} onClick={() => setActiveTab('feedback')}>피드백</span>
+        <span className={`blog__tab ${activeTab === 'praise' && 'active'}`} onClick={() => setActiveTab('praise')}>칭찬 & 격려</span>
       </div>
 
       {/* 게시글 리스트 및 고양이 이미지 레이아웃 개선 */}
       <div className="blog__content-container">
         {/* 고양이 이미지 추가 버튼 */}
         <div className="blog__cat-button">
-          <img
-            src={`${process.env.PUBLIC_URL}/img/Projectimg/image1.png`} 
-            alt="고양이 추가 버튼"
-            className="blog__cat-img"
-            style={{ height: '180px', width:"180px", boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}
-          />
+          <img src={`${process.env.PUBLIC_URL}/img/Projectimg/image1.png`} alt="고양이 추가 버튼" className="blog__cat-img" style={{ height: '180px', width:"180px", boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}/>
         </div>
 
         <div className="blog__post-list">
           {filteredPosts.length > 0 ? (
             filteredPosts.map((post, index) => (
-              <div key={index} className="blog__post-item">
+              <div key={index} className="blog__post-item" onClick={(e) => handleClickPost(e)} >
                 <span className="blog__post-text">{post.text}</span>
                 <div 
                   className="blog__post-badge"
-                  style={{ backgroundColor: post.badgeColor }}
-                >
+                  style={{ backgroundColor: post.badgeColor }}>
                   {post.badge}
                 </div>
               </div>

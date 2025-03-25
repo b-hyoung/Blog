@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import './Post.css';
+import { useNavigate } from 'react-router-dom';
 
 function Post() {
+  const navigate = useNavigate()
   const [inputValue, setInputValue] = useState('');
-
-  // State to manage the selected dropdown option
+  
   const [selectedOption, setSelectedOption] = useState('피드백');
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  
 
   // 모든 드롭다운 옵션
   const allOptions = ['Q&A', '피드백', '칭찬&격려'];
@@ -18,6 +21,10 @@ function Post() {
     setSelectedOption(option);
     setIsDropdownVisible(false); // 드롭다운 닫기
   };
+
+  const handleSubmitPost = () => {
+    navigate("/blog");
+  }
 
   return (
     <div className="container">
@@ -73,8 +80,8 @@ function Post() {
 
       {/* 하단 버튼 레이아웃 */}
       <div className="footer">
-        <button className="back-btn">돌아가기</button>
-        <button className="submit-btn">전달하기</button>
+        <button className="back-btn" onClick={() => navigate("/blog")}>돌아가기</button>
+        <button className="submit-btn" onClick={() => handleSubmitPost()} >전달하기</button>
       </div>
     </div>
   );

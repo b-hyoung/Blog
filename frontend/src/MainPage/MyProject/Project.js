@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Project.css'
 import useSelectSkillStore from '../../Header/Section/useSelectSkillStore'
+import { useNavigate } from 'react-router-dom'
 
 /*
     1. Skill에서 선택한 값만 따로 저장하여 불러오기
@@ -8,6 +9,7 @@ import useSelectSkillStore from '../../Header/Section/useSelectSkillStore'
 */
 
 function Project() {
+    const navigate = useNavigate()
 
     const { skills } = useSelectSkillStore()
     const [selectSkill, setSelectSkill] = useState([])
@@ -41,12 +43,10 @@ function Project() {
         setSkillALl([...tempall]);
     }, [skills]);
 
-
-
     return (
         <div>
             <div>
-                <div className='Project_Blog' onMouseEnter={() => setArrowd(true)} onMouseLeave={() => setArrowd(false)}>
+                <div className='Project_Blog' onClick={() => navigate("/blog")} onMouseEnter={() => setArrowd(true)} onMouseLeave={() => setArrowd(false)}>
                     <span className='Project_title'>
                         {/* 프로젝트 이름 */}
                         {title}
