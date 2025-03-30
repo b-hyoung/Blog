@@ -44,6 +44,7 @@ class LoginSerializer(serializers.Serializer):
            username = data['username'],
            password = data['password']
         )
+        print("✅ 인증 시도 결과:", user)  # ← 추가해보세요!
         if not user:
             raise serializers.ValidationError("아이디 또는 비밀번호가 올바르지 않습니다.")
         data['user'] = user

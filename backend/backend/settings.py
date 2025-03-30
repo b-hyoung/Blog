@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'rest_framework',
+    'rest_framework_simplejwt',
     "corsheaders",  # CORS 설정 추가
     "users",  # 유저 관리 앱 추가
     'posts', # 게시글 관리 추가
@@ -62,7 +63,6 @@ CORS_ALLOW_ALL_ORIGINS = True  # 모든 요청 허용 (테스트용)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
 }
