@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Blog.css';
 import {useNavigate} from 'react-router-dom'
+import api from '../Component/axiosInstance';
+import { POST_API } from '../Api/PostApi';
 
 function Blog() {
   const [activeTab, setActiveTab] = useState('feedback');
   const navigate = useNavigate()
+  const [PostsList, setPostsList] = useState([]);
+
+  useEffect(() => {
+    getPostList()
+  },[])
+  
+  useEffect(() => {
+    console.log(PostsList)
+  },[PostsList])
 
   const posts = [
     { text: 'Q&A 관련 질문입니다', badge: '지나가던 N년차 개발자', badgeColor: '#FFC0CB', category: 'qna' },
@@ -15,8 +26,20 @@ function Blog() {
   ];
 
   // 선택한 탭에 맞는 게시글 필터링
-  const filteredPosts = posts.filter(post => post.category === activeTab);
+  const filteredPosts = PostsList.filter(post => post.type === activeTab);
 
+  const getPostList = async () => {
+    
+    try{
+      const res = await api.get(POST_API.GET_POSTS,{
+      })
+      setPostsList(res.data)
+      console.log(res.data)
+    }catch(e){
+      alert("불러오기 에러");
+      console.log(e)
+    }
+  }
 
   const handleClickPost = () => {
     navigate('/blog/post')
@@ -44,11 +67,11 @@ function Blog() {
           {filteredPosts.length > 0 ? (
             filteredPosts.map((post, index) => (
               <div key={index} className="blog__post-item" onClick={(e) => handleClickPost(e)} >
-                <span className="blog__post-text">{post.text}</span>
+                <span className="blog__post-text">{post.title}</span>
                 <div 
                   className="blog__post-badge"
-                  style={{ backgroundColor: post.badgeColor }}>
-                  {post.badge}
+                  style={{ backgroundColor: 'yellow' }}>
+                  {post.nickname}
                 </div>
               </div>
             ))
