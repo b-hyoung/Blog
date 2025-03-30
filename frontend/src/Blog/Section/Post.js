@@ -23,7 +23,7 @@ function Post() {
   };
 
   const handleSubmitPost = () => {
-    navigate("/blog");
+    
   }
 
   return (

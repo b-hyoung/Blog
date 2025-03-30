@@ -1,3 +1,4 @@
+import { persist } from 'zustand/middleware';
 import {create} from 'zustand'
 
 const useTokenStore = create(
@@ -5,7 +6,7 @@ const useTokenStore = create(
         (set) => ({
             accessToken: null,
             setAccessToken:(token) => set({ accessToken : token }),
-            clearToken : set({accessToken : null}),
+            clearToken: () => set({ accessToken: null }),
         }),{
             name:'user-token' //zustand로 상태 저장하면서, persist로 자동 localStorage 저장/복구까지 처리함.
         }

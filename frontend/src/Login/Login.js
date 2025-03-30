@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import './Login.css'
 import axios from 'axios'
-import { USER_API } from '../Api/loginAPi'
+import { USER_API } from '../Api/LoginAPi'
 import useTokenStore from '../store/tokenStore'
 import { BASE_URL } from '../Component/PathLink'
+import api from '../Component/axiosInstance'
+
 
 function Login() {
 
@@ -33,12 +35,12 @@ function Login() {
             });
             const token = response.data.access;
             useTokenStore.getState().setAccessToken(token)
-
+            
             alert("로그인 성공");
             navigate(BASE_URL);
         }catch(error) {
             alert("로그인 실패. 아이디 / 비밀번호를 입력해주세요");
-            console.log(error.log)
+            console.log(error)
         }
 
        
