@@ -6,11 +6,16 @@ const api = axios.create({
 })
 
 api.interceptors.request.use((config) => {
-    const token = useTokenStore.getState().accessToken
-    if(token) {
-        config.headers.Authorization = `Bearer ${token}`
+    const token = useTokenStore.getState().accessToken;
+  
+    // 로그인 요청에는 토큰 제거
+    if (!config.url.includes('/users/')) {
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
     }
-    return config
-})
+  
+    return config;
+  });
 
 export default api

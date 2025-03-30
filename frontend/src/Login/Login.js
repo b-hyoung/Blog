@@ -8,6 +8,7 @@ import { BASE_URL } from '../Component/PathLink'
 import api from '../Component/axiosInstance'
 
 
+
 function Login() {
 
     const navigate = useNavigate()
@@ -34,18 +35,19 @@ function Login() {
                 password : userId.password
             });
             const token = response.data.access;
-            useTokenStore.getState().setAccessToken(token)
-            
+            console.log("받아온 토큰:", token);
+            if (token) {
+              useTokenStore.getState().setAccessToken(token);
+            } else {
+              console.warn("⚠️ access 토큰이 응답에 포함되지 않았습니다.");
+            }
             alert("로그인 성공");
             navigate(BASE_URL);
         }catch(error) {
             alert("로그인 실패. 아이디 / 비밀번호를 입력해주세요");
             console.log(error)
         }
-
-       
-        
-}
+    }
 
     const handleClickSignUpPage = () => {
         navigate("/signUp")
