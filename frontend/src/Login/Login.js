@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import './Login.css'
 import axios from 'axios'
+import { USER_API } from '../Api/loginAPi'
+import useTokenStore from '../store/tokenStore'
+import { BASE_URL } from '../Component/PathLink'
 
 function Login() {
 
@@ -22,8 +25,22 @@ function Login() {
         }))
     }
 
-    const handleClickSubmit = () => {
-        axios.post()
+    const handleClickSubmit = async () => {
+        try{
+            const response = await api.post(USER_API.GET_USER,{
+                username : userId.id,
+                password : userId.password
+            });
+            const token = response.data.access;
+            useTokenStore.getState().setAccessToken(token)
+
+            alert("로그인 성공");
+            navigate(BASE_URL);
+        }catch(error) {
+            alert("로그인 실패. 아이디 / 비밀번호를 입력해주세요");
+            console.log(error.log)
+        }
+
        
         
 }
