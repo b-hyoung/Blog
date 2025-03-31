@@ -105,7 +105,7 @@ function ReadPost() {
                           src={`${process.env.PUBLIC_URL}/img/icon/ReadPost/del_up.png`}
                           onMouseEnter={(e) => e.currentTarget.src = `${process.env.PUBLIC_URL}/img/icon/ReadPost/del_down.png`}
                           onMouseLeave={(e) => e.currentTarget.src = `${process.env.PUBLIC_URL}/img/icon/ReadPost/del_up.png`}
-                          onClick={handleEdit}
+                          onClick={handleDelete}
                           alt="삭제 버튼"
                           style={{ width: "100px", height: "100px", marginRight: "40px", cursor: "pointer" }}
                         />

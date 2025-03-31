@@ -9,8 +9,9 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom';
 function Post() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedOption, setSelectedOption] = useState('피드백');
   const { postId } = useParams();
+  
+  const [selectedOption, setSelectedOption] = useState(postId ? '피드백' : '카테고리 선택');
 
   const typeMap = {
     'Q&A': 'qna',
@@ -45,37 +46,46 @@ function Post() {
   };
 
   const handleSubmitPost = async () => {
-    console.log("현재 토큰:", useTokenStore.getState().accessToken);
-    try {
-      if (postId) {
-        // Edit mode: update the existing post
-        await api.put(POST_API.EDIT_POST(postId), {
-          title: userInput.title,
-          content: userInput.description,
-          type: typeMap[selectedOption]
-        });
-        alert('글 수정을 완료했습니다.');
-        navigate(`${ROUTES.BLOG_GET}?id=${postId}`);
-      } else {
-        // Create mode: create a new post
-        await api.post(POST_API.CREATE_POSTS, {
-          title: userInput.title,
-          content: userInput.description,
-          type: typeMap[selectedOption]
-        });
-        alert('글 작성을 완료했습니다.');
-        navigate("/blog")
-      }
-    } catch (error) {
-      if (error.response) {
-        console.error('응답 오류:', error.response.data);
-        alert(`요청에 실패했습니다: ${error.response.data.message || '에러 발생'}`);
-      } else if (error.request) {
-        console.error('서버 응답 없음:', error.request);
-        alert('서버로부터 응답이 없습니다.');
-      } else {
-        console.error('에러:', error.message);
-        alert(`오류 발생: ${error.message}`);
+    if (selectedOption === '카테고리 선택') {
+      alert('카테고리를 선택해주세요!');
+      return;
+    }
+
+    if(userInput.title.length === 0 || userInput.description.length === 0){
+      alert("1글자 이상 입력해주세요 &_&")
+    }else{
+
+      try {
+        if (postId) {
+          // Edit mode: update the existing post
+          await api.put(POST_API.EDIT_POST(postId), {
+            title: userInput.title,
+            content: userInput.description,
+            type: typeMap[selectedOption]
+          });
+          alert('글 수정을 완료했습니다.');
+          navigate(`${ROUTES.BLOG_GET}?id=${postId}`);
+        } else {
+          // Create mode: create a new post
+          await api.post(POST_API.CREATE_POSTS, {
+            title: userInput.title,
+            content: userInput.description,
+            type: typeMap[selectedOption]
+          });
+          alert('글 작성을 완료했습니다.');
+          navigate("/blog")
+        }
+      } catch (error) {
+        if (error.response) {
+          console.error('응답 오류:', error.response.data);
+          alert(`요청에 실패했습니다: ${error.response.data.message || '에러 발생'}`);
+        } else if (error.request) {
+          console.error('서버 응답 없음:', error.request);
+          alert('서버로부터 응답이 없습니다.');
+        } else {
+          console.error('에러:', error.message);
+          alert(`오류 발생: ${error.message}`);
+        }
       }
     }
   };
@@ -118,6 +128,7 @@ function Post() {
           placeholder="제목을 입력해주세요"
           value={title}
           name='title'
+          maxLength="30"
           onChange={handleChangeInput}
         />
       </div>
@@ -150,6 +161,7 @@ function Post() {
             className="textarea"
             value={description}
             name='description'
+            maxLength={2000}
             onChange={handleChangeInput}
           ></textarea>
 

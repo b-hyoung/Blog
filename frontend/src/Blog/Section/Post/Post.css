@@ -38,7 +38,8 @@
 
 /* 드롭다운 스타일 */
 .dropdown {
-    width: 150px;
+    min-width: 150px;
+    width: max-content;
     position: relative;
     cursor: pointer;
     margin-bottom: 10px;
