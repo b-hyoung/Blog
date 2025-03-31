@@ -104,8 +104,11 @@
   width: 200px;
   height: 200px;
   border: none;
+  cursor: pointer;
 }
-
+.post-changImg{
+  transform: rotate(300deg);
+}
 /* .read-post-likeBtn {
   margin-top: 50px;
   border: 1px solid rgb(183, 183, 183);

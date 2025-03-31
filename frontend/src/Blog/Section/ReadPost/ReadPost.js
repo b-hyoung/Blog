@@ -93,8 +93,22 @@ function ReadPost() {
                 <div className="read-post-content">{post?.content}</div>
                 {username && post && username.username === post.nickname && (
                     <div className="post-actions">
-                        <button style={{width:"70px",height:"70px", marginRight:"40px"}} onClick={() => handleEdit()}>수정</button>
-                        <button style={{width:"70px",height:"70px"}} onClick={() => handleDelete()}>삭제</button>
+                        <img className='post-changImg'
+                          src={`${process.env.PUBLIC_URL}/img/icon/ReadPost/ctrl_up.png`}
+                          onMouseEnter={(e) => e.currentTarget.src = `${process.env.PUBLIC_URL}/img/icon/ReadPost/ctrl_down.png`}
+                          onMouseLeave={(e) => e.currentTarget.src = `${process.env.PUBLIC_URL}/img/icon/ReadPost/ctrl_up.png`}
+                          onClick={handleEdit}
+                          alt="수정 버튼"
+                          style={{ width: "100px", height: "100px", marginRight: "40px", cursor: "pointer" }}
+                        />
+                         <img className='post-changImg'
+                          src={`${process.env.PUBLIC_URL}/img/icon/ReadPost/del_up.png`}
+                          onMouseEnter={(e) => e.currentTarget.src = `${process.env.PUBLIC_URL}/img/icon/ReadPost/del_down.png`}
+                          onMouseLeave={(e) => e.currentTarget.src = `${process.env.PUBLIC_URL}/img/icon/ReadPost/del_up.png`}
+                          onClick={handleEdit}
+                          alt="삭제 버튼"
+                          style={{ width: "100px", height: "100px", marginRight: "40px", cursor: "pointer" }}
+                        />
                     </div>
                 )}
                 <img src={`${process.env.PUBLIC_URL}/img/icon/ExitIcon.png`} className='read-post-closeBtn' onClick={() => handleClickExit()} />

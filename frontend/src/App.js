@@ -14,12 +14,7 @@ function App() {
   const location = useLocation()
   return (
     <div className="App">
-      {location.pathname === '/blog' || location.pathname=== '/blog/post' || location.pathname==='/blog/read_post' ?
-        <>
-        </>
-        :
-        <Navbar />
-      }
+      {location.pathname.startsWith('/blog') ? null : <Navbar />}
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<Login />} />
