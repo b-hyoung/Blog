@@ -9,5 +9,6 @@ export const POST_API = {
 export const POST_API = {
     GET_POSTS : '/api/posts/',
     GET_POSTS_TYPE : (type) => `/api/posts/?type=${type}`,
+    GET_POSTS_ID_TYPE : (id) => `/api/posts/read_post/?id=${id}`,
     CREATE_POSTS:'/api/posts/'
 }

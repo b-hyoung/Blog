@@ -19,7 +19,6 @@ function App() {
         :
         <Navbar />
       }
-      {console.log(location.pathname)}
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<Login />} />

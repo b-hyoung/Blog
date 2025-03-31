@@ -16,10 +16,14 @@
 }
 
 .read-post-title {
-  font-size: 28px;
+  font-size: 25px;
+  color: rgb(65, 65, 65);
   font-weight: bold;
-  margin-bottom: 10px;
-  width: 30%;
+  margin-bottom: 13px;
+  min-width: 30%;
+  text-align: left;
+  margin-left: 20px;
+  width: max-content;
 }
 
 .read-post-header {
@@ -44,6 +48,10 @@
   color: #d43f3a;
   font-size: 14px;
   width: max-content;
+  margin-left: 15px;
+  min-width: 100px;
+  width: max-content;
+
 }
 
 .read-post-meta {
@@ -98,7 +106,7 @@
   border: none;
 }
 
-.read-post-likeBtn {
+/* .read-post-likeBtn {
   margin-top: 50px;
   border: 1px solid rgb(183, 183, 183);
   border-radius: 5px;
@@ -123,4 +131,4 @@
   font-size: 16px;
   font-weight: bold;
   padding-bottom: 10px;
-}
+} */

@@ -32,8 +32,8 @@ function Blog() {
   const handleClickPost = () => {
     navigate(ROUTES.BLOG_POST)
   }
-  const handleGetPost = () => {
-    navigate('/blog/read_post')
+  const handleGetPost = (postId) => {
+    navigate(`${ROUTES.BLOG_GET}?id=${postId}`);
   }
   const handleChangeTab = (tabType) => {
     setActiveTab(tabType);
@@ -42,7 +42,7 @@ function Blog() {
 
   return (
     <div className="blog__container" style={{ minHeight: '100vh' }}>
-      <h1 className="blog__title">Blog</h1>
+      <h1 className="blog__title" onClick={() => navigate("/")}>Blog</h1>
       
       {/* 탭 메뉴 */}
       <div className="blog__tabs">
@@ -61,7 +61,7 @@ function Blog() {
         <div className="blog__post-list">
           {PostsList.length > 0 ? (
             PostsList.map((post, index) => (
-              <div key={index} className="blog__post-item" onClick={(e) => handleGetPost(e)} >
+              <div key={index} className="blog__post-item" onClick={() => handleGetPost(post.id)} >
                 <span className="blog__post-text">{post.title}</span>
                 <div 
                   className="blog__post-badge"
