@@ -5,7 +5,7 @@ import axios from 'axios'
 import { USER_API } from '../Api/LoginAPi'
 import useTokenStore from '../store/tokenStore'
 import { BASE_URL } from '../Component/PathLink'
-import api from '../Component/axiosInstance'
+import api from '../Api/axiosInstance'
 
 
 

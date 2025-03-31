@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Post.css';
 import { useNavigate } from 'react-router-dom';
-import api from '../../Component/axiosInstance';
+import api from '../../Api/axiosInstance';
 import { POST_API } from '../../Api/PostApi';
 import useTokenStore from '../../store/tokenStore';
 import { ROUTES } from '../../Component/PathLink';

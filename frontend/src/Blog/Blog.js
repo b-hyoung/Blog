@@ -1,40 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import './Blog.css';
-import {useNavigate} from 'react-router-dom'
-import api from '../Component/axiosInstance';
+import {useNavigate, useSearchParams} from 'react-router-dom'
+import api from '../Api/axiosInstance';
 import { POST_API } from '../Api/PostApi';
 
 function Blog() {
-  const [activeTab, setActiveTab] = useState('feedback');
   const navigate = useNavigate()
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const type = searchParams.get('type') || 'feedback';
+
+  const [activeTab, setActiveTab] = useState(type);
   const [PostsList, setPostsList] = useState([]);
 
   useEffect(() => {
     getPostList()
-  },[])
+  },[activeTab])
   
-  useEffect(() => {
-    console.log(PostsList)
-  },[PostsList])
-
-  const posts = [
-    { text: 'Q&A 관련 질문입니다', badge: '지나가던 N년차 개발자', badgeColor: '#FFC0CB', category: 'qna' },
-    { text: '텍스트가 어떤식으로 들어가 좀 예쁘게 들어갈까', badge: '지나가던 N년차 개발자', badgeColor: '#FFC0CB', category: 'feedback' },
-    { text: '고양이는 고양고양해', badge: '어후러', badgeColor: '#FFD700', category: 'praise' },
-    { text: '고양이가 너무 귀엽네요 개추박고갑니다', badge: '부러', badgeColor: '#90EE90', category: 'feedback' },
-    { text: '콜록콜록.. 고소하겠습니다.ㅠㅠ', badge: '김밥먹다 체한고양이', badgeColor: '#87CEFA', category: 'praise' },
-  ];
-
-  // 선택한 탭에 맞는 게시글 필터링
-  const filteredPosts = PostsList.filter(post => post.type === activeTab);
 
   const getPostList = async () => {
-    
     try{
-      const res = await api.get(POST_API.GET_POSTS,{
+      const res = await api.get(POST_API.GET_POSTS_TYPE(activeTab),{
       })
       setPostsList(res.data)
-      console.log(res.data)
     }catch(e){
       console.log(e)
     }
@@ -43,6 +31,10 @@ function Blog() {
   const handleClickPost = () => {
     navigate('/blog/post')
   }
+  const handleChangeTab = (tabType) => {
+    setActiveTab(tabType);
+    setSearchParams({ type: tabType });
+  }
 
   return (
     <div className="blog__container" style={{ minHeight: '100vh' }}>
@@ -50,9 +42,9 @@ function Blog() {
       
       {/* 탭 메뉴 */}
       <div className="blog__tabs">
-        <span className={`blog__tab ${activeTab === 'qna' && 'active'}`} onClick={() => setActiveTab('qna')}>Q & A</span>
-        <span className={`blog__tab ${activeTab === 'feedback' && 'active'}`} onClick={() => setActiveTab('feedback')}>피드백</span>
-        <span className={`blog__tab ${activeTab === 'praise' && 'active'}`} onClick={() => setActiveTab('praise')}>칭찬 & 격려</span>
+        <span className={`blog__tab ${activeTab === 'qna' && 'active'}`} onClick={() => handleChangeTab('qna')}>Q & A</span>
+        <span className={`blog__tab ${activeTab === 'feedback' && 'active'}`} onClick={() => handleChangeTab('feedback')}>피드백</span>
+        <span className={`blog__tab ${activeTab === 'cheer' && 'active'}`} onClick={() => handleChangeTab('cheer')}>칭찬 & 격려</span>
       </div>
 
       {/* 게시글 리스트 및 고양이 이미지 레이아웃 개선 */}
@@ -63,8 +55,8 @@ function Blog() {
         </div>
 
         <div className="blog__post-list">
-          {filteredPosts.length > 0 ? (
-            filteredPosts.map((post, index) => (
+          {PostsList.length > 0 ? (
+            PostsList.map((post, index) => (
               <div key={index} className="blog__post-item" onClick={(e) => handleClickPost(e)} >
                 <span className="blog__post-text">{post.title}</span>
                 <div 

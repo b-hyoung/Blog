@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tanstack/react-query": "^5.71.1",
     "axios": "^1.8.3",
     "cra-template": "1.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-flip-toolkit": "^7.2.4",
+    "react-query": "^3.39.3",
     "react-router-dom": "^7.1.5",
     "react-scripts": "5.0.1",
     "zustand": "^5.0.3"
