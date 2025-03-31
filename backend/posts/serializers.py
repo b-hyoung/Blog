@@ -11,3 +11,5 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_nickname(self, obj):
         return obj.author.username
+    
+    

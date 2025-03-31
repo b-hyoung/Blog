@@ -36,7 +36,6 @@ function Blog() {
       setPostsList(res.data)
       console.log(res.data)
     }catch(e){
-      alert("불러오기 에러");
       console.log(e)
     }
   }
