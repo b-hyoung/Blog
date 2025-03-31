@@ -75,6 +75,8 @@
     margin-bottom: 12px;
     width: 600px;
     cursor: pointer;
+    position: relative;
+    overflow: visible; /* ensure that absolutely positioned child can show */
 }
 
 .blog__post-badge {
@@ -89,12 +91,13 @@
     display: flex;
     align-items: center;
     height: 100%;
+    cursor: pointer;
 }
 
 .blog__cat-img {
     width: 180px;
     height: 180px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: white;
 }
 
 .blog__pagination {
@@ -116,4 +119,20 @@
     background-color: #f87171;
     color: #fff;
     font-weight: bold;
+}
+
+.hover-preview {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 50%;
+    opacity: 0.5;
+    background-color: #fefefe;
+    color: #000;
+    padding: 12px 16px;
+    border-radius: 8px;
+    z-index: 9999;
+    white-space: pre-wrap;
+    font-size: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }

@@ -4,6 +4,7 @@ import {useNavigate, useSearchParams} from 'react-router-dom'
 import api from '../Api/axiosInstance';
 import { POST_API } from '../Api/PostApi';
 import { ROUTES } from '../Component/PathLink';
+import useTokenStore from '../store/tokenStore';
 
 function Blog() {
   const navigate = useNavigate()
@@ -12,8 +13,10 @@ function Blog() {
   const type = searchParams.get('type') || 'feedback';
 
   const [activeTab, setActiveTab] = useState(type);
+  const { username } = useTokenStore();
   const [PostsList, setPostsList] = useState([]);
-  
+  const [hoveredContent, setHoveredContent] = useState(null); // stores index instead of content
+
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -63,39 +66,69 @@ function Blog() {
     navigate(`${ROUTES.BLOG_GET}?id=${postId}`);
   }
   const handleChangeTab = (tabType) => {
+    if (tabType === 'my') {
+      // username이 객체라면, nickname 필드만 추출
+      const userNameString = typeof username === 'object' && username.nickname 
+        ? username.nickname 
+        : username; // 객체가 아니라면 그대로 사용
+      
+      setSearchParams({ type: 'my', nickname: userNameString });
+    } else {
+      setSearchParams({ type: tabType });
+    }
     setActiveTab(tabType);
-    setSearchParams({ type: tabType });
     setCurrentPage(1);
-  }
+  };
 
   return (
     <div className="blog__container" style={{ minHeight: '100vh' }}>
       <h1 className="blog__title" onClick={() => navigate("/")}>Blog</h1>
       
       {/* 탭 메뉴 */}
-      <div className="blog__tabs">
+      <div className="blog__tabs" style={{ display: 'flex' }}>
         <span className={`blog__tab ${activeTab === 'qna' && 'active'}`} onClick={() => handleChangeTab('qna')}>Q & A</span>
         <span className={`blog__tab ${activeTab === 'feedback' && 'active'}`} onClick={() => handleChangeTab('feedback')}>피드백</span>
         <span className={`blog__tab ${activeTab === 'cheer' && 'active'}`} onClick={() => handleChangeTab('cheer')}>칭찬 & 격려</span>
+
+        <span
+          className={`blog__tab ${activeTab === 'my' && 'active'}`}
+          style={{ marginLeft: 'auto' }}
+          onClick={() => handleChangeTab('my')}
+        >
+          My
+        </span>
       </div>
 
       {/* 게시글 리스트 및 고양이 이미지 레이아웃 개선 */}
       <div className="blog__content-container">
         {/* 고양이 이미지 추가 버튼 */}
         <div className="blog__cat-button" onClick={() => handleClickPost()}>
-          <img src={`${process.env.PUBLIC_URL}/img/Projectimg/image1.png`} alt="고양이 추가 버튼" className="blog__cat-img" style={{ height: '180px', width:"180px", boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}/>
+          <img src={`${process.env.PUBLIC_URL}/img/Projectimg/image1.png`} alt="고양이 추가 버튼" className="blog__cat-img" />
         </div>
 
         <div className="blog__post-list">
           {visiblePosts.length > 0 ? (
             visiblePosts.map((post, index) => (
-              <div key={index} className="blog__post-item" onClick={() => handleGetPost(post.id)} >
+              <div
+                key={index}
+                className="blog__post-item"
+                style={{ position: 'relative' }}
+                onMouseEnter={() => setHoveredContent(index)}
+                onMouseLeave={() => setHoveredContent(null)}
+                onClick={() => handleGetPost(post.id)}
+              >
                 <span className="blog__post-text">{post.title}</span>
                 <div 
                   className="blog__post-badge"
                   style={{ backgroundColor: getHSLColorFromNickname(post.nickname) }}>
                   {post.nickname}
                 </div>
+
+                {hoveredContent === index && (
+                  <div className="hover-preview">
+                    {post.content}
+                  </div>
+                )}
               </div>
             ))
           ) : (
