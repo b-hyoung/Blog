@@ -5,4 +5,5 @@ export const ROUTES = {
   SIGNUP: '/signup',
   BLOG: '/blog',
   BLOG_POST: '/blog/post',
+  BLOG_GET: '/blog/read_post',
 };

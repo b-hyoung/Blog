@@ -6,24 +6,27 @@ import MainPage from './MainPage/MainPage.js';
 import Login from './Login/Login.js';
 import SignUpPage from './Login/SignUp/SignUpPage.js';
 import Blog from './Blog/Blog.js';
-import Post from './Blog/Section/Post.js';
+import ReadPost from './Blog/Section/ReadPost/ReadPost.js';
+import Post from './Blog/Section/Post/Post.js';
 
 function App() {
   const location = useLocation()
   return (
     <div className="App">
-      {location.pathname === '/blog' || location.pathname=== '/blog/post' ?
+      {location.pathname === '/blog' || location.pathname=== '/blog/post' || location.pathname==='/blog/read_post' ?
         <>
         </>
         :
         <Navbar />
       }
+      {console.log(location.pathname)}
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signUp' element={<SignUpPage />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog/post' element={<Post />} />
+        <Route path='/blog/read_post' element={<ReadPost />} />
       </Routes>
     </div>
   );

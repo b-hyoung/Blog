@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import './Post.css';
+import { ROUTES } from '../../../Component/PathLink';
+import useTokenStore from '../../../store/tokenStore';
+import { POST_API } from '../../../Api/PostApi';
+import api from '../../../Api/axiosInstance';
 import { useNavigate } from 'react-router-dom';
-import api from '../../Api/axiosInstance';
-import { POST_API } from '../../Api/PostApi';
-import useTokenStore from '../../store/tokenStore';
-import { ROUTES } from '../../Component/PathLink';
-
 function Post() {
   const navigate = useNavigate()
   const [selectedOption, setSelectedOption] = useState('피드백');

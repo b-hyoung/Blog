@@ -3,6 +3,7 @@ import './Blog.css';
 import {useNavigate, useSearchParams} from 'react-router-dom'
 import api from '../Api/axiosInstance';
 import { POST_API } from '../Api/PostApi';
+import { ROUTES } from '../Component/PathLink';
 
 function Blog() {
   const navigate = useNavigate()
@@ -29,7 +30,10 @@ function Blog() {
   }
 
   const handleClickPost = () => {
-    navigate('/blog/post')
+    navigate(ROUTES.BLOG_POST)
+  }
+  const handleGetPost = () => {
+    navigate('/blog/read_post')
   }
   const handleChangeTab = (tabType) => {
     setActiveTab(tabType);
@@ -50,14 +54,14 @@ function Blog() {
       {/* 게시글 리스트 및 고양이 이미지 레이아웃 개선 */}
       <div className="blog__content-container">
         {/* 고양이 이미지 추가 버튼 */}
-        <div className="blog__cat-button">
+        <div className="blog__cat-button" onClick={() => handleClickPost()}>
           <img src={`${process.env.PUBLIC_URL}/img/Projectimg/image1.png`} alt="고양이 추가 버튼" className="blog__cat-img" style={{ height: '180px', width:"180px", boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}/>
         </div>
 
         <div className="blog__post-list">
           {PostsList.length > 0 ? (
             PostsList.map((post, index) => (
-              <div key={index} className="blog__post-item" onClick={(e) => handleClickPost(e)} >
+              <div key={index} className="blog__post-item" onClick={(e) => handleGetPost(e)} >
                 <span className="blog__post-text">{post.title}</span>
                 <div 
                   className="blog__post-badge"

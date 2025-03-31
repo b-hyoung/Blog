@@ -1,0 +1,126 @@
+.read-post-page {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.read-post-wrapper {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.read-post-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  width: 30%;
+}
+
+.read-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.read-post-header-top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.read-post-tag {
+  background-color: #ecf3e5;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-weight: bold;
+  color: #d43f3a;
+  font-size: 14px;
+  width: max-content;
+}
+
+.read-post-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.read-post-feedback-button {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #d43f3a;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 2px;
+  font-size: 15px;
+}
+
+.read-post-date {
+  text-align: right;
+  margin-top: 8px;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.read-post-content {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  line-height: 1.8;
+  font-size: 16px;
+  white-space: pre-line;
+  text-align: left;
+  padding: 2rem 2rem;
+  height: min-content;
+  min-height: 300px;
+}
+
+.read-post-closeBtn {
+  color: rgb(255, 98, 98);
+  position: absolute;
+  left: -25px;
+  top: 35%;
+  transform: translateX(-100%);
+  width: 200px;
+  height: 200px;
+  border: none;
+}
+
+.read-post-likeBtn {
+  margin-top: 50px;
+  border: 1px solid rgb(183, 183, 183);
+  border-radius: 5px;
+  padding: 10px 10px;
+  background-color: white;
+  width: 70px;
+  height: 70px;
+}
+
+.read-post-likeImg {
+  margin: 0 auto;
+  padding: 10px 10px;
+  background-color: aqua;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.read-post-likeText {
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}

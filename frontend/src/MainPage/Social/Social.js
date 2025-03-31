@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import './Social.css'
-import { getClipboardText } from '../../Section/getClipboardText'
+import { getClipboardText } from '../../Component/getClipboardText'
 
 
 function Social() {
