@@ -13,21 +13,48 @@ function Blog() {
 
   const [activeTab, setActiveTab] = useState(type);
   const [PostsList, setPostsList] = useState([]);
+  
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   useEffect(() => {
     getPostList()
   },[activeTab])
   
+  const getHSLColorFromNickname = (nickname) => {
+    const str = nickname.toString();
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const hue = Math.abs(hash) % 360;
+    return `hsl(${hue}, 60%, 70%)`;
+  };
 
   const getPostList = async () => {
     try{
       const res = await api.get(POST_API.GET_POSTS_TYPE(activeTab),{
       })
-      setPostsList(res.data)
+      setPostsList(res.data.reverse());
     }catch(e){
       console.log(e)
     }
   }
+
+  // Calculate the start and end indexes based on currentPage and itemsPerPage
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  // Slice the visible posts for the current page
+  const visiblePosts = PostsList.slice(startIndex, endIndex);
+
+  // Calculate total number of pages
+  const totalPages = Math.ceil(PostsList.length / itemsPerPage);
+
+  const handleChangePage = (page) => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+  };
 
   const handleClickPost = () => {
     navigate(ROUTES.BLOG_POST)
@@ -38,6 +65,7 @@ function Blog() {
   const handleChangeTab = (tabType) => {
     setActiveTab(tabType);
     setSearchParams({ type: tabType });
+    setCurrentPage(1);
   }
 
   return (
@@ -59,13 +87,13 @@ function Blog() {
         </div>
 
         <div className="blog__post-list">
-          {PostsList.length > 0 ? (
-            PostsList.map((post, index) => (
+          {visiblePosts.length > 0 ? (
+            visiblePosts.map((post, index) => (
               <div key={index} className="blog__post-item" onClick={() => handleGetPost(post.id)} >
                 <span className="blog__post-text">{post.title}</span>
                 <div 
                   className="blog__post-badge"
-                  style={{ backgroundColor: 'yellow' }}>
+                  style={{ backgroundColor: getHSLColorFromNickname(post.nickname) }}>
                   {post.nickname}
                 </div>
               </div>
@@ -78,15 +106,35 @@ function Blog() {
 
       {/* 페이지네이션 */}
       <div className="blog__pagination" style={{ marginTop: '10px' }}>
-        <span className="blog__page-btn">&lt;</span>
-        {Array.from({ length: 3 }).map((_, index) => (
-          <span key={index} className={`blog__page-number ${index === 0 ? 'active' : ''}`}>
-            {index + 1}
-          </span>
-        ))}
-        <span>...</span>
-        <span className="blog__page-number">5</span>
-        <span className="blog__page-btn">&gt;</span>
+        <span
+          className="blog__page-btn"
+          onClick={() => handleChangePage(currentPage - 1)}
+          style={{ cursor: 'pointer', opacity: currentPage === 1 ? 0.5 : 1 }}
+        >
+          &lt;
+        </span>
+
+        {Array.from({ length: totalPages }).map((_, index) => {
+          const pageNumber = index + 1;
+          return (
+            <span
+              key={index}
+              className={`blog__page-number ${pageNumber === currentPage ? 'active' : ''}`}
+              onClick={() => handleChangePage(pageNumber)}
+              style={{ cursor: 'pointer' }}
+            >
+              {pageNumber}
+            </span>
+          );
+        })}
+
+        <span
+          className="blog__page-btn"
+          onClick={() => handleChangePage(currentPage + 1)}
+          style={{ cursor: 'pointer', opacity: currentPage === totalPages ? 0.5 : 1 }}
+        >
+          &gt;
+        </span>
       </div>
     </div>
   );

@@ -6,6 +6,17 @@ import { POST_API } from '../../../Api/PostApi';
 import api from '../../../Api/axiosInstance';
 import useTokenStore from '../../../store/tokenStore';
 
+const getHSLColorFromNickname = (nickname) => {
+  if (!nickname) return '';
+  const str = nickname.toString();
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const hue = Math.abs(hash) % 360;
+  return `hsl(${hue}, 60%, 70%)`;
+};
+
 function ReadPost() {
     const navigate = useNavigate();
     const location = useLocation();
@@ -22,7 +33,6 @@ function ReadPost() {
         feedback: "피드백",
         cheer: "칭찬 & 격려"
     };
-    const currentUser = JSON.parse(localStorage.getItem("user-token"));
     useEffect(() => {
         handleGetPost();
     }, [postId]);
@@ -39,7 +49,7 @@ function ReadPost() {
     };
 
     const handleEdit = () => {
-        navigate(`/posts/edit/${postId}`);
+        navigate(`/blog/edit/${postId}`);
     };
 
     const handleDelete = async () => {
@@ -63,7 +73,9 @@ function ReadPost() {
                 <div className="read-post-top">
                     <h1 className="read-post-title">{post?.title}</h1>
                     <div className="read-post-header">
-                        <div className="read-post-tag">{post?.nickname}</div>
+                        <div className="read-post-tag" style={{ backgroundColor: getHSLColorFromNickname(post?.nickname) }}>
+                          {post?.nickname}
+                        </div>
 
                         <div className="read-post-meta">
                             {post?.type && (

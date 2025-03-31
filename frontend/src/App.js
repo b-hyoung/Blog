@@ -8,6 +8,7 @@ import SignUpPage from './Login/SignUp/SignUpPage.js';
 import Blog from './Blog/Blog.js';
 import ReadPost from './Blog/Section/ReadPost/ReadPost.js';
 import Post from './Blog/Section/Post/Post.js';
+import PatchPost from './Blog/Section/PatchPost/PatchPost.js';
 
 function App() {
   const location = useLocation()
@@ -26,6 +27,7 @@ function App() {
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog/post' element={<Post />} />
         <Route path='/blog/read_post' element={<ReadPost />} />
+        <Route path='/blog/edit/:postId' element={<Post />} />
       </Routes>
     </div>
   );

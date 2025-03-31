@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Post.css';
 import { ROUTES } from '../../../Component/PathLink';
 import useTokenStore from '../../../store/tokenStore';
 import { POST_API } from '../../../Api/PostApi';
 import api from '../../../Api/axiosInstance';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
+
 function Post() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
   const [selectedOption, setSelectedOption] = useState('피드백');
+  const { postId } = useParams();
 
   const typeMap = {
     'Q&A': 'qna',
@@ -18,17 +21,17 @@ function Post() {
   const [userInput, setUserInput] = useState({
     title: "",
     description: "",
-  })
+  });
 
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   const handleChangeInput = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setUserInput({
       ...userInput,
       [name]: value
-    })
-  }
+    });
+  };
 
   // 모든 드롭다운 옵션
   const allOptions = ['Q&A', '피드백', '칭찬&격려'];
@@ -44,31 +47,66 @@ function Post() {
   const handleSubmitPost = async () => {
     console.log("현재 토큰:", useTokenStore.getState().accessToken);
     try {
-      const response = await api.post(POST_API.CREATE_POSTS, {
-        title: userInput.title,
-        content: userInput.description,
-        type: typeMap[selectedOption]
-      })
-      alert("글 작성을 완료했습니다.");
-      navigate(ROUTES.BLOG)
+      if (postId) {
+        // Edit mode: update the existing post
+        await api.put(POST_API.EDIT_POST(postId), {
+          title: userInput.title,
+          content: userInput.description,
+          type: typeMap[selectedOption]
+        });
+        alert('글 수정을 완료했습니다.');
+        navigate(`${ROUTES.BLOG_GET}?id=${postId}`);
+      } else {
+        // Create mode: create a new post
+        await api.post(POST_API.CREATE_POSTS, {
+          title: userInput.title,
+          content: userInput.description,
+          type: typeMap[selectedOption]
+        });
+        alert('글 작성을 완료했습니다.');
+        navigate("/blog")
+      }
     } catch (error) {
       if (error.response) {
-        // 서버가 응답한 경우 (400, 500 등)
         console.error('응답 오류:', error.response.data);
         alert(`요청에 실패했습니다: ${error.response.data.message || '에러 발생'}`);
       } else if (error.request) {
-        // 요청은 되었지만 응답이 없는 경우
         console.error('서버 응답 없음:', error.request);
         alert('서버로부터 응답이 없습니다.');
       } else {
-        // 기타 오류
         console.error('에러:', error.message);
         alert(`오류 발생: ${error.message}`);
       }
     }
-  }
+  };
 
-  const { title, description } = userInput
+  useEffect(() => {
+    if (postId) {
+      // Fetch the existing post data for editing
+      api.get(POST_API.GET_POSTS_ID_TYPE(postId))
+        .then(response => {
+          const data = response.data;
+          setUserInput({
+            title: data.title,
+            description: data.content
+          });
+          // Update selectedOption based on the post type
+          const typeMappingReverse = {
+            qna: 'Q&A',
+            feedback: '피드백',
+            cheer: '칭찬&격려'
+          };
+          if (data.type && typeMappingReverse[data.type]) {
+            setSelectedOption(typeMappingReverse[data.type]);
+          }
+        })
+        .catch(error => {
+          console.error('Failed to fetch post data:', error);
+        });
+    }
+  }, [postId]);
+
+  const { title, description } = userInput;
 
   return (
     <div className="container">
