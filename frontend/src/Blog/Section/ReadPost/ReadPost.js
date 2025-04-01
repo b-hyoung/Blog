@@ -24,9 +24,7 @@ function ReadPost() {
     const postId = queryParams.get("id");
 
     const { username } = useTokenStore();
-
-    console.log(username.username)
-
+    
     const [post, setPost] = useState(null);
     const typeMapping = {
         qna: "Q&A",

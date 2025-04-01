@@ -9,9 +9,6 @@ function Social() {
     const goPage = (text) => {
         window.open(text)
     }
-    let aa = ['123','456','1234']
-    console.log(aa[0]);
-
     const [socialLink , setSocialLink] = useState(
         {
         Email : "youqlrqod@gmail.com ",

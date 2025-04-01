@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './Project.css'
 import useSelectSkillStore from '../../Header/Section/useSelectSkillStore'
 import { useNavigate } from 'react-router-dom'
+import useTokenStore from '../../store/tokenStore'
+import { ROUTES } from '../../Component/PathLink'
 
 function Project() {
     const navigate = useNavigate()
@@ -9,6 +11,7 @@ function Project() {
     const { skills } = useSelectSkillStore()
     const [selectSkill, setSelectSkill] = useState([])
     const [skillAll, setSkillALl] = useState([])
+    const token = useTokenStore((state) => state.accessToken);
 
     const projects = [
         {
@@ -118,23 +121,26 @@ function Project() {
         setSkillALl(tempall);
     }, [skills]);
 
-    useEffect(() => {
-        if (skillAll.length > 0) {
-            console.log('updated skillAll:', skillAll);
-        }
-    }, [skillAll]);
-
     const sortedProjects = [...projects].sort((a, b) => {
         const aCount = a.skillList.filter(skill => selectSkill.includes(skill)).length;
         const bCount = b.skillList.filter(skill => selectSkill.includes(skill)).length;
         return bCount - aCount;
     });
 
+    const onClickNavigate = (title) => {
+        if(token){
+            navigate('blog');
+        }else{
+            alert("로그인 후 진행해주세요");
+            navigate(ROUTES.LOGIN)
+        }
+    }
+
     return (
         <div>
             <div>
                 {sortedProjects.map((project, index) => (
-                    <div className='Project_Blog' onClick={() => navigate("/blog")} onMouseEnter={() => setArrowd(true)} onMouseLeave={() => setArrowd(false)}>
+                    <div className='Project_Blog' onClick={() => onClickNavigate(project.title)} onMouseEnter={() => setArrowd(true)} onMouseLeave={() => setArrowd(false)}>
                         <span className='Project_title'>
                             {/* 프로젝트 이름 */}
                             {project.title}

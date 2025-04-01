@@ -31,7 +31,7 @@ class UserCreateView(generics.CreateAPIView):
         if role == 'guest' and response.status_code == 201:
             ip = request.META.get('REMOTE_ADDR')
             guest_key = f"guest_signup_{ip}"
-            cache.set(guest_key, True, timeout=10)
+            cache.set(guest_key, True, timeout=3600)
 
         # 토큰 발급 로직 추가
         if response.status_code == 201 and response.data.get('username'):

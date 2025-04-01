@@ -23,22 +23,21 @@ function Navbar() {
     }
 
     return (
-        <div className='Header_NavBar'>
+        <div className='Header_NavBar' style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 20px" }}>
             {/* 블로그 이름 */}
-            <div className='Header_BlogName'>
+            <div className='Header_BlogName' style={{ display: "flex", alignItems: "center", justifyContent: "center", flex: 1 }}>
                 <img onClick={(e) => handleClickUrl(e)} className='Nav_Logo' src={logoUrl} />
-                <div style={{ fontSize: "20px", cursor: "pointer" }}
-                     onClick={() => {
-                       if (token) {
-                         handleClickWho();
-                       } else {
-                         navigate(ROUTES.LOGIN);
-                       }
-                     }}>
-                  {token ? "Logout" : "Who are you?"}
-                </div>
             </div>
-            <div>
+            
+            <div style={{ fontSize: "23px", cursor: "pointer", color:"rgb(255, 108, 108)", right:"60px", position:"relative", fontWeight:"bold" }}
+                 onClick={() => {
+                   if (token) {
+                     handleClickWho();
+                   } else {
+                     navigate(ROUTES.LOGIN);
+                   }
+                 }}>
+              {token ? "Logout" : "Who are you?"}
             </div>
         </div>
     )

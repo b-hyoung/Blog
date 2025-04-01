@@ -5,14 +5,18 @@ from .models import CustomUser
 
 class UserSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True, required=False, allow_blank=True)
+    is_guest = serializers.SerializerMethodField()
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'password', 'password2', 'role']
+        fields = ['username', 'password', 'password2', 'role', 'is_guest']
         extra_kwargs = {
             'password': {'write_only': True, 'required': False, 'allow_blank': True},
             'username': {'required': False, 'allow_blank': True, 'max_length': 10},
         }
+
+    def get_is_guest(self, obj):
+        return obj.role == 'guest'
 
     def validate(self, data):
         role = data.get('role')
