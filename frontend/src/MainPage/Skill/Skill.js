@@ -7,7 +7,7 @@ import useSelectSkillStore from '../../Header/Section/useSelectSkillStore';
 function Skill() {
 
     const frontSkill = [
-        'HTML & SCSS', 'React', 'React Native', 'JavaScript', 'TypeScript', 'Zustand']
+       'React', 'JavaScript', 'CSS', 'TypeScript', 'Zustand','TailWindCSS' , 'React-Query']
     const backSkill = [
         'Python3', 'DJango', 'DRF (Django Rest Framework)', 'My SQL', 'Docker']
     const devOpsSkill = [

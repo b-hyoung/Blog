@@ -52,21 +52,20 @@
     margin-bottom: 20px;
 }
 
-.Project_SkillList {
-    width: max-content;
-    height: 50px;
-    display: inline-block;
-    vertical-align: top;
-    line-height: 50px;
+.Project_List {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.Project_SkillList span{
+.Project_SkillList span {
     padding: 10px 10px 15px 10px;
     border-radius: 10px;
-    margin-right: 15px;
+    margin-right: 10px;
     font-size: 15px;
+    margin-bottom: 15px;
     width: max-content;
-    height: 20px;
+    display: inline-flex;
     align-items: center;
 }
 
