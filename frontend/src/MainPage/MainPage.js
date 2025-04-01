@@ -14,7 +14,7 @@ function MainPage() {
                 <Social />
             </div>
             <div style={{ position: "relative", top: "70px", marginLeft: "750px" }}>
-                <h1 style={{ color: "white" }}>Project</h1>
+                <h1 style={{ color: "rgb(198, 198, 198)" }}>프로젝트</h1>
                 <Project />
             </div>
         </div>

@@ -16,6 +16,7 @@ function Project() {
     const projects = [
         {
             title: 'Blog',
+            developer: '개인 프로젝트 (Me)',
             description: (
                 <>
                     포트폴리오 웹 애플리케이션.<br />
@@ -36,6 +37,7 @@ function Project() {
         },
         {
             title: 'kkeua',
+            developer: '프론트엔드 2명 (Me) | 백엔드 1명',
             description: (
                 <>
                     실시간 웹소켓을 사용하여 구현하는 끝말잇기 아이템전!<br />
@@ -45,7 +47,7 @@ function Project() {
                     Guest 기능을 통해 우리 게임에 쉽게 접해볼 수 있게 사용성을 증가시켰습니다.
                 </>
             ), urls: {
-                blog: process.env.PUBLIC_URL + "img/ProjectImg/Project_Blog.png",
+                blog: process.env.PUBLIC_URL + "img/ProjectImg/kkuea.png",
                 go: process.env.PUBLIC_URL + "img/All/Go.png",
                 goNotion: process.env.PUBLIC_URL + "img/All/Go_Notion.png"
             },
@@ -54,6 +56,7 @@ function Project() {
 
         {
             title: 'Eriwa',
+            developer: '프론트엔드 (Me) 1명 | 백엔드 1명',
             description: (
                 <>
                     이터널리턴 전적검색사이트<br />
@@ -62,7 +65,7 @@ function Project() {
                     백엔드와 협업하여 API를 받아본 첫번째 사이트<br />
                 </>
             ), urls: {
-                blog: process.env.PUBLIC_URL + "img/ProjectImg/Project_Blog.png",
+                blog: process.env.PUBLIC_URL + "img/ProjectImg/Eriwa.png",
                 go: process.env.PUBLIC_URL + "img/All/Go.png",
                 goNotion: process.env.PUBLIC_URL + "img/All/Go_Notion.png"
             },
@@ -70,6 +73,7 @@ function Project() {
         },
         {
             title: 'Clover',
+            developer: '프론트엔드 (Me) 1명 | 백엔드 1명',
             description: (
                 <>
                     동아리 홍보 및 관리 사이트<br />
@@ -80,14 +84,15 @@ function Project() {
                     시스템 흐름도 및 화면 정의서를 제작하며 기획의 핵심 요소를 재인식한 좋은 프로젝트입니다.<br />
                 </>
             ), urls: {
-                blog: process.env.PUBLIC_URL + "img/ProjectImg/Project_Blog.png",
+                blog: process.env.PUBLIC_URL + "img/ProjectImg/Clover.gif",
                 go: process.env.PUBLIC_URL + "img/All/Go.png",
                 goNotion: process.env.PUBLIC_URL + "img/All/Go_Notion.png"
             },
             skillList: ['React', 'CSS', 'React-Query']
         },
         {
-            title: 'Resee',
+            title: 'ReSee',
+            developer: '프론트엔드 1명 | 백엔드 1명',
             description: (
                 <>
                     메모 후 복습을 위해 만든 사이트<br />
@@ -98,7 +103,7 @@ function Project() {
                     로그인상태나 APIURL 을 전역변수화 시켜 코드 유지보수에 관심을 가지게된 프로젝트였습니다.
                 </>
             ), urls: {
-                blog: process.env.PUBLIC_URL + "img/ProjectImg/Project_Blog.png",
+                blog: process.env.PUBLIC_URL + "img/ProjectImg/Resee.gif",
                 go: process.env.PUBLIC_URL + "img/All/Go.png",
                 goNotion: process.env.PUBLIC_URL + "img/All/Go_Notion.png"
             },
@@ -128,11 +133,22 @@ function Project() {
     });
 
     const onClickNavigate = (title) => {
-        if(token){
-            navigate('blog');
-        }else{
-            alert("로그인 후 진행해주세요");
-            navigate(ROUTES.LOGIN)
+        console.log(title)
+        if(title==="Blog"){
+            if(token){
+                navigate('blog');
+            }else{
+                alert("로그인 후 진행해주세요");
+                navigate(ROUTES.LOGIN)
+            }
+        }else if(title==="kkeua"){
+            window.open("https://github.com/djgnfj-svg/kkua")
+        }else if(title === "ReSee"){
+            window.open("https://github.com/b-hyoung/Resee_project")
+        }else if(title === "Clover"){
+            window.open("https://github.com/b-hyoung/Clover")
+        }else if(title === "Eriwa"){
+            window.open("https://github.com/b-hyoung/NewRiwa")
         }
     }
 
@@ -148,9 +164,16 @@ function Project() {
                         </span>
                         <div className='Project_Info'>
                             <img className='ProjectImg' src={project.urls?.blog} />
-                            <div className='Project_description'>
-                                {/* 프로젝트 설명 */}
-                                {project.description}
+                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                {project.developer && (
+                                    <div style={{ marginBottom: '8px', fontSize: '18px', fontWeight:"bold" ,  color: 'rgb(223, 144, 60)', textAlign: 'right' }}>
+                                        {project.developer}
+                                    </div>
+                                )}
+                                <div className='Project_description'>
+                                    {/* 프로젝트 설명 */}
+                                    {project.description}
+                                </div>
                             </div>
                         </div>
                         <div className='Project_SkillList'>

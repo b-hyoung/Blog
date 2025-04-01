@@ -89,7 +89,7 @@ function ReadPost() {
                 </div>
 
                 <div className="read-post-content">{post?.content}</div>
-                {username && post && username.username === post.nickname && (
+                {username && post && username === post.nickname && (
                     <div className="post-actions">
                         <img className='post-changImg'
                           src={`${process.env.PUBLIC_URL}/img/icon/ReadPost/ctrl_up.png`}

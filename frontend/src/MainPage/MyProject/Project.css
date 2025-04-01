@@ -2,26 +2,25 @@
     text-align: left;
     padding: 20px 20px;
     scale: 0.9;
+    border: 1px solid rgb(62, 62, 62);
+    border-radius: 10px;
 }
 
 .Project_Blog:hover {
     background-color: #313640;
     border-radius: 10px;
-    
 }
 
 .Project_Blog:hover .Project_title {
-    color:rgb(136 212 237);
+    color: rgb(136 212 237);
 }
-.Project_Blog:hover .arrowImg{
+.Project_Blog:hover .arrowImg {
     margin-left: 20px;
-    
 }
-.arrowImg{
+.arrowImg {
     width: 30px;
     margin-left: 10px;
     stroke-width: 1px;
-
 }
 
 .Project_title {
@@ -39,9 +38,11 @@
 }
 
 .ProjectImg {
-    width: 150px;
-    height: 100px;
+    width: 180px;
+    height: 130px;
+    margin-top: 30px;
     margin-right: 20px;
+    border-radius: 10px;
 }
 
 .Project_description {
@@ -71,11 +72,10 @@
 }
 
 .Project_SkillList span.haveSkill {
-    color:rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
     background-color: rgb(255, 23, 23);
-    
 }
 .Project_SkillList span.DNhaveSkill {
-    color:rgb(136 212 237);
+    color: rgb(136 212 237);
     background-color: rgb(70, 70, 70);
 }

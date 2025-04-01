@@ -154,6 +154,7 @@ function SignUpPage() {
         localStorage.clear();
         useTokenStore.getState().setUsername(res.data.user.username);
         useTokenStore.getState().setAccessToken(res.data.access || null);
+        alert("회원가입 완료 ! 좋은하루되세요 ~")
         navigate(ROUTES.BLOG);
       }
     } catch (e) {

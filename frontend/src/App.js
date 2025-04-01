@@ -8,9 +8,12 @@ import SignUpPage from './Login/SignUp/SignUpPage.js';
 import Blog from './Blog/Blog.js';
 import ReadPost from './Blog/Section/ReadPost/ReadPost.js';
 import Post from './Blog/Section/Post/Post.js';
+import useTokenStore from './store/tokenStore.js';
 
 function App() {
   const location = useLocation()
+  const token = useTokenStore((state) => state.accessToken);
+
   return (
     <div className="App">
       {location.pathname.startsWith('/blog') ? null : <Navbar />}
@@ -18,10 +21,15 @@ function App() {
         <Route path='/' element={<MainPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signUp' element={<SignUpPage />} />
-        <Route path='/blog' element={<Blog />} />
-        <Route path='/blog/post' element={<Post />} />
-        <Route path='/blog/read_post' element={<ReadPost />} />
-        <Route path='/blog/edit/:postId' element={<Post />} />
+        {token && (
+          <>
+            <Route path='/blog' element={<Blog />} />
+            <Route path='/blog/post' element={<Post />} />
+            <Route path='/blog/read_post' element={<ReadPost />} />
+            <Route path='/blog/edit/:postId' element={<Post />} />
+          </>
+        )}
+        <Route path='*' element={<MainPage />} />
       </Routes>
     </div>
   );
