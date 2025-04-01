@@ -7,5 +7,6 @@ export const POST_API = {
 */
 export const USER_API = {
     GET_USER: '/api/users/',
-    GET_CREARTE : '/api/users/register',
+    GET_CREARTE : '/api/users/register/',
+    GET_USERCHECKED:'/api/users/check-username/',
 }

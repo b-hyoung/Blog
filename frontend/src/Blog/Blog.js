@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Blog.css';
-import {useNavigate, useSearchParams} from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import api from '../Api/axiosInstance';
 import { POST_API } from '../Api/PostApi';
 import { ROUTES } from '../Component/PathLink';
@@ -23,8 +23,8 @@ function Blog() {
 
   useEffect(() => {
     getPostList()
-  },[activeTab])
-  
+  }, [activeTab])
+
   const getHSLColorFromNickname = (nickname) => {
     const str = nickname.toString();
     let hash = 0;
@@ -36,11 +36,11 @@ function Blog() {
   };
 
   const getPostList = async () => {
-    try{
-      const res = await api.get(POST_API.GET_POSTS_TYPE(activeTab),{
+    try {
+      const res = await api.get(POST_API.GET_POSTS_TYPE(activeTab), {
       })
       setPostsList(res.data.reverse());
-    }catch(e){
+    } catch (e) {
       console.log(e)
     }
   }
@@ -67,11 +67,11 @@ function Blog() {
   }
   const handleChangeTab = (tabType) => {
     if (tabType === 'my') {
-      // username이 객체라면, nickname 필드만 추출
-      const userNameString = typeof username === 'object' && username.nickname 
-        ? username.nickname 
-        : username; // 객체가 아니라면 그대로 사용
-      
+      const userNameString =
+        username && typeof username === 'object' && username.nickname
+          ? username.nickname
+          : username || "anonymous";
+
       setSearchParams({ type: 'my', nickname: userNameString });
     } else {
       setSearchParams({ type: tabType });
@@ -83,7 +83,7 @@ function Blog() {
   return (
     <div className="blog__container" style={{ minHeight: '100vh' }}>
       <h1 className="blog__title" onClick={() => navigate("/")}>Blog</h1>
-      
+
       {/* 탭 메뉴 */}
       <div className="blog__tabs" style={{ display: 'flex' }}>
         <span className={`blog__tab ${activeTab === 'qna' && 'active'}`} onClick={() => handleChangeTab('qna')}>Q & A</span>
@@ -118,7 +118,7 @@ function Blog() {
                 onClick={() => handleGetPost(post.id)}
               >
                 <span className="blog__post-text">{post.title}</span>
-                <div 
+                <div
                   className="blog__post-badge"
                   style={{ backgroundColor: getHSLColorFromNickname(post.nickname) }}>
                   {post.nickname}

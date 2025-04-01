@@ -37,6 +37,7 @@ function Login() {
             const token = response.data.access;
             const username = response.data.user;
             if (token) {
+              localStorage.clear();
               useTokenStore.getState().setAccessToken(token);
             } else {
               console.warn("⚠️ access 토큰이 응답에 포함되지 않았습니다.");
@@ -56,6 +57,10 @@ function Login() {
 
     const handleClickSignUpPage = () => {
         navigate("/signUp")
+    }
+    const forgetIdPassword = () => {
+        alert("그럼 다시 가입하세요 !")
+        navigate("/signup")
     }
 
 //필요할 때만 바꾸고 그외에 안바꿔지게 수정
@@ -84,7 +89,7 @@ return (
             <div>Password</div>
             <input type='password' style={{ letterSpacing: "2px" }} value={userId.password} onChange={(e) => handleChangeInput(e)} name='password' placeholder='password' />
         </div>
-        <div className='Login_forgetID'>아이디 or 비밀번호를 잊으셨나요 ?</div>
+        <div className='Login_forgetID' onClick={() => forgetIdPassword()} >아이디 or 비밀번호를 잊으셨나요 ?</div>
         <button className='submitLogin' onClick={() => handleClickSubmit()}>Knock</button>
         <button className='Login_SignUpBtn' onClick={() => handleClickSignUpPage()} >가입하기</button>
     </div>

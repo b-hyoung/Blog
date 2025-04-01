@@ -29,10 +29,11 @@
 .userType_dropdownList{
     margin-top: 10px;
     width: 100%;
-    background-color: rgb(246, 246, 246);
     padding: 10px 10px;
     display: flex;
     flex-direction: column;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 10px;
 }
 .SignUpPage .userType_dropdownValue{
     margin: 0 auto;
@@ -40,7 +41,6 @@
     padding: 5px 5px;
     font-size: 12px;
     color: rgb(0, 0, 0);
-    background-color: rgb(246, 246, 246);
     text-align: left;
     margin-bottom: 3px;
     letter-spacing: 0.2px;
@@ -48,7 +48,7 @@
     border: none;;
 }
 .userType_dropdownValue:hover{
-    background-color: #afafaf;
+    background-color: #ffe7e7;
     outline: pink;
 }
 .Sign_CheckDjgnfj{

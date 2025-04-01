@@ -18,9 +18,8 @@ function Project() {
                     포트폴리오 웹 애플리케이션.<br />
                     블로그를 추가로 구현하여 게시판에 유저가 로그인 후 피드백을 줄 수있으며<br />
                     로그인하지 않아도 게스트로 사용 가능하다.<br />
-                    개발자(관리자)에게만 보여주는 기능으로 개발자에게<br />
-                    덜 상처주며 피드가 가능한 장점이 있다.<br />
-                    그동안 했던것 + 새로운 기술을 이용해 혼자만들어본 포트폴리오 및 블로그 웹앱입니다.
+                    코드 유지보수에 신경을 쓰며 <br />
+                    그동안 했던것 + 새로운 기술을 이용해 혼자만들어본 포트폴리오 및 블로그 웹앱입니다.<br/>
                     체크리스트는 제가 시작하며 미리만든 미래 포트폴리오면서<br /> 
                     아직 못해본것들은 배포하며 경험할 것입니다. 
                 </>
@@ -32,6 +31,24 @@ function Project() {
             }, skillList: ['React', 'Zustand', 'Python3', 'DRF (Django Rest Framework)', 'CSS' , 'DJango', 'My SQL','React-Query']
 
         },
+        {
+            title: 'kkeua',
+            description: (
+                <>
+                    실시간 웹소켓을 사용하여 구현하는 끝말잇기 아이템전!<br />
+                    디자인 툴(Figma)을 활용한 UI/UX 설계부터 화면정의서 및 기능정의서를 사전 기획<br />
+                    또한, Docker와 Git Flow를 사용해 효율적으로 관리하고 진행하고있습니다.<br />
+                    TailWindCss을 이용한 반응형 웹을 제작하며<br />
+                    Guest 기능을 통해 우리 게임에 쉽게 접해볼 수 있게 사용성을 증가시켰습니다.
+                </>
+            ), urls: {
+                blog: process.env.PUBLIC_URL + "img/ProjectImg/Project_Blog.png",
+                go: process.env.PUBLIC_URL + "img/All/Go.png",
+                goNotion: process.env.PUBLIC_URL + "img/All/Go_Notion.png"
+            },
+            skillList: ['React', 'TailWindCSS', 'Docker' , 'Zustand']
+        },
+
         {
             title: 'Eriwa',
             description: (
@@ -84,24 +101,7 @@ function Project() {
             },
             skillList: ['React', 'CSS', 'React-Query']
         },
-        {
-            title: 'kkeua',
-            description: (
-                <>
-                    실시간 웹소켓을 사용하여 구현하는 끝말잇기 아이템전!<br />
-                    디자인 툴(Figma)을 활용한 UI/UX 설계부터 화면정의서 및 기능정의서를 사전 기획<br />
-                    또한, Docker와 Git Flow를 사용해 효율적으로 관리하고 진행하고있습니다.<br />
-                    TailWindCss을 이용한 반응형 웹을 제작하며<br />
-                    Guest 기능을 통해 우리 게임에 쉽게 접해볼 수 있게 사용성을 증가시켰습니다.
-                </>
-            ), urls: {
-                blog: process.env.PUBLIC_URL + "img/ProjectImg/Project_Blog.png",
-                go: process.env.PUBLIC_URL + "img/All/Go.png",
-                goNotion: process.env.PUBLIC_URL + "img/All/Go_Notion.png"
-            },
-            skillList: ['React', 'TailWindCSS', 'Docker' , 'Zustand']
-        },
-
+       
     ]
 
     const skillList = [...new Set(projects.flatMap(project => project.skillList))];

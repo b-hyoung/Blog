@@ -26,13 +26,18 @@ class PostViewSet(viewsets.ModelViewSet):
             return Response({'error': '권한이 없습니다.'}, status=403)
         return super().destroy(request, *args, **kwargs)
 
-    def list(self,request,*args,**kwargs):
+    def list(self, request, *args, **kwargs):
         post_type = request.GET.get('type')
-        if(post_type):
-            queryset=Post.objects.filter(type=post_type)
+
+        if post_type == 'my':
+            # 로그인 유저가 작성한 글만 필터링 (author 필드가 request.user와 동일)
+            queryset = Post.objects.filter(author=request.user)
+        elif post_type:
+            queryset = Post.objects.filter(type=post_type)
         else:
-            queryset=Post.objects.filter(type='feedback')
-        serializer = self.get_serializer(queryset,many=True)
+            queryset = Post.objects.filter(type='feedback')
+
+        serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
     @action(detail=False, methods=['get'], url_path='read_post')

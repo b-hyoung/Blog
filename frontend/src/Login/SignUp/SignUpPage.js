@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './SignUpPage.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import api from '../../Api/axiosInstance';
+import { USER_API } from '../../Api/LoginAPi';
+import { isValidPassword } from '../../Component/constants';
+import { ROUTES } from '../../Component/PathLink';
+import useTokenStore from '../../store/tokenStore';
 
 function SignUpPage() {
 
   const navigate = useNavigate("");
-  let signUpurl = "http://127.0.0.1:8000/api/users/register/"
   const userTypeList = ['User', 'Djgnfj', 'Guest']
 
   const [userType, setUserType] = useState()
@@ -32,13 +36,13 @@ function SignUpPage() {
         rePassword: "",
         email: "",
         clanName: ""
-      })
-      setComplateBoolean(false)
+      });
+      setComplateBoolean(false);
     } else if (userType === "Guest") {
-      setComplateBoolean(true)
-      setUserIdCheck(true)
+      setComplateBoolean(true);
+      setUserIdCheck(true);
     }
-  }, [userType])
+  }, [userType]);
 
   // input 상태 관리
   const handleChangeId = (e) => {
@@ -49,12 +53,12 @@ function SignUpPage() {
         [name]: value || ""
       }))
     } else {
+      setUserIdCheck(false)
       setUserId(prevUserId => ({
         ...prevUserId,
         [name]: value || ""
       }));
     }
-    console.log(userInfo.nickName)
   }
 
   // 유저타입 선택 후 리로드
@@ -69,7 +73,7 @@ function SignUpPage() {
     if (user === "User") {
       setUserId({ userId: userInfo.nickName });
     } else if (user === "Guest") {
-      setUserId({ userId: "Guest_0000" });
+      setUserId({ userId: "Guest" });
       if (userIdCheck === true) {
         setUserIdCheck(false)
       }
@@ -82,7 +86,7 @@ function SignUpPage() {
   }
 
   //유저 아이디 중복체크 및 글자수 제한
-  const handleCheckUniqueId = () => {
+  const handleCheckUniqueId = async () => {
     //유저 아이디 Db에서 중복확인해서 중복아니면 다음창으로 넘어가기
     if ((userId.userId === undefined || (userId.userId).length === 0)) {
       alert("유저이름을 입력해주세요")
@@ -90,38 +94,72 @@ function SignUpPage() {
       alert("10글자 미만으로 입혁해주세요")
       setUserIdCheck(false)
     } else {
-      setUserIdCheck(true)
+      try{
+        const res = await api.get(`${USER_API.GET_USERCHECKED}?username=${userId.userId}`,{
+        })
+        if(res.data.available === true){
+          console.log("이미 존재하는 아이디 입니다.")
+          setUserIdCheck(false)
+          alert("이미 존재하는 아이디입니다.")
+        }else{
+          setUserIdCheck(true)
+          console.log("사용 가능한 아이디입니다.")
+        }
+      }catch(e){
+        setUserIdCheck(false)
+        console.log(e)
+      }
     }
   }
   //비밀번호 확인이 비밀번호와 같은 값이면 가입완료 버튼 생성
   const handleChangeIdRePassword = (e) => {
-
-
-
     setUserInfo({
       ...userInfo,
       rePassword: e.target.value
     })
-    if (e.target.value === userInfo.password) {
+    if (e.target.value === userInfo.password &&isValidPassword(userInfo.password) === true ) {
       setComplateBoolean(true)
     } else {
       setComplateBoolean(false)
     }
   }
   //가입 완료
-  const handleClickComplateSignUp = () =>{
-    axios.post(signUpurl ,{
-      username : userId.userId,
-      password : userInfo.password,
-      password2 : userInfo.rePassword
-  })
-  .then(res => {
-    alert("you are Welcome !")
-    navigate("/")
-  })
-  .catch(res => {
-    console.log(res);
-  })
+  const handleClickComplateSignUp = async () => {
+    try {
+      if (userType === "Guest") {
+        const res = await api.post(USER_API.GET_CREARTE, {
+          role: "guest"
+        });
+        const guestId = res.data.user?.username;
+        if (guestId) {
+          localStorage.clear();
+          localStorage.setItem("guest_id", guestId);
+
+          useTokenStore.getState().setUsername(guestId);
+          useTokenStore.getState().setAccessToken(res.data.access || null);
+
+          alert(`게스트 가입 성공! ID: ${guestId}`);
+          navigate(ROUTES.BLOG);
+        } else {
+          alert("게스트 ID 저장에 실패했습니다.");
+        }
+      } else {
+        const res = await api.post(USER_API.GET_CREARTE, {
+          username: userId.userId,
+          password: userInfo.password,
+          password2: userInfo.rePassword,
+          role: userType.toLowerCase()
+        });
+
+        localStorage.clear();
+        useTokenStore.getState().setUsername(res.data.user.username);
+        useTokenStore.getState().setAccessToken(res.data.access || null);
+        navigate(ROUTES.BLOG);
+      }
+    } catch (e) {
+      console.log(e);
+      alert("게스트는 한번만 가입해주시면 됩니다 ^_^");
+    }
   }
 
   return (
@@ -146,7 +184,7 @@ function SignUpPage() {
       </div>
       {/*user IdCheck Arrow */}
       {userType === "User" && (
-        <button className='Sign_img_Arrow' onClick={(e) => handleCheckUniqueId()} style={{backgroundColor:userId.userId.length >= 1 ? "#7b9acc" : "gray"}} >ID Check</button>
+        <button className='Sign_img_Arrow' onClick={(e) => handleCheckUniqueId()} style={{ backgroundColor: userId.userId.length >= 1 ? "#7b9acc" : "gray" }} >ID Check</button>
       )}
       {/* AdminCheck */}
       <div className='Sign_CheckDjgnfj' style={{ display: userType === "Djgnfj" ? "block" : "none" }}>
@@ -158,6 +196,9 @@ function SignUpPage() {
         <div style={{ position: "relative", width: "100%" }}>
           <input className='input-field' id='password' type='password' name='password' value={userInfo.password || ""} onChange={(e) => handleChangeId(e)} placeholder=" " required />
           <label htmlFor="password" class="placeholder-text">비밀번호</label>
+          {(isValidPassword(userInfo.password) === false && userInfo.password.length >= 1) && (
+            <div className='SignUp_ErrorMsg'>비밀번호는 숫자와 영문을 합쳐 6글자 이상입력해주세요</div>
+          )}
         </div>
         <div style={{ position: "relative", width: "100%" }}>
           <input className='input-field' type='password' id='Repassword' name='rePassword' value={userInfo.rePassword || ""} onChange={(e) => handleChangeIdRePassword(e)} placeholder=" " />
