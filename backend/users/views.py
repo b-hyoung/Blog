@@ -6,6 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from django.core.cache import cache
+from rest_framework_simplejwt.views import TokenRefreshView
 
 # 회원가입 View
 class UserCreateView(generics.CreateAPIView):
@@ -81,3 +82,5 @@ class UsernameDuplicateCheck(APIView):
         
         # 사용 가능하면 available True, 중복이면 False
         return Response({'available': exists}, status=status.HTTP_200_OK)
+
+refresh_token_view = TokenRefreshView.as_view()
