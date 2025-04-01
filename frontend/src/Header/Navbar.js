@@ -28,17 +28,6 @@ function Navbar() {
             <div className='Header_BlogName' style={{ display: "flex", alignItems: "center", justifyContent: "center", flex: 1 }}>
                 <img onClick={(e) => handleClickUrl(e)} className='Nav_Logo' src={logoUrl} />
             </div>
-            
-            <div style={{ fontSize: "23px", cursor: "pointer", color:"rgb(255, 108, 108)", right:"60px", position:"relative", fontWeight:"bold" }}
-                 onClick={() => {
-                   if (token) {
-                     handleClickWho();
-                   } else {
-                     navigate(ROUTES.LOGIN);
-                   }
-                 }}>
-              {token ? "Logout" : "Who are you?"}
-            </div>
         </div>
     )
 }

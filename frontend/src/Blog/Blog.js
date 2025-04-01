@@ -82,7 +82,7 @@ function Blog() {
 
   return (
     <div className="blog__container" style={{ minHeight: '100vh' }}>
-      <h1 className="blog__title" onClick={() => navigate("/")}>Blog</h1>
+      <h1 className="blog__title" onClick={() => navigate("/")}>BLOG</h1>
 
       {/* 탭 메뉴 */}
       <div className="blog__tabs" style={{ display: 'flex' }}>
@@ -103,7 +103,7 @@ function Blog() {
       <div className="blog__content-container">
         {/* 고양이 이미지 추가 버튼 */}
         <div className="blog__cat-button" onClick={() => handleClickPost()}>
-          <img src={`${process.env.PUBLIC_URL}/img/Projectimg/image1.png`} alt="고양이 추가 버튼" className="blog__cat-img" />
+          <img src={`${process.env.PUBLIC_URL}/img/ProjectImg/image1.png`} alt="고양이 추가 버튼" className="blog__cat-img" />
         </div>
 
         <div className="blog__post-list">
@@ -132,7 +132,7 @@ function Blog() {
               </div>
             ))
           ) : (
-            <p className="blog__no-posts">게시글이 없습니다.</p>
+            <p className="blog__no-posts" style={{fontFamily:"CookieRun-Regular" , fontSize:"20px"}} >게시글이 없습니다.</p>
           )}
         </div>
       </div>

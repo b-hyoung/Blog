@@ -34,14 +34,15 @@ function Login() {
                 username : userId.id,
                 password : userId.password
             });
-            const token = response.data.access;
-            const username = response.data.user;
-            if (token) {
+            const { access: accessToken, refresh: refreshToken, user: username } = response.data;
+
+            if (accessToken && refreshToken) {
               localStorage.clear();
-              useTokenStore.getState().setAccessToken(token);
+              useTokenStore.getState().setTokens({ accessToken, refreshToken });
             } else {
-              console.warn("⚠️ access 토큰이 응답에 포함되지 않았습니다.");
+              console.warn("⚠️ 토큰이 응답에 포함되지 않았습니다.");
             }
+
             if (username) {
                 useTokenStore.getState().setUsername(username);
               } else {

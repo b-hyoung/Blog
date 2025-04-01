@@ -135,9 +135,12 @@ function SignUpPage() {
           localStorage.clear();
           localStorage.setItem("guest_id", guestId);
 
+          useTokenStore.getState().setTokens({
+            accessToken: res.data.access || null,
+            refreshToken: res.data.refresh || null
+          });
           useTokenStore.getState().setUsername(guestId);
-          useTokenStore.getState().setAccessToken(res.data.access || null);
-
+          
           alert(`게스트 가입 성공! ID: ${guestId}`);
           navigate(ROUTES.BLOG);
         } else {
@@ -152,8 +155,11 @@ function SignUpPage() {
         });
 
         localStorage.clear();
+        useTokenStore.getState().setTokens({
+          accessToken: res.data.access || null,
+          refreshToken: res.data.refresh || null
+        });
         useTokenStore.getState().setUsername(res.data.user.username);
-        useTokenStore.getState().setAccessToken(res.data.access || null);
         alert("회원가입 완료 ! 좋은하루되세요 ~")
         navigate(ROUTES.BLOG);
       }

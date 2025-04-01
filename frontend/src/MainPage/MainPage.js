@@ -13,7 +13,7 @@ function MainPage() {
                 <Skill />
                 <Social />
             </div>
-            <div style={{ position: "relative", top: "70px", marginLeft: "750px" }}>
+            <div style={{ position: "relative", top: "70px", marginLeft: "670px" }}>
                 <h1 style={{ color: "rgb(198, 198, 198)" }}>프로젝트</h1>
                 <Project />
             </div>

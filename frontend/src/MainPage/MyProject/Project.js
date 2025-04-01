@@ -166,7 +166,7 @@ function Project() {
                             <img className='ProjectImg' src={project.urls?.blog} />
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                 {project.developer && (
-                                    <div style={{ marginBottom: '8px', fontSize: '18px', fontWeight:"bold" ,  color: 'rgb(223, 144, 60)', textAlign: 'right' }}>
+                                    <div style={{ marginBottom: '8px', fontSize: '18px', fontWeight:"bold" ,  color: 'rgb(223, 144, 60)', position:"absolute" ,top:"30px" , right:"25px",width:"maxContent" ,  textAlign: 'right' }}>
                                         {project.developer}
                                     </div>
                                 )}

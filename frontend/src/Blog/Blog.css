@@ -1,3 +1,15 @@
+@font-face {
+    font-family: '양진체';
+    src: url('https://fastly.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .blog__container {
     min-height: 100vh;
     display: flex;
@@ -11,9 +23,10 @@
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 60px;
-    color: #888888;
+    color: rgb(252, 105, 105);
     cursor: pointer;
     text-align: center;
+    letter-spacing: 7px;
 }
 
 .blog__title:hover {
@@ -24,7 +37,7 @@
     display: flex;
     justify-content: center;
     gap: 50px;
-    color: #ccc;
+    color: #c6c6c6;
     margin-bottom: 50px;
 }
 
@@ -37,7 +50,8 @@
 .blog__tab.active {
     color: #3a3a3a;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 20px;
+    font-family: '양진체';
 }
 
 .blog__tab.active::after {
@@ -62,6 +76,11 @@
 
 .blog__post-list {
     flex: 1;
+}
+.blog__no-posts{
+    margin-left:27%;
+    margin-top: 10%;
+    width: max-content;
 }
 
 .blog__post-item {
