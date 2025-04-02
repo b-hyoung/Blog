@@ -32,7 +32,7 @@ function Project() {
                 blog: process.env.PUBLIC_URL + "img/ProjectImg/Project_Blog.png",
                 go: process.env.PUBLIC_URL + "img/All/Go.png",
                 goNotion: process.env.PUBLIC_URL + "img/All/Go_Notion.png"
-            }, skillList: ['React', 'Zustand', 'Python3', 'DRF (Django Rest Framework)', 'CSS' , 'DJango', 'My SQL','React-Query']
+            }, skillList: ['React', 'Zustand', 'Python3', 'DRF (Django Rest Framework)', 'CSS' , 'DJango','S3 - React', 'EC2 - Django/DRF 서비스 배포', ,  'My SQL','React-Query']
 
         },
         {
@@ -166,7 +166,7 @@ function Project() {
                             <img className='ProjectImg' src={project.urls?.blog} />
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                 {project.developer && (
-                                    <div style={{ marginBottom: '8px', fontSize: '18px', fontWeight:"bold" ,  color: 'rgb(223, 144, 60)', position:"absolute" ,top:"30px" , right:"25px",width:"maxContent" ,  textAlign: 'right' }}>
+                                    <div className="Project_Developer">
                                         {project.developer}
                                     </div>
                                 )}

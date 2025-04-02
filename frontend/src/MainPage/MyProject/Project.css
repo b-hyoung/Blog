@@ -1,9 +1,13 @@
 .Project_Blog {
     text-align: left;
-    padding: 20px 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 120%;
+    margin: 0 auto 20px auto;
     scale: 0.9;
     border: 1px solid rgb(62, 62, 62);
     border-radius: 10px;
+    box-sizing: border-box;
 }
 
 .Project_Blog:hover {
@@ -75,7 +79,33 @@
     color: rgb(255, 255, 255);
     background-color: rgb(255, 23, 23);
 }
+
 .Project_SkillList span.DNhaveSkill {
     color: rgb(136 212 237);
     background-color: rgb(70, 70, 70);
+}
+
+.Project_Developer {
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(223, 144, 60);
+    text-align: right;
+    width: max-content;
+}
+
+@media screen and (max-width: 1024px) {
+    .Project_Info {
+        flex-direction: column;
+    }
+
+    .ProjectImg {
+        width: 100%;
+        height: auto;
+        margin: 0 0 10px 0;
+    }
+
+    .Project_description {
+        width: 100%;
+    }
 }

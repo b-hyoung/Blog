@@ -15,6 +15,16 @@ function Login() {
         id: "",
         password: "",
     })
+    const [loginAttempts, setLoginAttempts] = useState(0);
+    const [lockoutTime, setLockoutTime] = useState(null);
+
+    useEffect(() => {
+        const storedAttempts = localStorage.getItem("loginAttempts");
+        const storedLockout = localStorage.getItem("lockoutTime");
+
+        if (storedAttempts) setLoginAttempts(Number(storedAttempts));
+        if (storedLockout) setLockoutTime(Number(storedLockout));
+    }, []);
 
     const handleChangeInput = (e) => {
         const { name, value } = e.target;
@@ -26,6 +36,11 @@ function Login() {
     }
 
     const handleClickSubmit = async () => {
+        const now = Date.now();
+        if (lockoutTime && now < lockoutTime) {
+            alert("로그인을 너무 많이 시도했습니다. 5분 후 다시 시도해주세요.");
+            return;
+        }
         try{
             const response = await api.post(USER_API.GET_USER,{
                 username : userId.id,
@@ -36,6 +51,10 @@ function Login() {
             if (accessToken && refreshToken) {
               localStorage.clear();
               useTokenStore.getState().setTokens({ accessToken, refreshToken });
+              setLoginAttempts(0);
+              setLockoutTime(null);
+              localStorage.removeItem("loginAttempts");
+              localStorage.removeItem("lockoutTime");
             } else {
               console.warn("⚠️ 토큰이 응답에 포함되지 않았습니다.");
             }
@@ -48,7 +67,19 @@ function Login() {
             alert("로그인 성공");
             navigate(BASE_URL);
         }catch(error) {
-            alert("로그인 실패. 아이디 / 비밀번호를 입력해주세요");
+            setLoginAttempts(prev => {
+                const newAttempts = prev + 1;
+                localStorage.setItem("loginAttempts", newAttempts);
+
+                if (newAttempts >= 10) {
+                    const lockUntil = Date.now() + 5 * 60 * 1000;
+                    setLockoutTime(lockUntil);
+                    localStorage.setItem("lockoutTime", lockUntil);
+                }
+
+                return newAttempts;
+            });
+            alert("로그인 실패. 아이디 / 비밀번호를 확인해주세요");
             console.log(error)
         }
     }
@@ -85,7 +116,7 @@ return (
         </div>
         <div className='Login_passwordBox'>
             <div>Password</div>
-            <input type='password' style={{ letterSpacing: "2px" }} value={userId.password} onChange={(e) => handleChangeInput(e)} name='password' placeholder='password' />
+            <input type='password' style={{ letterSpacing: "2px" }} value={userId.password} onChange={(e) => handleChangeInput(e)} name='password' placeholder='password' onKeyDown={(e) => { if (e.key === 'Enter') handleClickSubmit(); }} />
         </div>
         <div className='Login_forgetID' onClick={() => forgetIdPassword()} >아이디 or 비밀번호를 잊으셨나요 ?</div>
         <button className='submitLogin' onClick={() => handleClickSubmit()}>Knock</button>

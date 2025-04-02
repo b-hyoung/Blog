@@ -105,6 +105,12 @@
   border: none;
   cursor: pointer;
 }
+
+.read-post-closeBtn:hover {
+  opacity: 0.1;
+  transition: opacity 1s ease;
+}
+
 .post-changImg{
   transform: rotate(300deg);
 }

@@ -1,7 +1,37 @@
-.MainPage_introduce{
+.MainPage_introduce {
     display: flex;
     flex-direction: row;
-    position: absolute;
     margin-top: -100px;
     z-index: 1;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.project-section {
+    position: relative;
+    top: 30px;
+    min-width: 300px;
+    margin-left: 680px;
+    width: 55%;
+}
+
+.intro-fixed {
+    scale: 0.77;
+    position: fixed;
+    top: -45px;
+    left: 0;
+}
+
+@media (max-width: 1024px) {
+    .intro-fixed {
+        position: static;
+        scale: 0.75;
+        margin-top: 20px;
+    }
+    
+    .project-section {
+        margin-left: 0;
+        width: 100%;
+        min-width: 300px;
+    }
 }

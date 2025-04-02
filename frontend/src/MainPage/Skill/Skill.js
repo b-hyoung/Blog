@@ -11,7 +11,7 @@ function Skill() {
     const backSkill = [
         'Python3', 'DJango', 'DRF (Django Rest Framework)', 'My SQL', 'Docker']
     const devOpsSkill = [
-        'IAM - 사용자 권한 관리', 'EC2 - Django/DRF 서비스 배포', 'CloudWatch - 서버 로그 & 성능 모니터링']
+        'IAM - 사용자 권한 관리', 'EC2 - Django/DRF 서비스 배포', 'CloudWatch - 서버 로그 & 성능 모니터링' , 'S3 - React']
 
     const [checkedOnly, setCheckedOnly] = useState([]);
     

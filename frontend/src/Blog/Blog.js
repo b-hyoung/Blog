@@ -45,6 +45,14 @@ function Blog() {
     }
   }
 
+  const handleClickLogout = () => {
+    const res = window.confirm("로그아웃 하시겟습니까?");
+    if(res){
+      useTokenStore.getState().clearTokens();
+      navigate(ROUTES.LOGIN);
+    }
+  }
+
   // Calculate the start and end indexes based on currentPage and itemsPerPage
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -83,6 +91,15 @@ function Blog() {
   return (
     <div className="blog__container" style={{ minHeight: '100vh' }}>
       <h1 className="blog__title" onClick={() => navigate("/")}>BLOG</h1>
+      {/* ✅ 유지: 블로그 오른쪽 상단 로그아웃 버튼 스타일 */}
+      <button
+        className="blog__logout-btn"
+        onClick={() => {
+          handleClickLogout()
+        }}
+      >
+        로그아웃
+      </button>
 
       {/* 탭 메뉴 */}
       <div className="blog__tabs" style={{ display: 'flex' }}>
@@ -116,14 +133,13 @@ function Blog() {
                 onMouseEnter={() => setHoveredContent(index)}
                 onMouseLeave={() => setHoveredContent(null)}
                 onClick={() => handleGetPost(post.id)}
-              >
+                >
                 <span className="blog__post-text">{post.title}</span>
                 <div
                   className="blog__post-badge"
                   style={{ backgroundColor: getHSLColorFromNickname(post.nickname) }}>
                   {post.nickname}
                 </div>
-
                 {hoveredContent === index && (
                   <div className="hover-preview">
                     {post.content}

@@ -20,17 +20,21 @@
 }
 
 .blog__title {
-    font-size: 30px;
+    font-size: 36px;
     font-weight: bold;
     margin-bottom: 60px;
-    color: rgb(252, 105, 105);
+    color: #f87171;
     cursor: pointer;
     text-align: center;
-    letter-spacing: 7px;
+    letter-spacing: 10px;
+    font-family: 'CookieRun-Regular', sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
 
 .blog__title:hover {
-    color: rgb(252, 105, 105);
+    color: #fb6b6b;
+    transform: scale(1.1);
 }
 
 .blog__tabs {
@@ -117,6 +121,11 @@
     width: 180px;
     height: 180px;
     background-color: white;
+    transition: transform 0.3s ease-in-out;
+}
+
+.blog__cat-img:hover {
+    transform: translateX(6px) rotate(10deg);
 }
 
 .blog__pagination {
@@ -160,4 +169,34 @@
     overflow-wrap: break-word;  /* ✅ 추가 보완 */
     font-size: 14px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.blog__logout-btn {
+  position: absolute;
+  top: 50px;
+  right: 180px;
+  padding: 10px 26px;
+  background-color: #f87171;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: 'CookieRun-Regular', sans-serif;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.blog__logout-btn:hover {
+  background-color: #fb6b6b;
+  transform: translateY(-5px);
+}
+
+.blog__logout-btn--blue {
+  background-color: #60a5fa;
+  color: white;
+}
+
+.blog__logout-btn--blue:hover {
+  background-color: #3b82f6;
 }
