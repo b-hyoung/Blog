@@ -23,7 +23,7 @@ function ReadPost() {
     const queryParams = new URLSearchParams(location.search);
     const postId = queryParams.get("id");
 
-    const { username } = useTokenStore();
+    const username = useTokenStore((state) => state.username);
     
     const [post, setPost] = useState(null);
     const typeMapping = {
@@ -34,7 +34,10 @@ function ReadPost() {
     useEffect(() => {
         handleGetPost();
     }, [postId]);
-
+    useEffect(() => {
+        console.log('🔍 username:', username);
+        console.log('🔍 post:', post);
+      }, [post]);
     const handleGetPost = async () => {
         try {
             if (postId) {
@@ -89,7 +92,7 @@ function ReadPost() {
                 </div>
 
                 <div className="read-post-content">{post?.content}</div>
-                {username && post && username === post.nickname && (
+                {username?.username && post && username.username === post.nickname && (
                     <div className="post-actions">
                         <img className='post-changImg'
                           src={`${process.env.PUBLIC_URL}/img/icon/ReadPost/ctrl_up.png`}

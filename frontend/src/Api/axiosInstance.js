@@ -1,8 +1,9 @@
 import axios from "axios";
 import useTokenStore from '../store/tokenStore';
-
+import { USER_API } from "./LoginAPi";
+// REACT_APP_API_URL=http://localhost:8000
 const api = axios.create({
-  baseURL: 'http://54.180.123.50'
+  baseURL: 'http://localhost:8000'
 });
 
 api.interceptors.request.use((config) => {
@@ -29,7 +30,7 @@ api.interceptors.response.use(
       if (!isRefreshing) {
         isRefreshing = true;
         try {
-          const res = await axios.post(`http://localhost:8000/api/token/refresh/`, {
+          const res = await api.post(USER_API.GET_REFRESHTOKEN, {
             refresh: tokenStore.refreshToken,
           });
 
@@ -43,6 +44,7 @@ api.interceptors.response.use(
           return api(originalRequest);
         } catch (err) {
           useTokenStore.getState().clearTokens();
+          alert('세션이 만료되어 자동 로그아웃되었습니다.');
           window.location.href = '/login';
           return Promise.reject(err);
         } finally {

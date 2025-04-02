@@ -17,7 +17,8 @@ const useTokenStore = create(
                 set({ accessToken: null, refreshToken: null, username: null }),
         }),
         {
-            name: 'user-token', // 상태를 localStorage에 저장
+            name: 'user-token',
+            getStorage: () => localStorage,
         }
     )
 );

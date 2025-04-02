@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import './Login.css'
-import axios from 'axios'
 import { USER_API } from '../Api/LoginAPi'
 import useTokenStore from '../store/tokenStore'
 import { BASE_URL } from '../Component/PathLink'
 import api from '../Api/axiosInstance'
-
-
 
 function Login() {
 

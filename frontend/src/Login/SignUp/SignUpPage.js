@@ -159,7 +159,7 @@ function SignUpPage() {
           accessToken: res.data.access || null,
           refreshToken: res.data.refresh || null
         });
-        useTokenStore.getState().setUsername(res.data.user.username);
+        useTokenStore.getState().setUsername(res.data.user);
         alert("회원가입 완료 ! 좋은하루되세요 ~")
         navigate(ROUTES.BLOG);
       }
@@ -171,11 +171,11 @@ function SignUpPage() {
 
   return (
     <div className='SignUpPage'>
-      <h1 className='Sign_Title'>SignUp Page</h1>
+      <h1 className='Sign_Title'>회원가입 페이지</h1>
 
       {/** user Type Check Dropdown */}
       <div className='Sign_userType'>
-        <div className='Sign_Menu'>Who Are you?</div>
+        <div className='Sign_Menu'>누구세요?</div>
         <input className='userType_dropdown' value={userType || ""} readOnly onClick={() => setUserTypeBoolean(!userTypeBoolean)} />
         <div className='userType_dropdownList' style={{ display: userTypeBoolean ? "block" : "none" }} >
           {userTypeList.map((item, index) => (
@@ -186,7 +186,7 @@ function SignUpPage() {
 
       {/* userId Check  */}
       <div className='Sign_userId' style={{ display: userType !== undefined ? "block" : "none" }}>
-        <div className='Sign_Menu'>ID & Name</div>
+        <div className='Sign_Menu'>한글로 아이디를 입력해주세요</div>
         <input className='userId_input-field' name='userId' value={userId.userId || ""} onChange={(e) => handleChangeId(e)} readOnly={userType !== "User"} />
       </div>
       {/*user IdCheck Arrow */}
