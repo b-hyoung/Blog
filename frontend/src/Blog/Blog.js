@@ -41,7 +41,6 @@ function Blog() {
       })
       setPostsList(res.data.reverse());
     } catch (e) {
-      console.log(e)
     }
   }
 

@@ -41,7 +41,6 @@ function ReadPost() {
                 setPost(res.data);
             }
         } catch (e) {
-            console.log(e);
         }
     };
 
@@ -55,7 +54,6 @@ function ReadPost() {
                 await api.delete(POST_API.DELETE_POST(postId));
                 navigate(ROUTES.BLOG);
             } catch (e) {
-                console.log(e);
             }
         }
     };
@@ -88,7 +86,6 @@ function ReadPost() {
                 </div>
 
                 <div className="read-post-content">{post?.content}</div>
-                {console.log(username?.username + " post "+post?.nickname)}
                 {username?.username && post?.nickname && username.username === post.nickname && (
                     <div className="post-actions">
                         <img className='post-changImg'

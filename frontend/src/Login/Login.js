@@ -56,13 +56,11 @@ function Login() {
               localStorage.removeItem("loginAttempts");
               localStorage.removeItem("lockoutTime");
             } else {
-              console.warn("⚠️ 토큰이 응답에 포함되지 않았습니다.");
             }
 
             if (username) {
                 useTokenStore.getState().setUsername(username);
               } else {
-                console.warn("⚠️ username이 응답에 포함되지 않았습니다.");
               }
             alert("로그인 성공");
             navigate(BASE_URL);
@@ -80,7 +78,6 @@ function Login() {
                 return newAttempts;
             });
             alert("로그인 실패. 아이디 / 비밀번호를 확인해주세요");
-            console.log(error)
         }
     }
 

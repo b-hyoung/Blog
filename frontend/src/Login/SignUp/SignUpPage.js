@@ -98,16 +98,13 @@ function SignUpPage() {
         const res = await api.get(`${USER_API.GET_USERCHECKED}?username=${userId.userId}`,{
         })
         if(res.data.available === true){
-          console.log("이미 존재하는 아이디 입니다.")
           setUserIdCheck(false)
           alert("이미 존재하는 아이디입니다.")
         }else{
           setUserIdCheck(true)
-          console.log("사용 가능한 아이디입니다.")
         }
       }catch(e){
         setUserIdCheck(false)
-        console.log(e)
       }
     }
   }
@@ -164,7 +161,6 @@ function SignUpPage() {
         navigate(ROUTES.BLOG);
       }
     } catch (e) {
-      console.log(e);
       alert("게스트는 한번만 가입해주시면 됩니다 ^_^");
     }
   }

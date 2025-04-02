@@ -77,13 +77,10 @@ function Post() {
         }
       } catch (error) {
         if (error.response) {
-          console.error('응답 오류:', error.response.data);
           alert(`요청에 실패했습니다: ${error.response.data.message || '에러 발생'}`);
         } else if (error.request) {
-          console.error('서버 응답 없음:', error.request);
           alert('서버로부터 응답이 없습니다.');
         } else {
-          console.error('에러:', error.message);
           alert(`오류 발생: ${error.message}`);
         }
       }
@@ -111,7 +108,6 @@ function Post() {
           }
         })
         .catch(error => {
-          console.error('Failed to fetch post data:', error);
         });
     }
   }, [postId]);

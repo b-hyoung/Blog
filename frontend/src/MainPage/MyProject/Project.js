@@ -133,7 +133,6 @@ function Project() {
     });
 
     const onClickNavigate = (title) => {
-        console.log(title)
         if(title==="Blog"){
             if(token){
                 navigate('blog');
