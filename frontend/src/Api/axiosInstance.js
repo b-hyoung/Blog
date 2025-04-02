@@ -3,7 +3,7 @@ import useTokenStore from '../store/tokenStore';
 import { USER_API } from "./LoginAPi";
 // REACT_APP_API_URL=http://localhost:8000
 const api = axios.create({
-  baseURL: 'http://localhost:8000'
+  baseURL: 'http://54.180.123.50'
 });
 
 api.interceptors.request.use((config) => {
