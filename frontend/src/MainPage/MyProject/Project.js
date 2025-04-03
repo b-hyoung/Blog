@@ -134,12 +134,13 @@ function Project() {
 
     const onClickNavigate = (title) => {
         if(title==="Blog"){
-            if(token){
-                navigate('blog');
-            }else{
-                alert("로그인 후 진행해주세요");
-                navigate(ROUTES.LOGIN)
-            }
+            // if(token){
+            //     navigate('blog');
+            // }else{
+            //     alert("로그인 후 진행해주세요");
+            //     navigate(ROUTES.LOGIN)
+            // }
+            window.open("https://github.com/b-hyoung/Blog");
         }else if(title==="kkeua"){
             window.open("https://github.com/djgnfj-svg/kkua")
         }else if(title === "ReSee"){
