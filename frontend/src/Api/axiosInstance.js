@@ -2,7 +2,8 @@ import axios from "axios";
 import useTokenStore from '../store/tokenStore';
 import { USER_API } from "./LoginAPi";
 
-let develop='http://localhost:8000'
+// let develop='http://localhost:8000'
+let develop = process.env.REACT_APP_API_BASE;
 
 
 const api = axios.create({
