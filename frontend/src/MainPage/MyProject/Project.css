@@ -8,10 +8,12 @@
     border: 1px solid rgb(62, 62, 62);
     border-radius: 10px;
     box-sizing: border-box;
+    position: relative; /* Added position relative here */
 }
 
 .Project_Blog:hover {
     background-color: #313640;
+    font-weight: bold;
     border-radius: 10px;
 }
 
@@ -20,6 +22,9 @@
 }
 .Project_Blog:hover .arrowImg {
     margin-left: 20px;
+}
+.Project_Blog:hover .Project_Date {
+    color: rgb(247, 127, 79);
 }
 .arrowImg {
     width: 30px;
@@ -33,6 +38,15 @@
     font-size: 30px;
     letter-spacing: 1px;
     margin-bottom: 20px;
+}
+
+.Project_Date {
+    position: absolute; /* Updated */
+    top: 20px; /* Updated */
+    right: 30px; /* Updated */
+    font-size: 15px; /* Updated */
+    color: rgb(162, 162, 162); /* Updated */
+    margin-bottom: 4px; /* Removed margin-bottom */
 }
 
 .Project_Info {

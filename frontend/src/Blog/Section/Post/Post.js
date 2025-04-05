@@ -23,7 +23,7 @@ function Post() {
     title: "",
     description: "",
   });
-
+  const token = useTokenStore((state) => state.accessToken);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   const handleChangeInput = (e) => {
@@ -33,6 +33,12 @@ function Post() {
       [name]: value
     });
   };
+    useEffect(() => {
+      if (!token) {
+        alert("로그인 후 이용해주세요");
+        navigate(ROUTES.LOGIN);
+      }
+    }, []);
 
   // 모든 드롭다운 옵션
   const allOptions = ['Q&A', '피드백', '칭찬&격려'];
