@@ -13,7 +13,7 @@ function Social() {
         {
         Email : "youqlrqod@gmail.com ",
         Github : `https://github.com/b-hyoung`  ,
-        notion : "https://www.notion.so/1abc764264dd80178ec5fb78ab6efd7f",
+        notion : "https://lapis-apparatus-de5.notion.site/1abc764264dd80178ec5fb78ab6efd7f",
         velog :  "https://velog.io/@h-young/posts"
         }
     )
@@ -30,7 +30,7 @@ const {Email , Github , notion , velog} = socialLink
     };
 
     const handleClickNotion = () => {
-        goPage('https://lapis-apparatus-de5.notion.site/195c764264dd805d9628d79baf2ca16c')
+        goPage('https://lapis-apparatus-de5.notion.site/1abc764264dd80178ec5fb78ab6efd7f')
     }
 
     return (

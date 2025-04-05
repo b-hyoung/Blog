@@ -1,96 +1,171 @@
-.Skill{
-    width: 700px;
-    margin-top: 30px;
+.Skill {
+  width: 700px;
+  margin-top: 30px;
 }
-.Skill_List{
-    display: flex;
-    flex-direction: row;
-    transition:  1s ease !important;
+
+.Skill_List {
+  display: flex;
+  flex-direction: row;
+  transition: 1s ease !important;
 }
-.animation{
-    display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-  }
-.Skill_title{
-    font-size: 25px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-bottom: 13px;
+
+.animation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.Skill_title {
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 13px;
 }
 
 /* 체크박스 */
-.checkbox{
-    width: 13px;
-    height: 13px;
-    border: 1px solid;
-    border-radius: 100%;
-    margin-right: 10px;
-    position: relative;
-    margin-top: 2px;
-  }
+.checkbox {
+  width: 13px;
+  height: 13px;
+  border: 1px solid;
+  border-radius: 100%;
+  margin-right: 10px;
+  position: relative;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+}
 
-  /* 체크된 체크박스 */
-.checkbox.front-checked{
-    background-color: rgb(24, 240, 85);
+
+.checkbox.front-checked {
+  background-color: rgb(88, 250, 134);
 }
-.checkbox.back-checked{
-    background-color: rgb(24, 240, 85);
+
+.checkbox.back-checked {
+  background-color: rgb(88, 250, 134);
+
 }
-.checkbox.devOps-checked{
-    background-color: rgb(24, 240, 85);
+
+.checkbox.devOps-checked {
+  background-color: rgb(88, 250, 134);
+
 }
+
 /* 🔵 Front End 체크박스 */
-  .checkbox.front , .Skill_title.Front.End {
-    border-color: rgb(255, 66, 66);
-    color: rgb(255, 99, 71);
-  }
+.checkbox.front,
+.Skill_title.Front.End {
+  border-color: rgb(255, 66, 66);
+  color: rgb(255, 99, 71);
+}
+
 /* 🔴 Back End 체크박스 */
-  .checkbox.back  , .Skill_title.Back.End{
-    border-color: rgb(27 182 255);
-    color: rgb(27 182 255);
-  }
-  /* 🟣 DevOps 체크박스 */
-  .checkbox.devOps , .Skill_title.DevOps{
-    border-color: rgb(147, 112, 219);
-    color: rgb(147, 112, 219);
-  }
+.checkbox.back,
+.Skill_title.Back.End {
+  border-color: rgb(27 182 255);
+  color: rgb(27 182 255);
+}
 
-.Front_Category , .Back_Category , .DevOps_Category{
-    display: flex;
-    flex-direction: column;
-    color: white;
-    text-align: left;
-    margin-bottom: 10px;
+/* 🟣 DevOps 체크박스 */
+.checkbox.devOps,
+.Skill_title.DevOps {
+  border-color: rgb(147, 112, 219);
+  color: rgb(147, 112, 219);
 }
-.front_Skill , .back_Skill , .devOps_Skill{
-    display: flex;
-    flex-direction: row !important;
-    flex-wrap: wrap;
-    flex-grow: 1;
-    color: white;
-    width: 700px;
-}
-.front_Skill span , .back_Skill span , .devOps_Skill span{
-    cursor: pointer;
-    display :flex;
-    flex-direction: row;
-    width:max-content;
-    height: 30px;
-    padding: 10px 10px 10px 20px;
-    letter-spacing: 1px;
-    margin-bottom: 7px;
-    margin-right: 10px;
-    font-size: 16px;
-    font-weight: 550;
-    text-align: center;
-    border:0px solid gray;
-    border-radius: 20px;
-    align-items: center;
-    background-color: rgb(45, 45, 45);
-    color: rgb(201, 221, 238);
 
+.Front_Category,
+.Back_Category,
+.DevOps_Category {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  text-align: left;
+  margin-bottom: 10px;
 }
-.SkillName{ 
-    margin-right: 10px !important
+
+.front_Skill,
+.back_Skill,
+.devOps_Skill {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  color: white;
+  width: 700px;
+}
+
+.front_Skill span,
+.back_Skill span,
+.devOps_Skill span {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  height: 30px;
+  padding: 10px 10px 10px 20px;
+  letter-spacing: 1px;
+  margin-bottom: 7px;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: 550;
+  text-align: center;
+  border: 0px solid gray;
+  border-radius: 20px;
+  align-items: center;
+  background-color: rgb(45, 45, 45);
+  color: rgb(201, 221, 238);
+}
+
+.SkillName {
+  margin-right: 10px !important
+}
+
+.front_Skill span:hover:not(.checked),
+.back_Skill span:hover:not(.checked),
+.devOps_Skill span:hover:not(.checked) {
+  opacity: 0.9;
+  background-color: rgb(0, 99, 136);
+  ;
+  /* 생기있는 푸른 계열 */
+  color: white;
+}
+
+.front_Skill span.checked,
+.back_Skill span.checked,
+.devOps_Skill span.checked {
+  background-color: #1565c0;
+  /* 진한 파랑 */
+  color: white;
+  font-weight: bold;
+}
+
+.front_Skill span.checked {
+  border-color: rgb(255, 66, 66);
+  background-color: rgb(255, 99, 71);
+  font-weight: bold;
+}
+
+.back_Skill span.checked {
+  border-color: rgb(27 182 255);
+  background-color: rgb(27 182 255);
+}
+
+.devOps_Skill span.checked {
+  border-color: rgb(147, 112, 219);
+  background-color: rgb(147, 112, 219);
+}
+
+.checkmark {
+  color: red;
+  font-size: 14px;
+  width: 25px;
+  height: 25px;
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1;
+  border-radius: 0 !important;
 }

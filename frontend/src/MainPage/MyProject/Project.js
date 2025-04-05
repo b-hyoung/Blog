@@ -17,6 +17,7 @@ function Project() {
         {
             title: 'Blog',
             developer: '개인 프로젝트 (Me)',
+            date: '2025.02.12 ~ 22.04.06',
             description: (
                 <>
                     포트폴리오 웹 애플리케이션.<br />
@@ -38,6 +39,7 @@ function Project() {
         {
             title: 'kkeua',
             developer: '프론트엔드 2명 (Me) | 백엔드 1명',
+            date: '2025.03.22 ~ ..ing',
             description: (
                 <>
                     실시간 웹소켓을 사용하여 구현하는 끝말잇기 아이템전!<br />
@@ -57,6 +59,7 @@ function Project() {
         {
             title: 'Eriwa',
             developer: '프론트엔드 (Me) 1명 | 백엔드 1명',
+            date: '2022.04.15 ~ 22.05.01',
             description: (
                 <>
                     이터널리턴 전적검색사이트<br />
@@ -74,6 +77,7 @@ function Project() {
         {
             title: 'Clover',
             developer: '프론트엔드 (Me) 1명 | 백엔드 1명',
+            date: ' 2022-08-01 ~ 22-08-31',
             description: (
                 <>
                     동아리 홍보 및 관리 사이트<br />
@@ -93,6 +97,7 @@ function Project() {
         {
             title: 'ReSee',
             developer: '프론트엔드 1명 | 백엔드 1명',
+            date: '22.09.14 ~ 22.10.12',
             description: (
                 <>
                     메모 후 복습을 위해 만든 사이트<br />
@@ -134,13 +139,8 @@ function Project() {
 
     const onClickNavigate = (title) => {
         if(title==="Blog"){
-            // if(token){
-            //     navigate('blog');
-            // }else{
-            //     alert("로그인 후 진행해주세요");
-            //     navigate(ROUTES.LOGIN)
-            // }
-            window.open("https://github.com/b-hyoung/Blog");
+            navigate(ROUTES.BLOG)
+            // window.open("https://github.com/b-hyoung/Blog");
         }else if(title==="kkeua"){
             window.open("https://github.com/djgnfj-svg/kkua")
         }else if(title === "ReSee"){
@@ -156,7 +156,7 @@ function Project() {
         <div>
             <div>
                 {sortedProjects.map((project, index) => (
-                    <div className='Project_Blog' onClick={() => onClickNavigate(project.title)} onMouseEnter={() => setArrowd(true)} onMouseLeave={() => setArrowd(false)}>
+                    <div className='Project_Blog' style={{ position: 'relative' }} onClick={() => onClickNavigate(project.title)} onMouseEnter={() => setArrowd(true)} onMouseLeave={() => setArrowd(false)}>
                         <span className='Project_title'>
                             {/* 프로젝트 이름 */}
                             {project.title}
@@ -165,6 +165,11 @@ function Project() {
                         <div className='Project_Info'>
                             <img className='ProjectImg' src={project.urls?.blog} />
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                {project.date && (
+                                    <div className="Project_Date">
+                                        Date {project.date}
+                                    </div>
+                                )}
                                 {project.developer && (
                                     <div className="Project_Developer">
                                         {project.developer}

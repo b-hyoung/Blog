@@ -144,7 +144,7 @@
 
 .blog__cat-img {
     width: 180px;
-    height: 180px;
+    height:300px;
     background-color: white;
     transition: transform 0.3s ease-in-out;
 }

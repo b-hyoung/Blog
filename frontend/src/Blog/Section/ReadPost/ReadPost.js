@@ -22,6 +22,7 @@ function ReadPost() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const postId = queryParams.get("id");
+    const token = useTokenStore((state) => state.accessToken);
 
     const username = useTokenStore((state) => state.username);
     
@@ -34,6 +35,12 @@ function ReadPost() {
     useEffect(() => {
         handleGetPost();
     }, [postId]);
+      useEffect(() => {
+        if (!token) {
+          alert("로그인 후 이용해주세요");
+          navigate(ROUTES.LOGIN);
+        }
+      }, []);
     const handleGetPost = async () => {
         try {
             if (postId) {

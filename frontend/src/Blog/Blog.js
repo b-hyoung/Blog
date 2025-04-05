@@ -8,6 +8,14 @@ import useTokenStore from '../store/tokenStore';
 
 function Blog() {
   const navigate = useNavigate()
+  const token = useTokenStore((state) => state.accessToken);
+  
+  useEffect(() => {
+    if (!token) {
+      alert("로그인 후 이용해주세요");
+      navigate(ROUTES.LOGIN);
+    }
+  }, []);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const type = searchParams.get('type') || 'feedback';
@@ -20,10 +28,12 @@ function Blog() {
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-
+ 
   useEffect(() => {
-    getPostList()
-  }, [activeTab])
+    if (token) {
+      getPostList();
+    }
+  }, [activeTab]);
 
   const getHSLColorFromNickname = (nickname) => {
     const str = nickname.toString();
@@ -146,7 +156,7 @@ function Blog() {
           )}
         </div>
         <div className="blog__cat-button" data-length={visiblePosts.length} onClick={() => handleClickPost()}>
-          <img src={`${process.env.PUBLIC_URL}/img/ProjectImg/image1.png`} alt="고양이 추가 버튼" className="blog__cat-img" />
+          <img src={`${process.env.PUBLIC_URL}/img/icon/ReadPost/AddPost.png`} alt="고양이 추가 버튼" className="blog__cat-img" />
         </div>
       </div>
 

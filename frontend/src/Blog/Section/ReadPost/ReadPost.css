@@ -114,3 +114,16 @@
 .post-changImg{
   transform: rotate(300deg);
 }
+
+@media screen and (max-width: 950px) {
+  .read-post-closeBtn {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: 30px auto 0;
+  }
+}
