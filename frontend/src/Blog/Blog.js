@@ -116,12 +116,7 @@ function Blog() {
       </div>
 
       {/* 게시글 리스트 및 고양이 이미지 레이아웃 개선 */}
-      <div className="blog__content-container">
-        {/* 고양이 이미지 추가 버튼 */}
-        <div className="blog__cat-button" onClick={() => handleClickPost()}>
-          <img src={`${process.env.PUBLIC_URL}/img/ProjectImg/image1.png`} alt="고양이 추가 버튼" className="blog__cat-img" />
-        </div>
-
+      <div className="blog__content-container" style={{ margin: '0 auto', maxWidth: '800px' }}>
         <div className="blog__post-list">
           {visiblePosts.length > 0 ? (
             visiblePosts.map((post, index) => (
@@ -149,6 +144,9 @@ function Blog() {
           ) : (
             <p className="blog__no-posts" style={{fontFamily:"CookieRun-Regular" , fontSize:"20px"}} >게시글이 없습니다.</p>
           )}
+        </div>
+        <div className="blog__cat-button" data-length={visiblePosts.length} onClick={() => handleClickPost()}>
+          <img src={`${process.env.PUBLIC_URL}/img/ProjectImg/image1.png`} alt="고양이 추가 버튼" className="blog__cat-img" />
         </div>
       </div>
 

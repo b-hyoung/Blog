@@ -11,12 +11,97 @@
     position: relative;
     box-sizing: border-box;
     padding-top: 3%;
-  }
+}
 
 /* 상단 타이틀 */
 .header {
     width: 40%;
     margin-bottom: 20px;
+}
+
+@media (max-width: 430px) {
+  .container {
+    padding: 20px 10px;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  .title-input {
+    width: 80%;
+    font-size: 1.1rem;
+    left: 0;
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .dropdown {
+    left: 0;
+    margin-bottom: 20px;
+  }
+
+  .dropdown-selected {
+    padding: 8px 15px;
+    font-size: 0.95rem;
+  }
+
+  .blog__dropdown__img {
+    width: 12px;
+    right: 12px;
+  }
+
+  .content {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .textarea-container {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+  }
+
+  .textarea {
+    font-size: 1rem;
+    height: 250px;
+  }
+
+  .textarea-placeholder {
+    font-size: 1rem;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .back-btn {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .submit-btn {
+    margin-left: 0;
+  }
+  
+  .dropdown, .title-input, .textarea-container {
+      margin-left: 0 !important;
+  }
+  
+  .content {
+      width: 100%;
+      margin-left: 0;
+  }
+  
+  .textarea-container {
+      height: 300px;
+  }
+  
+  .footer {
+      margin-top: 40px;
+  }
 }
 
 .title-input {
