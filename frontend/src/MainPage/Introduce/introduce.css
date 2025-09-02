@@ -1,7 +1,10 @@
-.Introduce{
+.Introduce {
     text-align: left;
 }
-.Introduce_Title{
+.intro-fixed{
+    width: 40%;
+}
+.Introduce_Title {
     display: flex;
     flex-direction: column;
     font-size: 40px;
@@ -9,12 +12,26 @@
     color: rgb(228, 228, 228);
     margin-bottom: 10px;
 }
-.Title_Job{
+
+.Title_Job {
     font-size: 30px;
-    color: rgb(220,220,220);
+    color: rgb(220, 220, 220);
 }
-.Introduce_Description{
+
+.Introduce_Description {
     font-size: 18px;
     color: rgb(193, 193, 193);
     line-height: 28px;
+}
+
+@media (max-width:468px) {
+    .Introduce_Description {
+        width: 300px;
+    }
+}
+
+@media (max-width:360px) {
+    .intro-fixed {
+        width: 300px;
+    }
 }

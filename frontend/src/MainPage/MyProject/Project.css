@@ -2,13 +2,12 @@
     text-align: left;
     padding: 20px;
     width: 100%;
-    max-width: 120%;
     margin: 0 auto 20px auto;
-    scale: 0.9;
     border: 1px solid rgb(62, 62, 62);
     border-radius: 10px;
     box-sizing: border-box;
     position: relative; /* Added position relative here */
+    scale: 0.9;
 }
 
 .Project_Blog:hover {
@@ -121,5 +120,10 @@
 
     .Project_description {
         width: 100%;
+    }
+}
+@media(max-width:360px){
+    .Project_Date{
+        right: 0px;
     }
 }

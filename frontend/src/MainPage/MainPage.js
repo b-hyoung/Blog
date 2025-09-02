@@ -9,9 +9,11 @@ function MainPage() {
     return (
         <div className='MainPage_introduce' >
             <div className="intro-fixed">
-                <Introduce />
-                <Skill />
-                <Social />
+                <div className='intro_mobile-fixed'>
+                    <Introduce />
+                    <Skill />
+                    <Social />
+                </div>
             </div>
             <div className="project-section">
                 <h1 style={{ color: "rgb(198, 198, 198)" }}>프로젝트</h1>

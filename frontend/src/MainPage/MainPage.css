@@ -1,37 +1,48 @@
 .MainPage_introduce {
+    padding-left: 1rem;
     display: flex;
-    flex-direction: row;
-    margin-top: -100px;
-    z-index: 1;
     flex-wrap: wrap;
-    gap: 30px;
 }
 
 .project-section {
     position: relative;
     top: 65px;
-    min-width: 300px;
-    margin-left: 680px;
     width: 55%;
+}
+.intro_mobile-fixed{
+    position: fixed;
 }
 
 .intro-fixed {
-    scale: 0.77;
-    position: fixed;
-    top: -45px;
-    left: 0;
+    padding: 1rem 1rem;
 }
-
+@media (max-width: 1440px) {
+    .project-section {
+        margin-left: 0;
+        width: 100%;
+    }
+    .intro_mobile-fixed{
+        position: relative;
+    }
+}
 @media (max-width: 1024px) {
     .intro-fixed {
-        position: static;
-        scale: 0.75;
         margin-top: 20px;
     }
     
     .project-section {
         margin-left: 0;
         width: 100%;
-        min-width: 300px;
     }
+}
+@media (max-width: 768px) {
+    .Header_NavBar{
+        margin-bottom: 30px;
+    }
+.intro-fixed {
+        position: static;
+        margin-top: 20px;
+        width: 100%;
+        margin: 0 auto;
+}
 }

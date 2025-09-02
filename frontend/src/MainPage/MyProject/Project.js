@@ -33,7 +33,7 @@ function Project() {
                 blog: process.env.PUBLIC_URL + "img/ProjectImg/Project_Blog.png",
                 go: process.env.PUBLIC_URL + "img/All/Go.png",
                 goNotion: process.env.PUBLIC_URL + "img/All/Go_Notion.png"
-            }, skillList: ['React', 'Zustand', 'Python3', 'DRF (Django Rest Framework)', 'CSS' , 'DJango','S3 - React', 'EC2 - Django/DRF 서비스 배포', ,  'My SQL','React-Query']
+            }, skillList: ['React', 'Zustand', 'Python3', 'DRF (Django Rest Framework)','AWS']
 
         },
         {

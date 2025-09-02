@@ -38,20 +38,16 @@ const {Email , Github , notion , velog} = socialLink
             <span className='Social_title'>Social</span>
             <div className='Social_Email'  onClick={() => getClipboardText(Email)} style={{padding:"1px 0 0 3px"}} >
                 <EmailIcon className="Social_EmailImg"  />
-                <a>E-mail : {Email}&nbsp;</a>
+                <a>E-mail <br/>{Email}&nbsp;</a>
             </div>
             <div className='Social_github' onClick={() => goPage(Github)} style={{padding:"2px 0 2px 3px"}}>
                 <img src={`${process.env.PUBLIC_URL}/img/icon/github-mark.svg`} />
-                <a>Github : {Github}&nbsp;</a>
+                <a>Github<br/>{Github}&nbsp;</a>
             </div>
             <div className='Social_notion'  onClick={() => goPage(velog)}>
                 <img src={`${process.env.PUBLIC_URL}/img/icon/velog.png`} style={{width:"22px" , height:"22px" , padding:"2px 0 2px 0"}} />
-                <a>Velog : {velog} &nbsp;</a>
-            </div>
-            <div className='Social_velog'  onClick={() => goPage(notion)}>
-                <img src={`${process.env.PUBLIC_URL}/img/icon/SVG/icons8-개념.svg`} style={{position:"relative",left:"-2pz"}}/>
-                <a>Notion : </a>
-                <span onClick={() => handleClickNotion()}>{notion} &nbsp;</span>
+                <br/>
+                <a>Velog<br/>{velog} &nbsp;</a>
             </div>
         </div>
     )
