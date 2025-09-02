@@ -7,7 +7,6 @@
     border-radius: 10px;
     box-sizing: border-box;
     position: relative; /* Added position relative here */
-    scale: 0.9;
 }
 
 .Project_Blog:hover {
@@ -64,11 +63,11 @@
 
 .Project_description {
     color: rgb(176, 176, 176);
-    font-size: 14px;
+    font-size: 20px;
     margin-top: 15px;
     line-height: 23px;
     margin-bottom: 20px;
-    width: max-content;
+    width: 100%;
 }
 
 .Project_List {
