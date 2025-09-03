@@ -128,7 +128,7 @@ function Project() {
             title: 'Blog',
             developer: '개인 프로젝트 (Me)',
             date: '2025.02.12 ~ 22.04.06',
-            viewSite : "현재 페이지 입니다.",
+            viewSite : "현재 페이지",
             description: (
                 <>
                     <span>
@@ -327,7 +327,7 @@ function Project() {
                         <div className='project_pageNavigate' style={{ textAlign:'center' }}>
                             <button   className={
                                     project.viewSite === "중단된 프로젝트입니다." ||
-                                    project.viewSite === "현재 페이지 입니다."
+                                    project.viewSite === "현제 페이지"
                                     ? "pageNavigateFalse"
                                     : "pageNavigateTrue"
                                     } style={{marginRight:'30px'}} onClick={() => handleClickNavigateViewSite(project.title)}>
