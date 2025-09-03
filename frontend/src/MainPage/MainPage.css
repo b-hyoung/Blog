@@ -1,3 +1,6 @@
+body{
+    background: rgb(36, 36, 36) !important;
+}
 .MainPage_introduce {
     padding-left: 1rem;
     display: flex;

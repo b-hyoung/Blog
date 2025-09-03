@@ -10,6 +10,8 @@ import ReadPost from './Blog/Section/ReadPost/ReadPost.js';
 import Post from './Blog/Section/Post/Post.js';
 import useTokenStore from './store/tokenStore.js';
 import ErrorPage from './ErrorPage/ErrorPage.js';
+import MyBlog from './MyBlog/MyBlog.js';
+import PostPage from './MyBlog/components/PostPage.js';
 
 function App() {
   const location = useLocation()
@@ -17,16 +19,19 @@ function App() {
 
   return (
     <div className="App">
-      {location.pathname.startsWith('/blog') ? null : <Navbar />}
+      {location.pathname.startsWith('/') ? null : <Navbar />}
       <Routes>
         <Route path='/' element={<MainPage />} />
-        <Route path='/login' element={<Login />} />
+        {/* <Route path='/login' element={<Login />} />
         <Route path='/signUp' element={<SignUpPage />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/blog/post' element={<Post />} />
         <Route path='/blog/read_post' element={<ReadPost />} />
         <Route path='/blog/edit/:postId' element={<Post />} />
-        <Route path='*' element={<ErrorPage />} />
+        <Route path='*' element={<ErrorPage />} /> */}
+        <Route path='/myblog' element={<MyBlog />} />
+        <Route path='/posts/:id' element={<PostPage />} />
+
       </Routes>
     </div>
   );
