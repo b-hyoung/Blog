@@ -9,11 +9,11 @@ function Skill() {
     const frontSkill = [
        'React', 'JavaScript', 'CSS', 'TypeScript', 'Zustand','TailWindCSS' , 'React-Query']
     const backSkill = [
-        'Python3', 'DRF (Django Rest Framework)', 'My SQL', 'Docker']
+        'Python3', 'DRF (Django Rest Framework)', 'My SQL']
     const devOpsSkill = [
         'AWS','Docker']
 
-    const [checkedOnly, setCheckedOnly] = useState([]);
+    const [checkedOnly, setCheckedOnly] = useState(['React']);
     
     const { skill, setSkill, setSkills } = useSelectSkillStore()
     
