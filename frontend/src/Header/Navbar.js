@@ -8,11 +8,10 @@ function Navbar() {
 
     const logoUrl = process.env.PUBLIC_URL + "/img/Logo/BlogLogo.png"
     const navigate = useNavigate("")
-    const location = useLocation()
     const token = useTokenStore((state) => state.accessToken);
 
     const handleClickUrl = () => {
-        navigate("/")
+        navigate("/myblog")
     }
     const handleClickWho = () => {
         if(window.confirm("로그아웃 하시겟습니까?")){

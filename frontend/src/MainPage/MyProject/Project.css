@@ -2,9 +2,7 @@
     text-align: left;
     padding: 20px;
     width: 100%;
-    max-width: 120%;
     margin: 0 auto 20px auto;
-    scale: 0.9;
     border: 1px solid rgb(62, 62, 62);
     border-radius: 10px;
     box-sizing: border-box;
@@ -44,7 +42,7 @@
     position: absolute; /* Updated */
     top: 20px; /* Updated */
     right: 30px; /* Updated */
-    font-size: 15px; /* Updated */
+    font-size: 18px; /* Updated */
     color: rgb(162, 162, 162); /* Updated */
     margin-bottom: 4px; /* Removed margin-bottom */
 }
@@ -65,13 +63,19 @@
 
 .Project_description {
     color: rgb(176, 176, 176);
-    font-size: 14px;
+    font-size: 20px;
     margin-top: 15px;
     line-height: 23px;
     margin-bottom: 20px;
-    width: max-content;
+    width: 100%;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
 }
-
+.Project_Blog:hover .Project_description {
+    color: rgb(255, 227, 190);
+    font-weight: 400;
+    letter-spacing: 1px;
+}
 .Project_List {
     display: flex;
     flex-direction: column;
@@ -82,7 +86,7 @@
     padding: 10px 10px 15px 10px;
     border-radius: 10px;
     margin-right: 10px;
-    font-size: 15px;
+    font-size: 18px;
     margin-bottom: 15px;
     width: max-content;
     display: inline-flex;
@@ -101,11 +105,41 @@
 
 .Project_Developer {
     margin-bottom: 8px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     color: rgb(223, 144, 60);
     text-align: right;
     width: max-content;
+}
+.project_pageNavigate{
+    margin-top: 20px;
+}
+.project_pageNavigate button{
+    width: 30%;
+    min-width: max-content;
+    font-size: 20px;
+    background-color: rgb(70, 70, 70);
+    color: #f5f5f5; /* 더 밝은 흰색으로 변경 */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.project_pageNavigate .pageNavigateTrue:hover , .project_pageNavigate button:hover {
+    background-color: rgb(136, 212, 237); /* 밝은 배경 */
+    color: #222; /* 어두운 글자색 */
+}
+.pageNavigateFalse:hover{
+    background-color: #990011 !important; /* 밝은 배경 */
+    color: #f5f5f5 !important; /* 어두운 글자색 */
+    cursor: not-allowed !important;
+}
+.pageNavigateFalse{
+    background-color: #990011 !important; /* 밝은 배경 */
+    color: #FCF6F5 !important; /* 어두운 글자색 */
+    cursor: not-allowed;
 }
 
 @media screen and (max-width: 1024px) {
@@ -122,4 +156,78 @@
     .Project_description {
         width: 100%;
     }
+}
+@media(max-width:360px){
+    .Project_Date{
+        right: 0px;
+    }
+}
+.modal_overlay{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  display:flex; align-items:center; justify-content:center;
+  z-index:1000;
+}
+
+.modal_pageView{
+  width:min(1000px, calc(100vw - 40px));
+  background:#fff; border-radius:16px; padding:16px 16px 12px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.25);
+  max-height: calc(100vh - 80px);
+  display:flex; flex-direction:column; gap:12px;
+}
+
+.modal_close{
+  position:absolute; top:10px; right:12px;
+  border:none; background:transparent; font-size:20px; cursor:pointer;
+}
+
+.gif_viewer{
+  position:relative;
+  background:#f5f5f7;
+  border-radius:12px;
+  overflow:hidden;
+  /* 16:9 박스, 필요시 비율 변경 */
+  aspect-ratio: 16 / 9;
+  display:flex; align-items:center; justify-content:center;
+}
+
+.gif_main{
+  max-width:100%; max-height:100%;
+  object-fit:contain;
+  image-rendering:auto;
+}
+
+.gif_fallback{
+  display:flex; align-items:center; justify-content:center;
+  width:100%; height:100%;
+  color:#666; font-size:14px; background:#fafafa;
+}
+
+.nav_btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  border:none; background:rgba(0,0,0,0.4); color:#fff;
+  width:36px; height:48px; border-radius:8px; cursor:pointer;
+  font-size:22px; line-height:1;
+}
+.nav_left{ left:8px; } .nav_right{ right:8px; }
+.nav_btn:hover{ background:rgba(0,0,0,0.55); }
+
+.thumb_row{
+  display:flex; gap:8px; overflow-x:auto; padding:4px 2px 2px;
+}
+.thumb_row::-webkit-scrollbar{ height:6px; }
+.thumb_row::-webkit-scrollbar-thumb{ background:#d0d0d0; border-radius:3px; }
+
+.thumb_btn{
+  border:2px solid transparent; padding:0; border-radius:8px; cursor:pointer;
+  background:#fff; flex:0 0 auto;
+  width:120px; height:68px; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.thumb_btn img{
+  width:100%; height:100%; object-fit:cover;
+}
+.thumb_btn.active{
+  border-color:#111;
 }

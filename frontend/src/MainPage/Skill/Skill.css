@@ -169,3 +169,19 @@
   line-height: 1;
   border-radius: 0 !important;
 }
+@media  (max-width: 768px) {
+
+  .front_Skill,
+  .back_Skill,
+  .devOps_Skill {
+    width: 400px;
+  }
+@media (max-width:400px) {
+  .front_Skill,
+  .back_Skill,
+  .devOps_Skill {
+    width: 300px;
+  }
+}
+  
+}
