@@ -20,7 +20,7 @@ body{
 }
 
 .intro-fixed {
-    padding: 1rem 1rem;
+    padding : 9rem 1.3rem;
 }
 
 @media (max-width:1648px) {
