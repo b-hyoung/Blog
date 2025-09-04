@@ -123,6 +123,29 @@ function Project() {
             },
             skillList: ['React', 'Docker', 'Figma', 'netlify']
         },
+        //외주 작업 프로젝트
+         {
+            title: '영상디자인학과 홈페이지',
+            developer: '외주 프로젝트 프론트2인',
+            date: '2025.05-28 ~ 07.16',
+            description: (
+                <>
+                    <span>
+                        바닐라 JS 기반의 웹사이트를 개발했습니다..<br/>
+                        Firebase로 서버리스 DB와 이미지 업로드 기능을 구성했고,<br/>
+                        클라이언트 피드백을 받아 반응형 UI까지 구현했습니다.<br/>
+                        외주 프로젝트로 진행되어, 요구사항 수집부터 개발·수정·배포까지<br/>
+                        실제 클라이언트와 협업하는 과정을 경험했습니다.”
+                    </span>
+                </>
+            ),
+            urls: {
+                blog: process.env.PUBLIC_URL + "img/ProjectImg/kumamid.png",
+                go: process.env.PUBLIC_URL + "img/All/Go.png",
+                goNotion: process.env.PUBLIC_URL + "img/All/Go_Notion.png"
+            }, skillList: ['JavaScript', 'Firebase', 'CSS']
+
+        },
         //Blog 프로젝트
         {
             title: 'Blog',
@@ -262,6 +285,8 @@ function Project() {
             window.open("https://github.com/b-hyoung/NewRiwa")
         }else if(title === "w2go_uiseong"){
             window.open("https://github.com/b-hyoung/coin_uiseong")
+        }else if(title === "영상디자인학과 홈페이지"){
+            window.open("https://github.com/Theham10/kumamid")
         }
     }
     // 사이트 이동
@@ -280,6 +305,8 @@ function Project() {
             window.open("https://eriwa.netlify.app/")
         }else if(title === "w2go_uiseong"){
             window.open("https://uiseong.netlify.app/")
+        }else if(title === "영상디자인학과 홈페이지"){
+            window.open("https://kumamid.com")
         }
     }
     // 모달 닫기
