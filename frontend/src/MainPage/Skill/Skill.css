@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: row;
   transition: 1s ease !important;
+  gap: 14px;
 }
 
 .animation {
@@ -96,22 +97,25 @@
 .back_Skill span,
 .devOps_Skill span {
   cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  width: max-content;
-  height: 30px;
-  padding: 10px 10px 10px 20px;
-  letter-spacing: 1px;
-  margin-bottom: 7px;
-  margin-right: 10px;
-  font-size: 12px;
-  font-weight: 550;
-  text-align: center;
-  border: 0px solid gray;
-  border-radius: 20px;
+  display: inline-flex;
   align-items: center;
-  background-color: rgb(45, 45, 45);
+  justify-content: center;
+  height: 36px;
+  padding: 0 16px;
+  gap: 8px;
+  letter-spacing: 0.2px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(60,60,60,1) 0%, rgba(45,45,45,1) 100%);
   color: rgb(201, 221, 238);
+  box-shadow: 0 0 0 0 rgba(0,0,0,0);
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  will-change: transform;
 }
 
 .SkillName {
@@ -121,36 +125,48 @@
 .front_Skill span:hover:not(.checked),
 .back_Skill span:hover:not(.checked),
 .devOps_Skill span:hover:not(.checked) {
-  opacity: 0.9;
-  background-color: rgb(0, 99, 136);
-  ;
-  /* 생기있는 푸른 계열 */
-  color: white;
+  background: linear-gradient(180deg, rgb(0, 122, 180) 0%, rgb(0, 99, 136) 100%);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 150, 220, 0.18);
 }
 
-.front_Skill span.checked,
-.back_Skill span.checked,
-.devOps_Skill span.checked {
-  background-color: #1565c0;
-  /* 진한 파랑 */
-  color: white;
-  font-weight: bold;
+.front_Skill span:active,
+.back_Skill span:active,
+.devOps_Skill span:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}
+
+.front_Skill span:focus-visible,
+.back_Skill span:focus-visible,
+.devOps_Skill span:focus-visible {
+  outline: 2px solid rgba(0, 150, 220, 0.9);
+  outline-offset: 2px;
 }
 
 .front_Skill span.checked {
-  border-color: rgb(255, 66, 66);
-  background-color: rgb(255, 99, 71);
-  font-weight: bold;
+  border-color: rgb(255, 99, 71);
+  background: linear-gradient(180deg, rgba(255, 140, 120, 1) 0%, rgba(255, 99, 71, 1) 100%);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(255, 99, 71, 0.25);
 }
 
 .back_Skill span.checked {
-  border-color: rgb(27 182 255);
-  background-color: rgb(27 182 255);
+  border-color: rgb(27, 182, 255);
+  background: linear-gradient(180deg, rgba(90, 205, 255, 1) 0%, rgba(27, 182, 255, 1) 100%);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(27, 182, 255, 0.25);
 }
 
 .devOps_Skill span.checked {
   border-color: rgb(147, 112, 219);
-  background-color: rgb(147, 112, 219);
+  background: linear-gradient(180deg, rgba(185, 160, 240, 1) 0%, rgba(147, 112, 219, 1) 100%);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(147, 112, 219, 0.25);
 }
 
 .checkmark {
@@ -167,18 +183,20 @@
   line-height: 1;
   border-radius: 0 !important;
 }
-@media  (max-width: 768px) {
 
-  .front_Skill,
-  .back_Skill,
-  .devOps_Skill {
-  }
-@media (max-width:400px) {
+@keyframes pulseHint {
+  0% { box-shadow: 0 0 0 0 rgba(0,150,220,0.0); }
+  70% { box-shadow: 0 0 0 10px rgba(0,150,220,0.12); }
+  100% { box-shadow: 0 0 0 0 rgba(0,150,220,0.0); }
+}
+.pulse-hint { animation: pulseHint 1400ms ease-out 1; }
+
+@media (max-width: 768px) {
+}
+@media (max-width: 400px) {
   .front_Skill,
   .back_Skill,
   .devOps_Skill {
     width: 300px;
   }
-}
-  
 }

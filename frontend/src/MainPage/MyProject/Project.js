@@ -263,15 +263,10 @@ function Project() {
         },
     ]
 
-    const [arrowed, setArrowd] = useState(false)
 
     useEffect(() => {
         const newSelectSkill = skills.filter(item => item.checked).map(item => item.name);
-        if (newSelectSkill.length === 0) {
-            setSelectSkill(["React"]);
-        } else {
             setSelectSkill(newSelectSkill);
-        }
     }, [skills]);
 
     // Animate reorder (FLIP) when order changes
