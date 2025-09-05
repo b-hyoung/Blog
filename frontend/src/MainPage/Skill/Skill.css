@@ -104,7 +104,7 @@
   letter-spacing: 1px;
   margin-bottom: 7px;
   margin-right: 10px;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 550;
   text-align: center;
   border: 0px solid gray;
@@ -172,7 +172,6 @@
   .front_Skill,
   .back_Skill,
   .devOps_Skill {
-    width: 400px;
   }
 @media (max-width:400px) {
   .front_Skill,

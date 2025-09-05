@@ -8,14 +8,14 @@ body{
     align-items: flex-start;
     justify-content: center;
     gap: 2rem;                       
-    padding: 2rem 1.3rem;      
+    padding: 2rem 1.3rem; 
 }
 
 .intro-fixed {
     position: sticky;               
     top: 2rem;                      
     align-self: flex-start;         
-    flex: 2 0 360px;                 
+    flex: 0 0 550px;                 
     max-width: 100%;
     padding: 0;                     
 }
@@ -26,7 +26,7 @@ body{
 
 .project-section {
     position: relative;
-    flex: 1 1 auto;                 
+    flex: 1 1 0;                 
     min-width: 0;                   
     margin: 0;                   
 }
@@ -53,6 +53,7 @@ body{
     .intro-fixed {
         position: static;    
         width: 100%;
+        margin-bottom: 50px;
     }
     .project-section {
         width: 100%;
