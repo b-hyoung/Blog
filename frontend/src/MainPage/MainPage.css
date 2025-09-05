@@ -35,12 +35,12 @@ body{
 }
 
 @media (max-width: 1280px) {
-    .intro-fixed { flex-basis: 300px; }
+    .intro-fixed { flex-basis: 550px; }
 }
 
 @media (max-width: 1024px) {
     .MainPage_introduce { gap: 1.5rem; }
-    .intro-fixed { top: 1rem; flex-basis: 280px; }
+    .intro-fixed { top: 1rem; flex-basis: 400px; }
 }
 
 @media (max-width: 768px) {
