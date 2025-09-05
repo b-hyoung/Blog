@@ -126,7 +126,9 @@ function Project() {
             ),
             urls: {
                 blog: process.env.PUBLIC_URL + "img/ProjectImg/w2go_uiseong.png",
-            },
+                go: process.env.PUBLIC_URL + "img/All/Go.png",
+                goNotion: process.env.PUBLIC_URL + "img/All/Go_Notion.png"
+            }, 
             skillList: ['React', 'Docker', 'Figma', 'netlify']
         },
         //외주 작업 프로젝트
