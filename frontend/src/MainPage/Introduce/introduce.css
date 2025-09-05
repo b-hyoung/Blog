@@ -2,28 +2,28 @@
     text-align: left;
 }
 .intro-fixed{
-    width: 40%;
+    width: 30%;
 }
 .Introduce_Title {
     display: flex;
     flex-direction: column;
-    font-size: 40px;
+    font-size: 36px;
     font-weight: bold;
     color: rgb(228, 228, 228);
     margin-bottom: 10px;
 }
 
 .Title_Job {
-    font-size: 30px;
+    font-size: 26px;
     color: rgb(220, 220, 220);
 }
 
 .Introduce_Description {
-    font-size: 18px;
+    font-size: 14px;
     color: rgb(193, 193, 193);
     line-height: 28px;
 }
-@media (max-width:1440px) {
+@media (max-width:768px) {
     .intro-fixed {
         width: 50%;
     }
