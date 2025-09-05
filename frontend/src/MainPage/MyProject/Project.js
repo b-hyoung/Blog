@@ -1,4 +1,4 @@
-import React, { useEffect, useState , useCallback } from 'react'
+import React, { useEffect, useLayoutEffect, useState , useCallback } from 'react'
 import './Project.css'
 import useSelectSkillStore from '../../Header/Section/useSelectSkillStore'
 import { useNavigate } from 'react-router-dom'
@@ -87,6 +87,12 @@ function Project() {
     const [selectSkill, setSelectSkill] = useState([])
 
     const [selectViewPage,setSelectViewPage] = useState("");
+
+    // Hover state per card
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+    // FLIP animation refs
+    const itemRefs = React.useRef(new Map());
+    const positionsRef = React.useRef(new Map());
 
     const [isModalOpen, setIsModalOpen] = useState(false); // ★ 모달 상태
     const gifs = [
@@ -268,6 +274,35 @@ function Project() {
         }
     }, [skills]);
 
+    // Animate reorder (FLIP) when order changes
+    useLayoutEffect(() => {
+      const newPositions = new Map();
+      itemRefs.current.forEach((el, key) => {
+        if (el) newPositions.set(key, el.getBoundingClientRect());
+      });
+
+      const prev = positionsRef.current;
+      if (prev && prev.size) {
+        newPositions.forEach((rect, key) => {
+          const prevRect = prev.get(key);
+          const el = itemRefs.current.get(key);
+          if (!prevRect || !el) return;
+          const dx = prevRect.left - rect.left;
+          const dy = prevRect.top - rect.top;
+          if (dx || dy) {
+            el.animate(
+              [
+                { transform: `translate(${dx}px, ${dy}px)` },
+                { transform: 'translate(0, 0)' }
+              ],
+              { duration: 500, easing: 'ease' }
+            );
+          }
+        });
+      }
+      positionsRef.current = newPositions;
+    }, [JSON.stringify(selectSkill), JSON.stringify(projects.map(p => p.title))]);
+
     const sortedProjects = [...projects].sort((a, b) => {
         const aCount = a.skillList.filter(skill => selectSkill.includes(skill)).length;
         const bCount = b.skillList.filter(skill => selectSkill.includes(skill)).length;
@@ -318,57 +353,71 @@ function Project() {
 
     return (
         <div>
-            <div>
-                {sortedProjects.map((project, index) => (
-                    <div className='Project_Blog' style={{ position: 'relative' }} onMouseEnter={() => setArrowd(true)} onMouseLeave={() => setArrowd(false)}>
-                        <span className='Project_title'>
-                            {/* 프로젝트 이름 */}
-                            {project.title}
-                            <img className='arrowImg' src={arrowed ? project.urls?.goNotion : project?.urls?.go} />
-                        </span>
-                        <div className='Project_Info'>
-                            <img className='ProjectImg' src={project.urls?.blog} />
-                            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                {project.date && (
-                                    <div className="Project_Date">
-                                        Date {project.date}
-                                    </div>
-                                )}
-                                {project.developer && (
-                                    <div className="Project_Developer">
-                                        {project.developer}
-                                    </div>
-                                )}
-                                <div className='Project_description'>
-                                    {/* 프로젝트 설명 */}
-                                    {project.description}
-                                </div>
-                            </div>
-                        </div>
-                        <div className='Project_SkillList'>
-                            {[...project.skillList.filter(skill => selectSkill.includes(skill)),
-                            ...project.skillList.filter(skill => !selectSkill.includes(skill))]
-                                .map((item, index) => (
-                                    <span key={index} className={selectSkill.includes(item) ? 'haveSkill' : 'DNhaveSkill'}>
-                                        {item}
-                                    </span>
-                                ))}
-                        </div>
-                        <div className='project_pageNavigate' style={{ textAlign:'center' }}>
-                            <button   className={
-                                    project.viewSite === "중단된 프로젝트입니다." ||
-                                    project.viewSite === "현제 페이지"
-                                    ? "pageNavigateFalse"
-                                    : "pageNavigateTrue"
-                                    } style={{marginRight:'30px'}} onClick={() => handleClickNavigateViewSite(project.title)}>
-                                        {project.viewSite ? project.viewSite : "View WebSite"}
-                                </button>
-                            <button onClick={() => handleClickNavigateGithub(project.title)}>View on GitHub</button>
-                            </div>
+          <div style={{ width: '90%', maxWidth: '1400px', margin: '0 auto' }}>
+            {sortedProjects.map((project, index) => (
+              <div
+                key={project.title + index}
+                ref={(el) => { if (el) itemRefs.current.set(project.title, el); }}
+                className='Project_Blog'
+                style={{ position: 'relative' }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <span className='Project_title'>
+                  {/* 프로젝트 이름 */}
+                  {project.title}
+                  <img className='arrowImg' src={hoveredIndex === index ? project.urls?.goNotion : project?.urls?.go} alt="이동 아이콘" />
+                </span>
+                <div className='Project_Info'>
+                  <img className='ProjectImg' src={project.urls?.blog} alt={`${project.title} 미리보기`} loading="lazy" />
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    {project.date && (
+                      <div className="Project_Date">
+                        Date {project.date}
+                      </div>
+                    )}
+                    {project.developer && (
+                      <div className="Project_Developer">
+                        {project.developer}
+                      </div>
+                    )}
+                    <div className='Project_description'>
+                      {/* 프로젝트 설명 */}
+                      {project.description}
                     </div>
-                ))}
-            </div>
-                {isModalOpen && <GifGallery gifs={selectViewPage} onClose={()=>closeModal(false)} />}
+                  </div>
+                </div>
+                <div className='Project_SkillList'>
+                  {[...project.skillList.filter(skill => selectSkill.includes(skill)),
+                  ...project.skillList.filter(skill => !selectSkill.includes(skill))]
+                    .map((item, idx) => (
+                      <span key={idx} className={selectSkill.includes(item) ? 'haveSkill' : 'DNhaveSkill'}>
+                        {item}
+                      </span>
+                    ))}
+                </div>
+                <div className='project_pageNavigate' style={{ textAlign:'center' }}>
+                  <button
+                    className={
+                      project.viewSite === "중단된 프로젝트입니다." ||
+                      project.viewSite === "현재 페이지"
+                        ? "pageNavigateFalse"
+                        : "pageNavigateTrue"
+                    }
+                    style={{ marginRight: '30px' }}
+                    onClick={() => {
+                      if (project.viewSite === "중단된 프로젝트입니다." || project.viewSite === "현재 페이지") return;
+                      handleClickNavigateViewSite(project.title);
+                    }}
+                  >
+                    {project.viewSite ? project.viewSite : "View WebSite"}
+                  </button>
+                  <button onClick={() => handleClickNavigateGithub(project.title)}>View on GitHub</button>
+                </div>
+              </div>
+            ))}
+          </div>
+          {isModalOpen && <GifGallery gifs={selectViewPage} onClose={closeModal} />}
         </div>
     )
 }
