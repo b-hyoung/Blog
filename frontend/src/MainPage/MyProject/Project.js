@@ -261,8 +261,11 @@ function Project() {
 
     useEffect(() => {
         const newSelectSkill = skills.filter(item => item.checked).map(item => item.name);
-        setSelectSkill(newSelectSkill);
-
+        if (newSelectSkill.length === 0) {
+            setSelectSkill(["React"]);
+        } else {
+            setSelectSkill(newSelectSkill);
+        }
     }, [skills]);
 
     const sortedProjects = [...projects].sort((a, b) => {

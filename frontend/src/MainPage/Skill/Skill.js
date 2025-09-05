@@ -18,7 +18,7 @@ function Skill() {
     const { skill, setSkill, setSkills } = useSelectSkillStore()
     
     const [skillChecked, setSkillChecked] = useState({
-        front: frontSkill.map(item => ({ name: item, checked: false })),
+        front: frontSkill.map(item => ({ name: item, checked: item === 'React' })),
         back: backSkill.map(item => ({ name: item, checked: false })),
         devOps: devOpsSkill.map(item => ({ name: item, checked: false })),
     })
